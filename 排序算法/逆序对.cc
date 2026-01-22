@@ -1,12 +1,12 @@
-//ret作为全局变量使用:只在merage合并的过程中产生逆序对
-//划分的区间是升序的,在合并过程中关注(mid+1,right)中的y,如果在(left,mid)中有一个x>y,那么就有mid-index(x)+1个逆序对.
-//这时,比y大的前面的都找完了,就找index(y)+1的了.将y放入tmp中
+//ret浣滀负鍏ㄥ眬鍙橀噺浣跨敤:鍙湪merage鍚堝苟鐨勮繃绋嬩腑浜х敓閫嗗簭瀵?
+//鍒掑垎鐨勫尯闂存槸鍗囧簭鐨?鍦ㄥ悎骞惰繃绋嬩腑鍏虫敞(mid+1,right)涓殑y,濡傛灉鍦?left,mid)涓湁涓€涓獂>y,閭ｄ箞灏辨湁mid-index(x)+1涓€嗗簭瀵?
+//杩欐椂,姣攜澶х殑鍓嶉潰鐨勯兘鎵惧畬浜?灏辨壘index(y)+1鐨勪簡.灏唝鏀惧叆tmp涓?
 class Solution 
 {
     int ret;
     vector<int>tmp;
 public:
-//归并排序思想,逆序对的产生发生在merage的过程中
+//褰掑苟鎺掑簭鎬濇兂,閫嗗簭瀵圭殑浜х敓鍙戠敓鍦╩erage鐨勮繃绋嬩腑
     int reversePairs(vector<int>& nums) 
     {
         tmp.resize(nums.size());
@@ -32,21 +32,21 @@ public:
         }
         while(p1<=mid)tmp[i++]=nums[p1++];
         while(p2<=right)tmp[i++]=nums[p2++];
-        //[left,right]拷贝回原数组
+        //[left,right]鎷疯礉鍥炲師鏁扮粍
         for(int i=left;i<=right;i++)
             nums[i]=tmp[i-left];
     }
 };
 
 
-//如果划分区间是降序的,那么找逆序对,就需要关注(left,mid)区间中的x值,如果(mid+1,right)中有一个y值<x,那么就有(right-index(y)+1)
-//个逆序对产生,都是对x小的.
+//濡傛灉鍒掑垎鍖洪棿鏄檷搴忕殑,閭ｄ箞鎵鹃€嗗簭瀵?灏遍渶瑕佸叧娉?left,mid)鍖洪棿涓殑x鍊?濡傛灉(mid+1,right)涓湁涓€涓獃鍊?x,閭ｄ箞灏辨湁(right-index(y)+1)
+//涓€嗗簭瀵逛骇鐢?閮芥槸瀵箈灏忕殑.
 class Solution 
 {
     int ret;
     vector<int>tmp;
 public:
-//归并排序思想,逆序对的产生发生在merage的过程中
+//褰掑苟鎺掑簭鎬濇兂,閫嗗簭瀵圭殑浜х敓鍙戠敓鍦╩erage鐨勮繃绋嬩腑
     int reversePairs(vector<int>& nums) 
     {
         tmp.resize(nums.size());
@@ -72,21 +72,21 @@ public:
         }
         while(p1<=mid)tmp[i++]=nums[p1++];
         while(p2<=right)tmp[i++]=nums[p2++];
-        //[left,right]拷贝回原数组
+        //[left,right]鎷疯礉鍥炲師鏁扮粍
         for(int i=left;i<=right;i++)
             nums[i]=tmp[i-left];
     }
 };
 
 
-//ret作为merageSort函数的返回值,意义是我给定你一个区间,你归并排序之后将逆序对的个数返回
-//左区间逆序对+右区间逆序对+合并过程中产生的逆序对
-//区间降序
+//ret浣滀负merageSort鍑芥暟鐨勮繑鍥炲€?鎰忎箟鏄垜缁欏畾浣犱竴涓尯闂?浣犲綊骞舵帓搴忎箣鍚庡皢閫嗗簭瀵圭殑涓暟杩斿洖
+//宸﹀尯闂撮€嗗簭瀵?鍙冲尯闂撮€嗗簭瀵?鍚堝苟杩囩▼涓骇鐢熺殑閫嗗簭瀵?
+//鍖洪棿闄嶅簭
 class Solution 
 {
     vector<int>tmp;
 public:
-//归并排序思想,逆序对的产生发生在merage的过程中
+//褰掑苟鎺掑簭鎬濇兂,閫嗗簭瀵圭殑浜х敓鍙戠敓鍦╩erage鐨勮繃绋嬩腑
     int reversePairs(vector<int>& nums) 
     {
         tmp.resize(nums.size());
@@ -113,18 +113,18 @@ public:
         }
         while(p1<=mid)tmp[i++]=nums[p1++];
         while(p2<=right)tmp[i++]=nums[p2++];
-        //[left,right]拷贝回原数组
+        //[left,right]鎷疯礉鍥炲師鏁扮粍
         for(int i=left;i<=right;i++)
             nums[i]=tmp[i-left];
         return ret;
     }
 };
-//区间升序
+//鍖洪棿鍗囧簭
 class Solution 
 {
     vector<int>tmp;
 public:
-//归并排序思想,逆序对的产生发生在merage的过程中
+//褰掑苟鎺掑簭鎬濇兂,閫嗗簭瀵圭殑浜х敓鍙戠敓鍦╩erage鐨勮繃绋嬩腑
     int reversePairs(vector<int>& nums) 
     {
         tmp.resize(nums.size());
@@ -151,7 +151,7 @@ public:
         }
         while(p1<=mid)tmp[i++]=nums[p1++];
         while(p2<=right)tmp[i++]=nums[p2++];
-        //[left,right]拷贝回原数组
+        //[left,right]鎷疯礉鍥炲師鏁扮粍
         for(int i=left;i<=right;i++)
             nums[i]=tmp[i-left];
         return ret;

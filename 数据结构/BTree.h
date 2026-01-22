@@ -3,7 +3,7 @@
 template<class K, size_t M>
 struct BTreeNode
 {
-	//Ó¦¸ÃÊÇM-1¸ö¹Ø¼ü×Ö,M¸öº¢×Ó.ÎªÁË·½±ã²åÈëÔÙ·ÖÁÑ,¾Í¶¼¶à¸øÁËÒ»¸ö¿Õ¼ä
+	//åº”è¯¥æ˜¯M-1ä¸ªå…³é”®å­—,Mä¸ªå­©å­.ä¸ºäº†æ–¹ä¾¿æ’å…¥å†åˆ†è£‚,å°±éƒ½å¤šç»™äº†ä¸€ä¸ªç©ºé—´
 	K _keys[M];
 	BTreeNode<K, M>* _subs[M + 1];
 	BTreeNode<K, M>* _parent;
@@ -31,8 +31,8 @@ public:
 		Node* cur = _root;
 		while (cur)
 		{
-			size_t i = 0;//Ä³Ò»½ÚµãµÄÏÂ±ê
-			while (i < cur->_n)//½ÚµãÏÖÓĞ¹Ø¼ü×ÖÊı
+			size_t i = 0;//æŸä¸€èŠ‚ç‚¹çš„ä¸‹æ ‡
+			while (i < cur->_n)//èŠ‚ç‚¹ç°æœ‰å…³é”®å­—æ•°
 			{
 				if (key < cur->_keys[i])
 				{
@@ -40,20 +40,20 @@ public:
 				}
 				else if (key > cur->_keys[i])
 				{
-					++i;//ÍùÓÒ×ßÕÒ¸ü´óµÄÖµÈ¥±È
+					++i;//å¾€å³èµ°æ‰¾æ›´å¤§çš„å€¼å»æ¯”
 				}
 				else
 				{
 					return make_pair(cur, i);
 				}
 			}
-			//Ã¿´ÎÏòÏÂÒ»²ã×ß¼ÇÂ¼¸¸Ç×½Úµã,±ãÓÚµ±InsertÊ±·µ»ØĞèÒªÓ¦¸ÃÔÚÄÄÀï²åÈë
+			//æ¯æ¬¡å‘ä¸‹ä¸€å±‚èµ°è®°å½•çˆ¶äº²èŠ‚ç‚¹,ä¾¿äºå½“Insertæ—¶è¿”å›éœ€è¦åº”è¯¥åœ¨å“ªé‡Œæ’å…¥
 			parent = cur;
 			cur = cur->_subs[i];
-			//1. ÊÇbreak³öÀ´µÄ,¾ÍÖ¸¶¨ÍùÏÂ×ß
-			//2. ÊÇi==_n¼´´Ë½Úµã±éÀúÍêÁË,ĞèÒªÍùÏÂÒ»²ã×ß,´ËÊ±i=n,ÕıºÃÊÇº¢×ÓµÄ×îºóÒ»¸ö½ÚµãÏÂ±ê
+			//1. æ˜¯breakå‡ºæ¥çš„,å°±æŒ‡å®šå¾€ä¸‹èµ°
+			//2. æ˜¯i==_nå³æ­¤èŠ‚ç‚¹éå†å®Œäº†,éœ€è¦å¾€ä¸‹ä¸€å±‚èµ°,æ­¤æ—¶i=n,æ­£å¥½æ˜¯å­©å­çš„æœ€åä¸€ä¸ªèŠ‚ç‚¹ä¸‹æ ‡
 		}
-		return make_pair(parent, -1);//Ã»ÕÒµ½
+		return make_pair(parent, -1);//æ²¡æ‰¾åˆ°
 	}
 	void InsertKey(Node* cur, const K& key, Node* child)
 	{
@@ -62,7 +62,7 @@ public:
 		{
 			if (key < cur->_keys[end])
 			{
-				cur->_keys[end + 1] = cur->_keys[end];//Å²¶¯Êı¾İµÄÊ±ºòº¢×ÓÒ²µÃ¸ú×Å×ß
+				cur->_keys[end + 1] = cur->_keys[end];//æŒªåŠ¨æ•°æ®çš„æ—¶å€™å­©å­ä¹Ÿå¾—è·Ÿç€èµ°
 				cur->_subs[end + 2] = cur->_subs[end + 1];
 				--end;
 			}
@@ -71,10 +71,10 @@ public:
 				break;
 			}
 		}
-		//end=-1,ÔÚ0Î»ÖÃ²åÈë
-		//break³öÀ´,ÔÚ±È½ÏµÄÏÂÒ»¸öÎ»ÖÃÖ±½Ó²åÈë¾ÍĞĞ
+		//end=-1,åœ¨0ä½ç½®æ’å…¥
+		//breakå‡ºæ¥,åœ¨æ¯”è¾ƒçš„ä¸‹ä¸€ä¸ªä½ç½®ç›´æ¥æ’å…¥å°±è¡Œ
 		cur->_keys[end + 1] = key;
-		cur->_subs[end + 2] = child;//²åÈëµÄÊ±ºò½«º¢×ÓÒ²Á¬ÉÏ
+		cur->_subs[end + 2] = child;//æ’å…¥çš„æ—¶å€™å°†å­©å­ä¹Ÿè¿ä¸Š
 		cur->_n++;
 		if (child)
 		{
@@ -102,38 +102,38 @@ public:
 		while (1)
 		{
 			InsertKey(cur, newKey, child);
-			if (cur->_n < M)//M ¸ö¹Ø¼ü×ÖÊ±¾ÍÂúÁË
+			if (cur->_n < M)//M ä¸ªå…³é”®å­—æ—¶å°±æ»¡äº†
 			{
 				return true;
 			}
 			else
 			{
-				//·ÖÁÑÒ»°ëÖµ¸øbro keys[mid+1,M-1]ÒÔ¼°subs[]
+				//åˆ†è£‚ä¸€åŠå€¼ç»™bro keys[mid+1,M-1]ä»¥åŠsubs[]
 				size_t mid = M / 2;
 				Node* broNode = new Node;
 				int j = 0;
 				size_t i = mid + 1;
 				for (i; i <= M - 1; i++)
 				{
-					//´ø×Å×óº¢×ÓÒ»Æğ×ß(»¹Ê£×îºóÒ»¸öÓÒº¢×Ó)
+					//å¸¦ç€å·¦å­©å­ä¸€èµ·èµ°(è¿˜å‰©æœ€åä¸€ä¸ªå³å­©å­)
 					broNode->_keys[j] = cur->_keys[i];
 					broNode->_subs[j] = cur->_subs[i];
-					//»»µùÁË±ğÍüÁË
+					//æ¢çˆ¹äº†åˆ«å¿˜äº†
 					if (cur->_subs[i])
 						cur->_subs[i]->_parent = broNode;
 					++j;
-					cur->_keys[i] = K();//ÇåÀíÒ»ÏÂ
+					cur->_keys[i] = K();//æ¸…ç†ä¸€ä¸‹
 					cur->_subs[i] = nullptr;
 				}
-				//»¹Ê£×îºóÒ»¸öÓÒº¢×Ó
+				//è¿˜å‰©æœ€åä¸€ä¸ªå³å­©å­
 				broNode->_subs[j] = cur->_subs[i];
 				if (cur->_subs[i])
 					cur->_subs[i]->_parent = broNode;
 				cur->_subs[i] = nullptr;
 
 				broNode->_n = j;
-				cur->_n -= j + 1;//»¹ÓĞÒ»¸ö¸øÁË¸¸Ç×
-				//¸üĞÂµÄÊÇ¸ù½Úµã,¾ÍĞÂ²úÉúĞÂµÄ¸ù
+				cur->_n -= j + 1;//è¿˜æœ‰ä¸€ä¸ªç»™äº†çˆ¶äº²
+				//æ›´æ–°çš„æ˜¯æ ¹èŠ‚ç‚¹,å°±æ–°äº§ç”Ÿæ–°çš„æ ¹
 				if (cur->_parent == nullptr)
 				{
 					_root = new Node;
@@ -149,8 +149,8 @@ public:
 				}
 				else
 				{
-					//ÏòÉÏ¼ÌĞøµ÷Õû
-					//Íùcur->parentÈ¥²åÈëcur->keys[mid] ºÍbroNdoe½Úµã
+					//å‘ä¸Šç»§ç»­è°ƒæ•´
+					//å¾€cur->parentå»æ’å…¥cur->keys[mid] å’ŒbroNdoeèŠ‚ç‚¹
 					newKey = cur->_keys[mid];
 					cur->_keys[mid] = K();
 					child = broNode;

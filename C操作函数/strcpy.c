@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<assert.h>
-//1. Ô­×Ö·û´®±ØĞëÒÔ\0½áÎ²
+//1. åŸå­—ç¬¦ä¸²å¿…é¡»ä»¥\0ç»“å°¾
 void test1()
 {
 	char src1[] = "yuanwei";
@@ -22,7 +22,7 @@ void test1()
 	printf("%s\n", dest2); //abc
 }
 
-//2. »á½«Ô­×Ö·û´®ÖĞµÄ\0Ò²¿½±´¹ıÈ¥(¼àÊÓ´°¿Ú²é¿´)
+//2. ä¼šå°†åŸå­—ç¬¦ä¸²ä¸­çš„\0ä¹Ÿæ‹·è´è¿‡å»(ç›‘è§†çª—å£æŸ¥çœ‹)
 void test2()
 {
 	char dest[20] = "XXXXXXXX";
@@ -30,7 +30,7 @@ void test2()
 	strcpy(dest, src1);
 
 }
-//3. Ä¿±ê×Ö·û»»»º³åÇø±ØĞë×ã¹»´ó,·ñÔò±ÀÀ£.½«Ä¿±ê»º³åÇø¿Õ¼äÆÆ»µ
+//3. ç›®æ ‡å­—ç¬¦æ¢ç¼“å†²åŒºå¿…é¡»è¶³å¤Ÿå¤§,å¦åˆ™å´©æºƒ.å°†ç›®æ ‡ç¼“å†²åŒºç©ºé—´ç ´å
 void test3()
 {
 	char src1[] = "yuanwei";
@@ -38,21 +38,21 @@ void test3()
 	strcpy(dest1, src1);
 	printf("%s\n", dest1); //fatal
 }
-//4. Ä¿±ê¿Õ¼ä±ØĞë¿É±ä
+//4. ç›®æ ‡ç©ºé—´å¿…é¡»å¯å˜
 void test4()
 {
 	char src1[] = "yuanwei";
-	char dest1[20] = "zhendenoiuno";//³£Á¿×Ö·û´®ÊÇ²»¿ÉĞŞ¸ÄµÄ
+	char dest1[20] = "zhendenoiuno";//å¸¸é‡å­—ç¬¦ä¸²æ˜¯ä¸å¯ä¿®æ”¹çš„
 	strcpy(dest1, src1);
 	printf("%s\n", dest1); //fatal
 }
-//strcpy·µ»ØÖµÊÇÄ¿±ê¿Õ¼äµÄÆğÊ¼µØÖ·
-//ÓĞ·µ»ØÖµÊÇÎªÁËÊµÏÖÁ´Ê½·ÃÎÊ printf("%s",strcpy(dest,src));
+//strcpyè¿”å›å€¼æ˜¯ç›®æ ‡ç©ºé—´çš„èµ·å§‹åœ°å€
+//æœ‰è¿”å›å€¼æ˜¯ä¸ºäº†å®ç°é“¾å¼è®¿é—® printf("%s",strcpy(dest,src));
 char* my_strcpy(char* dest, const char* src)
 {
 	assert(dest && src);
 	char*  ret = dest;
-	while(*dest ++ =*src++)//whileÅĞ¶ÏµÄÊÇÃ¿Ò»´Î*dest,µ±×îºóÒ»´Î±»¸³ÖµÎª0Ê±,ÍË³öÑ­»·
+	while(*dest ++ =*src++)//whileåˆ¤æ–­çš„æ˜¯æ¯ä¸€æ¬¡*dest,å½“æœ€åä¸€æ¬¡è¢«èµ‹å€¼ä¸º0æ—¶,é€€å‡ºå¾ªç¯
 	{
 		;
 	}
@@ -60,7 +60,7 @@ char* my_strcpy(char* dest, const char* src)
 	//{
 	//	*dest++ = *src++;
 	//}	
-	//*dest = *src;//½«×îºóµÄ\0²¹ÉÏ
+	//*dest = *src;//å°†æœ€åçš„\0è¡¥ä¸Š
 	return ret;
 }
 //int main()

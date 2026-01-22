@@ -1,8 +1,8 @@
 #include<iostream>
 #include<stack>
 using namespace std;
-//1£® Èç¹û stackPush ÒªÍù stackPop ÖĞÑ¹ÈëÊı¾İ£¬ÄÇÃ´±ØĞëÒ»´ÎĞÔ°Ñ stackPush ÖĞµÄÊı¾İÈ«²¿Ñ¹Èë¡£
-//2£® Èç¹û stackPop ²»Îª¿Õ£¬ stackPush ¾ø¶Ô²»ÄÜÏò stackPop ÖĞÑ¹ÈëÊı¾İ¡£
+//1ï¼ å¦‚æœ stackPush è¦å¾€ stackPop ä¸­å‹å…¥æ•°æ®ï¼Œé‚£ä¹ˆå¿…é¡»ä¸€æ¬¡æ€§æŠŠ stackPush ä¸­çš„æ•°æ®å…¨éƒ¨å‹å…¥ã€‚
+//2ï¼ å¦‚æœ stackPop ä¸ä¸ºç©ºï¼Œ stackPush ç»å¯¹ä¸èƒ½å‘ stackPop ä¸­å‹å…¥æ•°æ®ã€‚
 class MyQueue
 {
 private:

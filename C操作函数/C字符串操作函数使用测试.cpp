@@ -5,18 +5,18 @@ using namespace std;
 //strcpy vs strncpy
 void test1()
 {
-	const char* source = "hello world!";//ºóÃæÄ¬ÈÏĞ¯´ø\0
-	char dest[20];						//½«\0Ò²Ìî³äÁË½øÈ¥
-	strcpy(dest,source);	//strcpyÖ»»á½«source¿½±´½ødestÖĞ,µ½\0½áÎ².
+	const char* source = "hello world!";//åé¢é»˜è®¤æºå¸¦\0
+	char dest[20];						//å°†\0ä¹Ÿå¡«å……äº†è¿›å»
+	strcpy(dest,source);	//strcpyåªä¼šå°†sourceæ‹·è´è¿›destä¸­,åˆ°\0ç»“å°¾.
 	char dest3[5];
-	//strcpy(dest3,source);	//dest3¿Õ¼ä²»¹»ÁË,³öÏÖ±ÀÀ£
+	//strcpy(dest3,source);	//dest3ç©ºé—´ä¸å¤Ÿäº†,å‡ºç°å´©æºƒ
 	cout << "Copied string :" << dest << endl;
 
 	char dest2[30];
-	strncpy(dest2,dest,sizeof(source)); //source.size()< dest[20],½«source.size¸ö×Ö·û·Åµ½dest2ºó,²»»áÄ¬ÈÏÌí¼Ó\0,Ôì³É±ÀÀ£
-	//ËùÒÔ×îºÃÓÃÍêstrcnpyÖ®ºó,ÊÖ¶¯ÔÚ½áÎ²´¦Ìí¼Ó\0×÷ÎªÖÕ½á±êÖ¾.×¢:´óĞ¡Î»ÖÃsize,ÏÂ±ê´Ó0¿ªÊ¼µÄ»°¾ÍÊÇsize-1
+	strncpy(dest2,dest,sizeof(source)); //source.size()< dest[20],å°†source.sizeä¸ªå­—ç¬¦æ”¾åˆ°dest2å,ä¸ä¼šé»˜è®¤æ·»åŠ \0,é€ æˆå´©æºƒ
+	//æ‰€ä»¥æœ€å¥½ç”¨å®Œstrcnpyä¹‹å,æ‰‹åŠ¨åœ¨ç»“å°¾å¤„æ·»åŠ \0ä½œä¸ºç»ˆç»“æ ‡å¿—.æ³¨:å¤§å°ä½ç½®size,ä¸‹æ ‡ä»0å¼€å§‹çš„è¯å°±æ˜¯size-1
 	dest2[sizeof(source)-1]='\0';
-	strncpy(dest2,dest,sizeof(dest)); //source.size()< dest[20],ËùÒÔ²»¹»20µÄ²¿·Ö,strnpy½«\0×÷ÎªÄ¬ÈÏÌî³ä×Ö·û,²¹ÆëÁËËµºÃµÄ20¸öµÄ¿ÕÈ±Î»ÖÃ
+	strncpy(dest2,dest,sizeof(dest)); //source.size()< dest[20],æ‰€ä»¥ä¸å¤Ÿ20çš„éƒ¨åˆ†,strnpyå°†\0ä½œä¸ºé»˜è®¤å¡«å……å­—ç¬¦,è¡¥é½äº†è¯´å¥½çš„20ä¸ªçš„ç©ºç¼ºä½ç½®
 	cout << "Copied string :" << dest2 << endl;
 }
 //memcpy vs memmove 
@@ -24,7 +24,7 @@ void test2()
 {
 	const char* source = "hello,world";
 	char buffer[20];
-	std::memcpy(buffer, source, std::strlen(source)+1);//strlenÓöµ½\0ÖĞÖ¹,²¢ÇÒ²»»á¼ÇÂ¼\0¸öÊı,ËùÒÔÒª+1½«\0´øÉÏ,²ÅÊÇÍêÕû×Ö·û´®
+	std::memcpy(buffer, source, std::strlen(source)+1);//strlené‡åˆ°\0ä¸­æ­¢,å¹¶ä¸”ä¸ä¼šè®°å½•\0ä¸ªæ•°,æ‰€ä»¥è¦+1å°†\0å¸¦ä¸Š,æ‰æ˜¯å®Œæ•´å­—ç¬¦ä¸²
 	cout << "memcpy string :" << buffer << endl;//memcpy string : hello, world
 	
 
@@ -34,7 +34,7 @@ void test2()
 	cout << "memcnpy/memmove string :" << buffer << endl;//memcnpy / memmove string : hellhello, world
 		
 }
-//splitº¯ÊıÊµÏÖ,Ê¹ÓÃstrtok()º¯Êı
+//splitå‡½æ•°å®ç°,ä½¿ç”¨strtok()å‡½æ•°
 vector<string>mySplit(string& str,string& pattern)
 {
 	char* tmp = new char[str.size()+1];

@@ -48,14 +48,14 @@ void DeleteNode(Node* head)
 int main()
 {
 	Node* head = AllocNode(0);
-	printf("²åÈë¿ªÊ¼:\n");
+	printf("æ’å…¥å¼€å§‹:\n");
 	for (int i = 1; i < 10; i++)
 	{
 		InsertNode(head,i);
 		ShowList(head);
 		Sleep(1000);
 	}
-	printf("É¾³ı¿ªÊ¼:\n");
+	printf("åˆ é™¤å¼€å§‹:\n");
 	for (int i = 1; i < 10; i++)
 	{
 		DeleteNode(head);

@@ -3,7 +3,7 @@
 #include<string.h>
 #include<assert.h>
 
-//ÅĞ¶Ïstr2ÊÇ²»ÊÇÔÚstr1ÖĞ,ÅĞ¶ÏÔÚ²»ÔÚ,²»ÔÚ·µ»Ønullptr,ÔÚ,·µ»ØµÚÒ»´Î³öÏÖµÄµØÖ·
+//åˆ¤æ–­str2æ˜¯ä¸æ˜¯åœ¨str1ä¸­,åˆ¤æ–­åœ¨ä¸åœ¨,ä¸åœ¨è¿”å›nullptr,åœ¨,è¿”å›ç¬¬ä¸€æ¬¡å‡ºç°çš„åœ°å€
 char* my_strstr(const char* str1, const char* str2);
 void test_strstr()
 {
@@ -18,9 +18,9 @@ char* my_strstr( const char* str1, const  char* str2)
 {
 	assert(str1 &&str2);
 
-	const char* s1 = str1, * s2 = str2;   //¼ÓÉÏconst ±ÜÃâ²»¼ÓÊ±ºÍ²ÎÊıÁĞ±íconstchar* È¨ÏŞ·Å´óµÄÎÊÌâ
+	const char* s1 = str1, * s2 = str2;   //åŠ ä¸Šconst é¿å…ä¸åŠ æ—¶å’Œå‚æ•°åˆ—è¡¨constchar* æƒé™æ”¾å¤§çš„é—®é¢˜
 	char* cur = str1;
-	while (*cur)//ÒÔÃ¿Ò»¸ö×Ö·û¶¼×÷ÎªÆğÊ¼×Ö·ûÊÔÊÔÄÜ²»ÄÜÆ¥Åästr2
+	while (*cur)//ä»¥æ¯ä¸€ä¸ªå­—ç¬¦éƒ½ä½œä¸ºèµ·å§‹å­—ç¬¦è¯•è¯•èƒ½ä¸èƒ½åŒ¹é…str2
 	{
 		while (*s1 && *s2 && *s1 == *s2)//*s!='\0'
 		{
@@ -28,9 +28,9 @@ char* my_strstr( const char* str1, const  char* str2)
 			s2++;
 		}
 		if (*s2 == '\0') return cur;
-		//elseËµÃ÷ÒÔ´ËÊ±µÄcur¿ªÍ·Ã»ÓĞÆ¥Åä³É¹¦
-		cur++;//´ÓÏÂÒ»¸ö×Ö·û¿ªÊ¼ÔÙÆ¥Åä
-		//Á½¸öÖ¸ÕëÔÙ»ØÖ¸µ½Á½¸ö×Ö·û´®µÄÆğÊ¼Î»ÖÃ
+		//elseè¯´æ˜ä»¥æ­¤æ—¶çš„curå¼€å¤´æ²¡æœ‰åŒ¹é…æˆåŠŸ
+		cur++;//ä»ä¸‹ä¸€ä¸ªå­—ç¬¦å¼€å§‹å†åŒ¹é…
+		//ä¸¤ä¸ªæŒ‡é’ˆå†å›æŒ‡åˆ°ä¸¤ä¸ªå­—ç¬¦ä¸²çš„èµ·å§‹ä½ç½®
 		s1 = cur;
 		s2 = str2;
 	}

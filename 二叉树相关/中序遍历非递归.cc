@@ -16,13 +16,13 @@ void inorderNoRecur(Node* root)
 	Node* cur = root;
 	while (cur || !st.empty())
 	{
-		//½«×ó±ß½çÈëÕ»
+		//å°†å·¦è¾¹ç•Œå…¥æ ˆ
 		while (cur != nullptr)
 		{
 			st.push(cur);
 			cur = cur->left;
 		}
-		//´ËÊ±Õ»¶¥ÊÇ×î×ó½Úµã
+		//æ­¤æ—¶æ ˆé¡¶æ˜¯æœ€å·¦èŠ‚ç‚¹
 		cur = st.top(); st.pop();
 		//do thing!
 		cout << cur->data << " ";

@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<assert.h>
 #include<string.h>
-//·µ»ØÄ¿±ê¿Õ¼äµÄÆğÊ¼µØÖ·
-//Ç¿×ªÎªchar*Ö÷ÒªÊÇÎªÁËÒ»¸ö×Ö½ÚÒ»¸ö×Ö½ÚµÄ´Ósrc¿½±´µ½dest¿Õ¼äÖĞ
+//è¿”å›ç›®æ ‡ç©ºé—´çš„èµ·å§‹åœ°å€
+//å¼ºè½¬ä¸ºchar*ä¸»è¦æ˜¯ä¸ºäº†ä¸€ä¸ªå­—èŠ‚ä¸€ä¸ªå­—èŠ‚çš„ä»srcæ‹·è´åˆ°destç©ºé—´ä¸­
 void* my_memcpy(void* dest, const void* src, size_t count)
 {
 	assert(dest && src);
@@ -10,7 +10,7 @@ void* my_memcpy(void* dest, const void* src, size_t count)
 	while (count--)
 	{
 		*(char*)dest = *(char*)src;
-		dest = (char*)dest + 1;	//destÎŞ·¨++,Ö»ÄÜ²ÉÓÃ(char*)dest+1µÄ·½Ê½
+		dest = (char*)dest + 1;	//destæ— æ³•++,åªèƒ½é‡‡ç”¨(char*)dest+1çš„æ–¹å¼
 		src = (char*)src + 1;
 	}
 	return ret;
@@ -18,15 +18,15 @@ void* my_memcpy(void* dest, const void* src, size_t count)
 void test_memcpy1()
 {
 	int arr1[10] = { 1,2,3,4,5,6,7,8,9,0 };
-				//   1 2 1 2 3 4 5 8 9 0------Ä¿±êĞ§¹û
-				//   1 2 1 2 1 2 1 8 9 0------Êµ¼ÊĞ§¹û,ÒòÎªmemcpyÎŞ·¨´¦ÀíÄÚ´æÖØµşµÄÇé¿ö
+				//   1 2 1 2 3 4 5 8 9 0------ç›®æ ‡æ•ˆæœ
+				//   1 2 1 2 1 2 1 8 9 0------å®é™…æ•ˆæœ,å› ä¸ºmemcpyæ— æ³•å¤„ç†å†…å­˜é‡å çš„æƒ…å†µ
 	my_memcpy(arr1+2,arr1,sizeof(arr1[0])*5);
 }
 void test_memcpy2()
 {
 	int arr1[10] = {1,2,3,4,5,6,7,8,9,0};
 	int arr2[5] = {0};
-	my_memcpy(arr2,arr1,sizeof(arr1[0])* 5);//count ´ú±í¶àÉÙ¸ö×Ö½Ú
+	my_memcpy(arr2,arr1,sizeof(arr1[0])* 5);//count ä»£è¡¨å¤šå°‘ä¸ªå­—èŠ‚
 }
 //int main()
 //{

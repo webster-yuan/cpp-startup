@@ -28,9 +28,9 @@ public:
         if(num>0)
         {
             usleep(1000);
-            cout<<"我是"<<pthread_self()<<",我抢票的编号是"<<num<<endl;
+            cout<<"鎴戞槸"<<pthread_self()<<",鎴戞姠绁ㄧ殑缂栧彿鏄?<<num<<endl;
             num--;
-            printf("");//故意调用，增加用户态的切换
+            printf("");//鏁呮剰璋冪敤锛屽鍔犵敤鎴锋€佺殑鍒囨崲
         }
         else
         {
@@ -47,7 +47,7 @@ void* thread_run(void* args)
     {
         if(!t->GetTickets())
         {
-            cout<<"票被抢完了"<<endl;
+            cout<<"绁ㄨ鎶㈠畬浜?<<endl;
             break;
         }
     }
@@ -60,11 +60,11 @@ int main()
     pthread_t tid[5];
     for(int i=0;i<5;i++)
     {
-        pthread_create(&tid[i],nullptr,thread_run,(void*)t);//参数不是瞎传的
+        pthread_create(&tid[i],nullptr,thread_run,(void*)t);//鍙傛暟涓嶆槸鐬庝紶鐨?
     }
     for(int i=0;i<5;i++)
     {
-        pthread_join(tid[i],nullptr);//进行阻塞等待
+        pthread_join(tid[i],nullptr);//杩涜闃诲绛夊緟
     }
     return 0;
 }

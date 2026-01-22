@@ -2,13 +2,13 @@
 #include<vector>
 using namespace std;
 
-//²»»ùÓÚ±È½ÏµÄÅÅĞò=>Í°ÅÅĞò
-//¼ÆÊıÅÅĞò
+//ä¸åŸºäºæ¯”è¾ƒçš„æ’åº=>æ¡¶æ’åº
+//è®¡æ•°æ’åº
 class BucketSort
 {
 public:
-	int radix = 10;//¼¸½øÖÆ¾Í·Ö¼¸¸öÍ°
-	//»ùÊıÅÅĞò
+	int radix = 10;//å‡ è¿›åˆ¶å°±åˆ†å‡ ä¸ªæ¡¶
+	//åŸºæ•°æ’åº
 	void radixSort(vector<int>& arr)
 	{
 		if (arr.size() == 0)return;
@@ -16,9 +16,9 @@ public:
 	}
 	void radixSortHelper(vector<int>& arr, int begin, int end, int digit)
 	{
-		//×î´óÎ»Êı¾ö¶¨ÁËÒª³öÍ°ºÍÈëÍ°¼¸´Î
-		//ÈëÍ°Ä£Äâ:Ê¹ÓÃcount[i]´ú±í¸öÎ»(Ê®Î»...)<=iµÄÊı×ÖÓĞ¼¸¸ö
-		//³öÍ°Ä£Äâ:¸ù¾İcount[i]->Ê¹ÓÃhelperÊı×é³Ë·Å°´ÕÕ¸öÎ»(Ê®Î»...)ÅÅĞòºÅµÄÊı×Ö
+		//æœ€å¤§ä½æ•°å†³å®šäº†è¦å‡ºæ¡¶å’Œå…¥æ¡¶å‡ æ¬¡
+		//å…¥æ¡¶æ¨¡æ‹Ÿ:ä½¿ç”¨count[i]ä»£è¡¨ä¸ªä½(åä½...)<=içš„æ•°å­—æœ‰å‡ ä¸ª
+		//å‡ºæ¡¶æ¨¡æ‹Ÿ:æ ¹æ®count[i]->ä½¿ç”¨helperæ•°ç»„ä¹˜æ”¾æŒ‰ç…§ä¸ªä½(åä½...)æ’åºå·çš„æ•°å­—
 		for (int d = 1; d <= 10; d++)
 		{
 			vector<int>count(radix);
@@ -27,11 +27,11 @@ public:
 				int j = getSingleDigit(arr[i], d);
 				count[j]++;
 			}
-			//´¦ÀíÇ°×ººÍ->´ú±í¸öÎ»Ğ¡ÓÚµÈÓÚiµÄÓĞ¼¸¸öÊı×Ö
+			//å¤„ç†å‰ç¼€å’Œ->ä»£è¡¨ä¸ªä½å°äºç­‰äºiçš„æœ‰å‡ ä¸ªæ•°å­—
 			for (int i = 1; i < radix; i++)
 				count[i] += count[i - 1];
 
-			//³öÍ°->helperÊı×éÖĞ
+			//å‡ºæ¡¶->helperæ•°ç»„ä¸­
 			vector<int>bucket(end-begin+1);
 			for (int i = end; i >= begin; i--)
 			{
@@ -46,14 +46,14 @@ public:
 			}
 		}
 	}
-	int getSingleDigit(int num, int digit)//»ñÈ¡Êı×ÖnumÄ³Ò»Î»µÄÊı×Ö,ÌâÒâ:d=1->ÏëÒª¸öÎ»Êı
+	int getSingleDigit(int num, int digit)//è·å–æ•°å­—numæŸä¸€ä½çš„æ•°å­—,é¢˜æ„:d=1->æƒ³è¦ä¸ªä½æ•°
 	{
 		return (num / (int)(pow(10, digit - 1))) % 10;
-		// 123456 ÄãÏëÒª5,´ËÊ±Ô¼¶¨ºÃµÄdigit=2,123456 /10=12345 ,%10=5 
+		// 123456 ä½ æƒ³è¦5,æ­¤æ—¶çº¦å®šå¥½çš„digit=2,123456 /10=12345 ,%10=5 
 	}
 	int getMaxDigit(vector<int>& arr)
 	{
-		//ÕÒµ½×î´óÖµµÄ×î´óÎ»Êı
+		//æ‰¾åˆ°æœ€å¤§å€¼çš„æœ€å¤§ä½æ•°
 		int maxSum = 0;
 		for (auto e : arr)
 			maxSum = max(maxSum,e);
@@ -67,19 +67,19 @@ public:
 	}
 
 public:
-	//¼ÆÊıÅÅĞò
+	//è®¡æ•°æ’åº
 	void CountSort(vector<int>& arr)
 	{
 		if (arr.size() == 0)return;
-		//1. ÕÒµ½×î´óÖµÈ»ºó¿ª¿Õ¼ä
+		//1. æ‰¾åˆ°æœ€å¤§å€¼ç„¶åå¼€ç©ºé—´
 		int maxSum = INT_MIN;
 		for (int i = 0; i < arr.size(); i++)
 			maxSum = max(maxSum,arr[i]);
 		vector<int>count(maxSum+1);
-		//2. ±éÀú,Í³¼Æ´ÊÆµ
+		//2. éå†,ç»Ÿè®¡è¯é¢‘
 		for (int i = 0; i < arr.size(); i++)
 			count[arr[i]]++;
-		//3. Êä³ö
+		//3. è¾“å‡º
 		int i = 0;
 		for (int j = 0; j < count.size(); j++)
 		{

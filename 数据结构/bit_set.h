@@ -1,7 +1,7 @@
 #pragma once
 namespace yuanwei
 {
-	//������ʾĳһλ�����Ƿ���ֹ�01��ʾ
+	//用来表示某一位数字是否出现过01表示
 	template<size_t N>
 	class bitset
 	{
@@ -9,8 +9,8 @@ namespace yuanwei
 		bitset()
 		{
 			bits.resize(N/8+1);
-			//��8bitΪһ����λ��������,Ҳ����һ��int
-			//������ҪN>32λ�ı��ʱ,�Ͷ����뼸��int ����
+			//以8bit为一个单位进行区分,也就是一个int
+			//当你需要N>32位的标记时,就多申请几个int 即可
 		}
 		void set(size_t x)
 		{
@@ -35,7 +35,7 @@ namespace yuanwei
 	};
 	
 }
-//������һ�������Ƿ���ֹ�����,�������ű�����ʾ
+//当想标记一个数字是否出现过两次,就用两张表来表示
 template<size_t N>
 class TwoBitSet
 {

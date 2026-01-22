@@ -20,7 +20,7 @@ public:
         char opt = index==1?str[0]:'0';
         if (!isdigit(str[index]))
             return 0;
-        int right = 0;//¼ÇÂ¼µÚÒ»¸ö²»ÎªÊı×ÖµÄÎ»ÖÃ
+        int right = 0;//è®°å½•ç¬¬ä¸€ä¸ªä¸ä¸ºæ•°å­—çš„ä½ç½®
         str = index == 1 ? str.substr(1) : str;
         for (int i = 0; i < str.size(); i++)
         {
@@ -31,8 +31,8 @@ public:
             }
         }
         str = right==0? str:str.substr(index, right - index);
-        //right¼ÇÂ¼µÄÊÇÁ¬ĞøÊı×ÖºóÃæµÄÄÇ¸ö¿Õ¸ñÎ»ÖÃ,ËùÒÔ½ØÈ¡right-index¸ö
-        //½«str×ª»¯ÎªÕûÊı 1. ²»ÄÜ³¬¹ı32Î»,µÈÓÚ32Î»Ê±ÌØÅĞ 2. ¸ºÊıindex=1
+        //rightè®°å½•çš„æ˜¯è¿ç»­æ•°å­—åé¢çš„é‚£ä¸ªç©ºæ ¼ä½ç½®,æ‰€ä»¥æˆªå–right-indexä¸ª
+        //å°†strè½¬åŒ–ä¸ºæ•´æ•° 1. ä¸èƒ½è¶…è¿‡32ä½,ç­‰äº32ä½æ—¶ç‰¹åˆ¤ 2. è´Ÿæ•°index=1
         long long  ret = 0;
         int end = str.size() - 1;
         for (int i = 0; i < str.size(); i++)
@@ -40,7 +40,7 @@ public:
             ret += (str[end] - '0') * pow(10, i);
             end--;
         }
-        //ÅĞ¶Ï¼«´óÖµ
+        //åˆ¤æ–­æå¤§å€¼
         if ((opt=='+'||index==0) && ret > INT_MAX)return INT_MAX;
         if (opt=='-' && ret > (long long)-1 * (INT_MIN)) return INT_MIN;
         return opt=='-' ? -1 * ret : ret;
@@ -52,25 +52,25 @@ public:
         long long res = 0;
         int start = 0;
         int n = str.size();
-        //Ïû³ı¿Õ¸ñ
+        //æ¶ˆé™¤ç©ºæ ¼
         while (start < n && isspace(str[start])) ++start;
         if (start == n) return 0;
         bool flag = true;
-        //ÅĞ¶Ï·ûºÅ
+        //åˆ¤æ–­ç¬¦å·
         if (str[start] == '-' || str[start] == '+') {
             flag = str[start] == '+' ? true : false;
             ++start;
         }
         int end = start;
-        //ÕÒµ½Î²¶Ë
+        //æ‰¾åˆ°å°¾ç«¯
         while (end < n && isdigit(str[end])) ++end;
         if (start == end) return 0;
 
-        //¼ÆËã½á¹û
+        //è®¡ç®—ç»“æœ
         for (; start < end; ++start) {
             res = (str[start] - '0') + res * 10;
             //res=(str[start]-'0') +res*10;
-            //ÅĞ¶Ï±ß½ç
+            //åˆ¤æ–­è¾¹ç•Œ
             if (res > INT_MAX) {
                 return flag ? INT_MAX : INT_MIN;
             }

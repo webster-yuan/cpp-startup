@@ -6,7 +6,7 @@ namespace yuanwei
 	class string
 	{
 	public:
-		//È«È±Ê¡¹¹Ôìº¯Êı<=>Ä¬ÈÏ¹¹Ôìº¯Êı
+		//å…¨ç¼ºçœæ„é€ å‡½æ•°<=>é»˜è®¤æ„é€ å‡½æ•°
 		string(const char* str = "")
 			:_size(sizeof(str))
 			, _capc(_size)
@@ -14,10 +14,10 @@ namespace yuanwei
 			_str = new char[sizeof(str) + 1];
 			strcpy(_str, str);
 		}
-		////Éî¿½±´
+		////æ·±æ‹·è´
 		string(const string& str)
 		{
-			string tmp(str._str);//µ÷ÓÃÄ¬ÈÏ¹¹Ôìº¯Êı,ÒòÎªtmp¿Õ¼ä»¹Î´·ÖÅä.
+			string tmp(str._str);//è°ƒç”¨é»˜è®¤æ„é€ å‡½æ•°,å› ä¸ºtmpç©ºé—´è¿˜æœªåˆ†é….
 			Swap(tmp);
 		}
 		void Swap(string& s2)
@@ -44,7 +44,7 @@ namespace yuanwei
 			}
 			return *this;
 		}
-		string& operator=(string s) //ĞÎ²Î±¾Éí¾ÍÊÇÒ»·İ¿½±´
+		string& operator=(string s) //å½¢å‚æœ¬èº«å°±æ˜¯ä¸€ä»½æ‹·è´
 		{
 			if (&s != this)
 			{
@@ -91,11 +91,11 @@ namespace yuanwei
 
 		void append(const char* str)
 		{
-			//¿ª±Ù×ã¹»µÄ¿Õ¼ä reserve
+			//å¼€è¾Ÿè¶³å¤Ÿçš„ç©ºé—´ reserve
 			size_t len = sizeof(str);
 			if (_size + len > _capc)
 			{
-				reserve(_size + len);//À©³ä_capc
+				reserve(_size + len);//æ‰©å……_capc
 			}
 			strcpy(_str + _size, str);
 			_size += len;
@@ -149,19 +149,19 @@ namespace yuanwei
 				delete[] tmp;
 			}
 		}
-		void resize(int n, char ch = '\0')//ÄãÏë°Ñ¿Õ¼ä³õÊ¼»¯ÎªÉ¶
+		void resize(int n, char ch = '\0')//ä½ æƒ³æŠŠç©ºé—´åˆå§‹åŒ–ä¸ºå•¥
 		{
 			if (n <= _size)
 				_str[n] = ch;
 			else
 			{
-				if (n > _capc)//ĞÂÕûÒ»¿éµØ
+				if (n > _capc)//æ–°æ•´ä¸€å—åœ°
 				{
 					reserve(n);
 				}
 				else
 				{
-					//[_size,n]³õÊ¼»¯Îªch
+					//[_size,n]åˆå§‹åŒ–ä¸ºch
 					memset(_str + _size, ch, n - _size);
 					_size = n;
 					_str[_size] = '\0';
@@ -214,7 +214,7 @@ namespace yuanwei
 			return !(*this == s);
 		}
 	public:
-		// ·µ»Ø´ÓposÎ»ÖÃ¿ªÊ¼,cÔÚstringÖĞµÚÒ»´Î³öÏÖµÄÎ»ÖÃ
+		// è¿”å›ä»posä½ç½®å¼€å§‹,cåœ¨stringä¸­ç¬¬ä¸€æ¬¡å‡ºç°çš„ä½ç½®
 		size_t find(char c, size_t pos = 0) const
 		{
 			int ret = -1;
@@ -228,7 +228,7 @@ namespace yuanwei
 			}
 			return ret;
 		}
-		// ´ÓposÎ»ÖÃ¿ªÊ¼,·µ»Ø×Ó´®sÔÚstringÖĞµÚÒ»´Î³öÏÖµÄÎ»ÖÃ ±©Á¦·½Ê½ or KMP 
+		// ä»posä½ç½®å¼€å§‹,è¿”å›å­ä¸²såœ¨stringä¸­ç¬¬ä¸€æ¬¡å‡ºç°çš„ä½ç½® æš´åŠ›æ–¹å¼ or KMP 
 		size_t find(const char* s, size_t pos = 0) const
 		{
 			size_t ret = -1;
@@ -240,7 +240,7 @@ namespace yuanwei
 					if (_str[i] != _str[j])
 						break;
 				}
-				//Ò»ÖÖÊÇÌø³öÑ­»·iÎ»ÖÃ¿ªÊ¼²»ĞĞ,Ò»ÖÖÊÇ½áÊø
+				//ä¸€ç§æ˜¯è·³å‡ºå¾ªç¯iä½ç½®å¼€å§‹ä¸è¡Œ,ä¸€ç§æ˜¯ç»“æŸ
 				if (j == sizeof(s))
 				{
 					ret = j; break;
@@ -249,7 +249,7 @@ namespace yuanwei
 			return ret;
 		}
 
-		// ÔÚposÎ»ÖÃÉÏ²åÈë×Ö·ûc/×Ö·û´®str£¬²¢·µ»Ø¸Ã×Ö·ûµÄÎ»ÖÃ
+		// åœ¨posä½ç½®ä¸Šæ’å…¥å­—ç¬¦c/å­—ç¬¦ä¸²strï¼Œå¹¶è¿”å›è¯¥å­—ç¬¦çš„ä½ç½®
 
 		string& insert(size_t pos, char ch)
 		{
@@ -285,7 +285,7 @@ namespace yuanwei
 			return *this;
 		}
 
-		// É¾³ıposÎ»ÖÃÉÏµÄÔªËØ£¬²¢·µ»Ø¸ÃÔªËØµÄÏÂÒ»¸öÎ»ÖÃ
+		// åˆ é™¤posä½ç½®ä¸Šçš„å…ƒç´ ï¼Œå¹¶è¿”å›è¯¥å…ƒç´ çš„ä¸‹ä¸€ä¸ªä½ç½®
 
 		string& erase(size_t pos, size_t len)
 		{
@@ -297,27 +297,27 @@ namespace yuanwei
 			}
 			else
 			{
-				strcpy(_str + pos, _str + pos + len);//¸²¸Çpos¿½±´
+				strcpy(_str + pos, _str + pos + len);//è¦†ç›–posæ‹·è´
 				_size -= len;
 			}
 			return *this;
 		}
 	public:
-		//ÓÑÔªº¯Êı
+		//å‹å…ƒå‡½æ•°
 		friend std::istream& operator>>(std::istream in, string& str);
 		friend std::ostream& operator<<(std::ostream& out, const string& str);
 	public:
-		//ÓÒÖµÒıÓÃ
-		//ÒÆ¶¯¹¹Ôì
+		//å³å€¼å¼•ç”¨
+		//ç§»åŠ¨æ„é€ 
 		string(string&&s)
 			:_str(nullptr)
 		{
-			swap(s);//ÎŞĞèÔÙ¹¹ÔìÒ»¸ö¶ÔÏótmp,ÉÙÒ»´ÎÉî¿½±´
+			swap(s);//æ— éœ€å†æ„é€ ä¸€ä¸ªå¯¹è±¡tmp,å°‘ä¸€æ¬¡æ·±æ‹·è´
 		}
-		//ÒÆ¶¯¸³Öµ
+		//ç§»åŠ¨èµ‹å€¼
 		string& operator=(string&& s)
 		{
-			swap(s);//ÎŞĞèÔÙ¹¹ÔìÒ»¸ö¶ÔÏótmp,ÉÙÒ»´ÎÉî¿½±´
+			swap(s);//æ— éœ€å†æ„é€ ä¸€ä¸ªå¯¹è±¡tmp,å°‘ä¸€æ¬¡æ·±æ‹·è´
 			return *this;
 		}
 	private:

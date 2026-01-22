@@ -69,9 +69,9 @@ public:
 			cur->_parent = parent;
 		}
 
-		// ¿ØÖÆÆ½ºâ
-		// 1¡¢¸üÐÂÆ½ºâÒò×Ó -- ÐÂÔö½Úµãµ½¸ù½ÚµãµÄ×æÏÈÂ·¾¶
-		// 2¡¢³öÏÖÒì³£Æ½ºâÒò×Ó£¬ÄÇÃ´ÐèÒªÐý×ªÆ½ºâ´¦Àí
+		// æŽ§åˆ¶å¹³è¡¡
+		// 1ã€æ›´æ–°å¹³è¡¡å› å­ -- æ–°å¢žèŠ‚ç‚¹åˆ°æ ¹èŠ‚ç‚¹çš„ç¥–å…ˆè·¯å¾„
+		// 2ã€å‡ºçŽ°å¼‚å¸¸å¹³è¡¡å› å­ï¼Œé‚£ä¹ˆéœ€è¦æ—‹è½¬å¹³è¡¡å¤„ç†
 		while (parent)
 		{
 			if (cur == parent->_left)
@@ -85,7 +85,7 @@ public:
 			}
 			else if (parent->_bf == 1 || parent->_bf == -1)
 			{
-				// ¼ÌÐøÍùÉÏ¸üÐÂ
+				// ç»§ç»­å¾€ä¸Šæ›´æ–°
 				cur = parent;
 				parent = parent->_parent;
 			}
@@ -111,7 +111,7 @@ public:
 			}
 			else
 			{
-				// ËµÃ÷²åÈë¸üÐÂÆ½ºâÒò×ÓÖ®Ç°£¬Ê÷ÖÐÆ½ºâÒò×Ó¾ÍÓÐÎÊÌâÁË
+				// è¯´æ˜Žæ’å…¥æ›´æ–°å¹³è¡¡å› å­ä¹‹å‰ï¼Œæ ‘ä¸­å¹³è¡¡å› å­å°±æœ‰é—®é¢˜äº†
 				assert(false);
 			}
 		}
@@ -203,7 +203,7 @@ public:
 	{
 		Node* subl = parent->_left;
 		Node* sublr = subl->_right;
-		//½øÐÐÐý×ªÎ¬»¤Èý²æÁ¬
+		//è¿›è¡Œæ—‹è½¬ç»´æŠ¤ä¸‰å‰è¿ž
 		parent->_left = sublr;
 		if (sublr)
 			sublr->_parent = parent;
@@ -254,8 +254,8 @@ public:
 
 		if (rightHeight- leftHeight!= root->_bf)
 		{
-			cout << root->_kv.first << "Ó¦¸ÃÊÇ:" << rightHeight - leftHeight << endl;
-			cout << root->_kv.first << "Êµ¼ÊÊÇ:" << root->_bf << endl;
+			cout << root->_kv.first << "åº”è¯¥æ˜¯:" << rightHeight - leftHeight << endl;
+			cout << root->_kv.first << "å®žé™…æ˜¯:" << root->_bf << endl;
 			return false;
 		}
 		return abs(leftHeight-rightHeight)<2
@@ -282,7 +282,7 @@ void test_AVLTree()
 	for (auto e : a)
 	{
 		avl.Insert(make_pair(e, e));
-		cout << "Insert:" << e << ":" << avl.IsBalance() << endl;//ÑéÖ¤Æ½ºâÒò×ÓÊÇ·ñÕýÈ·Ê±²åÈë14Ê±³öÏÖÎÊÌâ
+		cout << "Insert:" << e << ":" << avl.IsBalance() << endl;//éªŒè¯å¹³è¡¡å› å­æ˜¯å¦æ­£ç¡®æ—¶æ’å…¥14æ—¶å‡ºçŽ°é—®é¢˜
 	}
 	avl.InOrder();
 	cout << avl.IsBalance() << endl;

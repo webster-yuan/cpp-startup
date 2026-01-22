@@ -21,41 +21,41 @@ public:
             {
                 hashMap[root].push_back(str);
             }
-            else//²åÈë¶ş¼¶Ä¿Â¼Ê±ÕÒËû¶ÔÓ¦µÄÒ»¼¶Ä¿Â¼
+            else//æ’å…¥äºŒçº§ç›®å½•æ—¶æ‰¾ä»–å¯¹åº”çš„ä¸€çº§ç›®å½•
             {
                 string index = hashMap[root].back();
                 hashMap[index].push_back(str);
             }
         }
     }
-    //Ã¿¸ö½Úµã¶¼ÓĞÏàÍ¬µÄ×ÓÎÊÌâ,
-    //ÏÈ²é¿´×Ô¼ºÊÇ·ñ°üº¬key¹Ø¼ü×Ö,°üº¬,path+=str,²»°üº¬; ¶¼×ßº¢×Ó½Úµã±éÀú
-    //È»ºóÔÙ±éÀú×Ô¼ºµÄvectorÖĞÃ¿¸ö½ÚµãÊÇ·ñ°üº¬
-    //¼ôÖ¦: 
+    //æ¯ä¸ªèŠ‚ç‚¹éƒ½æœ‰ç›¸åŒçš„å­é—®é¢˜,
+    //å…ˆæŸ¥çœ‹è‡ªå·±æ˜¯å¦åŒ…å«keyå…³é”®å­—,åŒ…å«,path+=str,ä¸åŒ…å«; éƒ½èµ°å­©å­èŠ‚ç‚¹éå†
+    //ç„¶åå†éå†è‡ªå·±çš„vectorä¸­æ¯ä¸ªèŠ‚ç‚¹æ˜¯å¦åŒ…å«
+    //å‰ªæ: 
     //void dfs(string str,string path)
     //{
-    //    //if (isCon(str)) Ôì³ÉÖ»ÓĞ°üº¬keyµÄ·ÇÒ¶×Ó½Úµã²ÅÄÜ´òÓ¡
+    //    //if (isCon(str)) é€ æˆåªæœ‰åŒ…å«keyçš„éå¶å­èŠ‚ç‚¹æ‰èƒ½æ‰“å°
     //    //    path += str;
-    //    path += str;//ËùÓĞÂ·¾¶È«²¿´òÓ¡ÁË
-    //    if (hashMap[str].size() == 0)//µ½Ò¶×Ó½Úµã
+    //    path += str;//æ‰€æœ‰è·¯å¾„å…¨éƒ¨æ‰“å°äº†
+    //    if (hashMap[str].size() == 0)//åˆ°å¶å­èŠ‚ç‚¹
     //    {
     //        ans.push_back(path);
     //        return;
     //    }
     //    for (auto s : hashMap[str])
     //    {
-    //        //if(isCon(s)) ·ÖÖ§²»°üº¬µÄÖ±½Ó²»×ßÁË¾Í´íÁË
+    //        //if(isCon(s)) åˆ†æ”¯ä¸åŒ…å«çš„ç›´æ¥ä¸èµ°äº†å°±é”™äº†
     //        //    dfs(s, path+s);
     //        dfs(s, path);
     //    }
-    //    //»Ö¸´ÏÖ³¡
+    //    //æ¢å¤ç°åœº
     //    for (int i = 0; i < str.size(); i++)
     //        path.pop_back();
     //}
     bool dfs(string str, string path)
     {
         path += str;
-        if (hashMap[str].size() == 0 && isCon(str))//µ½Ò¶×Ó½Úµã²¢ÇÒ°üº¬key
+        if (hashMap[str].size() == 0 && isCon(str))//åˆ°å¶å­èŠ‚ç‚¹å¹¶ä¸”åŒ…å«key
         {
             ans.push_back(path);
             return true;
@@ -65,7 +65,7 @@ public:
         {
             ret=dfs(s, path);
         }
-        //´Ó¸ÃÂ·¾¶»ØÀ´,·¢ÏÖ²¢Ã»ÓĞ½á¹û,½«¸ÃÂ·¾¶Ìí¼ÓµÄstrÄ¿Â¼·Ö¼¶É¾³ı
+        //ä»è¯¥è·¯å¾„å›æ¥,å‘ç°å¹¶æ²¡æœ‰ç»“æœ,å°†è¯¥è·¯å¾„æ·»åŠ çš„strç›®å½•åˆ†çº§åˆ é™¤
         if (!ret)
         {
             for (int i = 0; i < str.size(); i++)
@@ -109,10 +109,10 @@ private:
 int main()
 {
     std::string keyword;
-    std::cin >> keyword; // ¶ÁÈ¡¹Ø¼ü×Ö
+    std::cin >> keyword; // è¯»å–å…³é”®å­—
     int count = 0;
     std::cin >> count;
-    std::vector<std::string> contents; // Ã¿ĞĞµÄÊı¾İ
+    std::vector<std::string> contents; // æ¯è¡Œçš„æ•°æ®
     for (int i = 0; i < count; ++i) {
         std::string tmp;
         std::cin >> tmp;

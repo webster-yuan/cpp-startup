@@ -1,8 +1,8 @@
 //https://leetcode.cn/problems/max-submatrix-lcci/description/
 //https://www.bilibili.com/video/BV1pw411M7Du?t=4607.2
 
-//ѹ������ķ�ʽ,
-//�������0~0������,�ںϲ�֮���һά������ѡ��������������鼴��
+//压缩数组的方式,
+//必须包含0~0行数字,在合并之后的一维数组中选择连续最大子数组即可
 //       0~1
 //      ...
 //       0~n-1
@@ -10,8 +10,8 @@
 //       ...
 //       1~n-1
 //...
-//����ѹ����������¼���ֵ
-//ö�ٵĹ��̾���O(n^2)
+//以上压缩数组求解记录最大值
+//枚举的过程就是O(n^2)
 #include<iostream>
 #include<vector>
 using namespace std;

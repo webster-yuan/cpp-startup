@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-class Solution1//ÒÔi,jÎ»ÖÃÎªÆğµã×ß±©Á¦µİ¹é
+class Solution1//ä»¥i,jä½ç½®ä¸ºèµ·ç‚¹èµ°æš´åŠ›é€’å½’
 {
     int m, n;
     int ret;
@@ -12,10 +12,10 @@ public:
         dfs(0, 0, grid, grid[0][0]);
         return ret;
     }
-    //ÒÔrow,colÎ»ÖÃ×÷ÎªÆğµã,µ½´ï¸ÃÎ»ÖÃÖ®¼ä,Èç¹ûÄÇ¸öÎ»ÖÃÊÇºÏ·¨µÄ,ÒÑ¾­½«ÄÇ¸öÎ»ÖÃµÄÖµ¼ÓÉÏÁË
+    //ä»¥row,colä½ç½®ä½œä¸ºèµ·ç‚¹,åˆ°è¾¾è¯¥ä½ç½®ä¹‹é—´,å¦‚æœé‚£ä¸ªä½ç½®æ˜¯åˆæ³•çš„,å·²ç»å°†é‚£ä¸ªä½ç½®çš„å€¼åŠ ä¸Šäº†
     void dfs(int row, int col, vector<vector<int>>& grid, int path)
     {
-        //³ö¿Ú:µ½´ï×îºóÒ»¸öÎ»ÖÃ,ĞèÒª¸üĞÂret×î´óÖµ
+        //å‡ºå£:åˆ°è¾¾æœ€åä¸€ä¸ªä½ç½®,éœ€è¦æ›´æ–°retæœ€å¤§å€¼
         if (row == m - 1 && col == n - 1)
         {
             ret = max(ret, path);
@@ -25,18 +25,18 @@ public:
         if (col + 1 < n) dfs(row, col + 1, grid, path + grid[row][col + 1]);
     }
 };
-class Solution2//ÒÔi,jÎ»ÖÃÎªÖÕµã×ß±©Á¦µİ¹é
+class Solution2//ä»¥i,jä½ç½®ä¸ºç»ˆç‚¹èµ°æš´åŠ›é€’å½’
 {
     int m;
     int n;
 public:
-    //dp[i][j]ÒÔijÎ»ÖÃÎª½áÎ²,µ½´ïijÎ»ÖÃÊ±µÄ×î´ó¼ÛÖµ
+    //dp[i][j]ä»¥ijä½ç½®ä¸ºç»“å°¾,åˆ°è¾¾ijä½ç½®æ—¶çš„æœ€å¤§ä»·å€¼
     int maxValue(vector<vector<int>>& grid)
     {
         m = grid.size(), n = grid[0].size();
         return zuo(m - 1, n - 1, grid);
     }
-    //·µ»ØÖµÊÇµ½´ïxyÊ±µÄ×î´ó¼ÛÖµ
+    //è¿”å›å€¼æ˜¯åˆ°è¾¾xyæ—¶çš„æœ€å¤§ä»·å€¼
     int zuo(int x, int y, vector<vector<int>>& grid)
     {
         if (x == 0 && y == 0)
@@ -56,10 +56,10 @@ class Solution3
     int m;
     int n;
 public:
-    //dp[i][j]ÒÔijÎ»ÖÃÎª½áÎ²,µ½´ïijÎ»ÖÃÊ±µÄ×î´ó¼ÛÖµ
+    //dp[i][j]ä»¥ijä½ç½®ä¸ºç»“å°¾,åˆ°è¾¾ijä½ç½®æ—¶çš„æœ€å¤§ä»·å€¼
     //dp[i][j]=max(dp[i-1][j],dp[i][j-1])
-    //ÓÅ»¯:¶à¼ÓÒ»ĞĞ,¶à¼ÓÒ»ÁĞ
-    //×¢Òâ:1. ³õÊ¼»¯Î»ÖÃ,Ê¹µÃ²»Ó°ÏìºóĞø,¶à¼ÓµÄ¶¼ÊÇ0¾ÍĞĞ 2. Íù»ØÕÒgridÊ±×¢ÒâÏÂ±ê±ä»»
+    //ä¼˜åŒ–:å¤šåŠ ä¸€è¡Œ,å¤šåŠ ä¸€åˆ—
+    //æ³¨æ„:1. åˆå§‹åŒ–ä½ç½®,ä½¿å¾—ä¸å½±å“åç»­,å¤šåŠ çš„éƒ½æ˜¯0å°±è¡Œ 2. å¾€å›æ‰¾gridæ—¶æ³¨æ„ä¸‹æ ‡å˜æ¢
     int maxValue(vector<vector<int>>& grid)
     {
         m = grid.size(), n = grid[0].size();

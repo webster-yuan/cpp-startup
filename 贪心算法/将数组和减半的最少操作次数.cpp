@@ -1,6 +1,6 @@
 
 //https://leetcode.cn/problems/minimum-operations-to-halve-array-sum/
-//Ã¿´ÎÑ¡ÔñÊı×éÖĞÊı×Ö×î´óµÄÉ¾³ı,ÎªÁËÌáÉıĞ§ÂÊÊ¹ÓÃ´ó¸ú¶ÑO(1)Ê±¼ä»ñÈ¡
+//æ¯æ¬¡é€‰æ‹©æ•°ç»„ä¸­æ•°å­—æœ€å¤§çš„åˆ é™¤,ä¸ºäº†æå‡æ•ˆç‡ä½¿ç”¨å¤§è·Ÿå †O(1)æ—¶é—´è·å–
 #include<iostream>
 #include<vector>
 #include<queue>
@@ -12,7 +12,7 @@ public:
     {
         priority_queue<double> bigHeap;
         int n = nums.size();
-        double sum = 0;//Éæ¼°µ½Ğ¡Êı,Ò»¶¨ÒªÊÇdoubleÀàĞÍ,·ñÔò»á·¢Éú½Ø¶ÏÎÊÌâµ¼ÖÂ¾«¶È¶ªÊ§
+        double sum = 0;//æ¶‰åŠåˆ°å°æ•°,ä¸€å®šè¦æ˜¯doubleç±»å‹,å¦åˆ™ä¼šå‘ç”Ÿæˆªæ–­é—®é¢˜å¯¼è‡´ç²¾åº¦ä¸¢å¤±
         for (int i = 0; i < n; i++)
         {
             bigHeap.push(nums[i]);

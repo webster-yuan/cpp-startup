@@ -14,7 +14,7 @@ public:
 		, right(nullptr)
 	{}
 };
-// 左右子树都是平衡,height
+// 宸﹀彸瀛愭爲閮芥槸骞宠　,height
 pair<int, bool> process(Node* head)
 {
 	if (head == nullptr) return {0,true};

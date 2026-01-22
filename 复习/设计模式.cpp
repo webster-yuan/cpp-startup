@@ -1,8 +1,8 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-//����ģʽ
-//ʵ�ֹ�����������Ϳͻ��˴������.��֮����������ͼ��ʱ,ֻ��Ҫ�޸Ĺ����Ĵ���,�ͻ���ֱ�Ӵ����þ���
+//工厂模式
+//实现工厂创建对象和客户端代码解耦.当之后新增其他图形时,只需要修改工厂的代码,客户端直接传参用就行
 class Shape
 {
 public:
@@ -37,11 +37,11 @@ void test_Factory()
 {
 	Shape* circle = ShapeFactory::getShape("Cirlce");
 }
-//�۲���ģʽ: 
-//ʵ�ֶ���֮��һ�Զ��������ϵ,��һ���������仯ʱ,��������Ҫ����״̬����
-//1. ֻ��Ҫ��ע���۲��ߵ�״̬
-//2. ���۲����й۲��ߵ�ע���,�������Ӻ�ɾ���۲��ߺ͹㲥�۲��߸���״̬
-//3. ���ֻ��ƿ��Գ���Ϊ����ģ��,���۲��߸����¼��ķ���,�۲�����Ϊ������ͨ��ע�ᶩ�Ĺ�ϵ�����¼���������Ӧ
+//观察者模式: 
+//实现对象之间一对多的依赖关系,当一个对象发生变化时,依赖他的要进行状态更新
+//1. 只需要关注被观察者的状态
+//2. 被观察者有观察者的注册表,方便增加和删除观察者和广播观察者更新状态
+//3. 这种机制可以抽象为订阅模型,被观察者负责事件的发布,观察者作为订阅者通过注册订阅关系接收事件并做出相应
 class Observer
 {
 public:
@@ -62,7 +62,7 @@ public:
 	}
 	virtual int getState()const = 0;
 public:
-	void notify()//�㲥����
+	void notify()//广播机制
 	{
 		for (auto e : observers)
 		{
@@ -97,8 +97,8 @@ public:
 		std::cout << "Observer: Received state update. New state is " << s << std::endl;
 	}
 };
-//����ģʽ
-//����ģʽ
+//单例模式
+//饿汉模式
 class Single
 {
 public:
@@ -116,7 +116,7 @@ private:
 	static Single* ins;
 };
 Single* Single::ins = new Single();
-//����ģʽ:
+//懒汉模式:
 class Single
 {
 public:
@@ -135,8 +135,8 @@ private:
 };
 Single* Single::ins = nullptr;
 
-//����������
-//1. ֻ���ڶ�������ռ�
+//特殊类的设计
+//1. 只能在堆上申请空间
 template<class T>
 class HeapOnly
 {
@@ -152,10 +152,10 @@ private:
 private:
 	T a;
 };
-//2. ֻ����ջ������ռ�
-//����operator new operator delete��ͬʱ,�����캯��Ҳ����Ϊ˽��
-//new = operator new+���캯��
-//���캯��˽�в���ʵ����������,�͵ø��˼�һ�����Բ�ͨ������Ϳ��Ե��õĺ���,������һ������static��Ա����
+//2. 只能在栈上申请空间
+//屏蔽operator new operator delete的同时,将构造函数也设置为私有
+//new = operator new+构造函数
+//构造函数私有不能实例化出对象,就得给人家一个可以不通过对象就可以调用的函数,来创建一个对象static成员函数
 class StackOnly
 {
 public:
@@ -172,8 +172,8 @@ private:
 private:
 	int a;
 };
-//3. ���ܱ��̳е���
-//C++11ʹ��final C++98�����캯������Ϊ˽��
+//3. 不能被继承的类
+//C++11使用final C++98将构造函数设置为私有
 class B final
 {};
 class A

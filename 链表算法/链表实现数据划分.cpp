@@ -16,7 +16,7 @@ public:
 class ListSplitData
 {
 public:
-	//Ê¹ÓÃ6¸öÖ¸Õë±äÁ¿±êÊ¶Èı¿éÇøÓò
+	//ä½¿ç”¨6ä¸ªæŒ‡é’ˆå˜é‡æ ‡è¯†ä¸‰å—åŒºåŸŸ
 	Node* listSplit2(Node* head, int pivot)
 	{
 		Node* sHead = nullptr;
@@ -64,7 +64,7 @@ public:
 		}
 	}
 public:
-	//1. ½èÓÃÊı×é,½«Á´±í»®·Ö->Êı×é»®·Ö,¸ù¾İÊı×éÄÚÈİÔÙÖØĞÂÆ´½ÓĞÂÁ´±í
+	//1. å€Ÿç”¨æ•°ç»„,å°†é“¾è¡¨åˆ’åˆ†->æ•°ç»„åˆ’åˆ†,æ ¹æ®æ•°ç»„å†…å®¹å†é‡æ–°æ‹¼æ¥æ–°é“¾è¡¨
 	Node* listSplit1(Node* head, int pivot)
 	{
 		if (head == nullptr)return nullptr;
@@ -85,7 +85,7 @@ public:
 		}
 		arrPatition(arr, pivot);
 
-		//ºó¾¹·¢ÏÖ,Èç¹ûÊı×é´æµÄÊÇ½ÚµãÖ¸Õë,¾Í¿ÉÒÔÖ±½ÓÁ¬½Ó,²»ÓÃÔÙÏñintÀàĞÍÄÇÑùÔÙ¿ª¿Õ¼ä
+		//åç«Ÿå‘ç°,å¦‚æœæ•°ç»„å­˜çš„æ˜¯èŠ‚ç‚¹æŒ‡é’ˆ,å°±å¯ä»¥ç›´æ¥è¿æ¥,ä¸ç”¨å†åƒintç±»å‹é‚£æ ·å†å¼€ç©ºé—´
 		for (int i = 1; i < arr.size(); i++)
 		{
 			arr[i - 1]->next = arr[i];
@@ -95,7 +95,7 @@ public:
 	}
 	void arrPatition(vector<Node*>& arr, int pivot)
 	{
-		//»®·ÖÎªÈı¸öÇøÓò less equal more
+		//åˆ’åˆ†ä¸ºä¸‰ä¸ªåŒºåŸŸ less equal more
 		int less = -1, more = arr.size();
 		int index = 0;
 		while (index < more)

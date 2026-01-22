@@ -14,10 +14,10 @@ public:
     }
     int dfs(vector<vector<int>>& grid, int row, int col)
     {
-        //�������:�������ϰ���ôֱ�ӷ���0
+        //特殊情况:起点就是障碍那么直接返回0
         if (grid[row][col] == 1) return 0;//[[1]]
 
-        //�����յ�,˵��������һ����ȷ��·
+        //到达终点,说明就走了一条正确的路
         if (row == m - 1 && col == n - 1)
             return 1;
         int ret = 0;
@@ -31,12 +31,12 @@ public:
 class Solution
 {
 public:
-    //���[i-1][j]����[i][j-1]���ϰ���Ļ�,˵���������ǵ�������·�ǲ�ͨ����û��·������,dp[i][j]=0+��һ��ֵ
+    //如果[i-1][j]或者[i][j-1]是障碍物的话,说明到从他那到我这条路是不通的是没有路径数的,dp[i][j]=0+另一个值
     int uniquePathsWithObstacles(vector<vector<int>>& ob)
     {
-        //�Ż�,���һ�ж��һ��
-        //ע���ʼ��dp[0][1]=1
-        //ע���±�任,�ڷ���obԭ����ʱ
+        //优化,多加一行多加一列
+        //注意初始化dp[0][1]=1
+        //注意下标变换,在访问ob原数组时
         int m = ob.size(), n = ob[0].size();
         vector<vector<int>>dp(m + 1, vector<int>(n + 1));
         dp[0][1] = 1;
@@ -44,7 +44,7 @@ public:
         {
             for (int j = 1; j <= n; j++)
             {
-                if (ob[i - 1][j - 1] == 0)//������Ǵ��ϰ�������,˵��·������Ч��
+                if (ob[i - 1][j - 1] == 0)//如果不是从障碍物来的,说明路经是有效的
                     dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
             }
         }

@@ -13,7 +13,7 @@ public:
 		, right(nullptr)
 	{}
 };
-//ÖĞĞòĞòÁĞ»¯¶ş²æÊ÷
+//ä¸­åºåºåˆ—åŒ–äºŒå‰æ ‘
 string Serialize(Node* head)
 {
 	if (head == nullptr)return "#!";
@@ -22,7 +22,7 @@ string Serialize(Node* head)
 	Serialize(head->right);
 	return res;
 }
-//ÖØ¹¹¶ş²æÊ÷,·µ»ØÍ·½áµã
+//é‡æ„äºŒå‰æ ‘,è¿”å›å¤´ç»“ç‚¹
 Node* ReConstruct(string &str)
 {
 	list<string> res = my_split(str,"!");
@@ -46,7 +46,7 @@ list<string> my_split(string& str,const string& sep)
 	char* s = strtok(tmp, sep.c_str());
 	while(s)
 	{
-		res.push_back(s);//string ÄÚÖÃchar*µ¥²ÎÊı¹¹Ôìº¯Êı,ËùÒÔ¿ÉÒÔÊµÏÖÒşÊ¿¹¹Ôì
+		res.push_back(s);//string å†…ç½®char*å•å‚æ•°æ„é€ å‡½æ•°,æ‰€ä»¥å¯ä»¥å®ç°éšå£«æ„é€ 
 		s = strtok(NULL, sep.c_str());
 	}
 	return res;

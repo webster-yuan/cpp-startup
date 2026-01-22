@@ -1,14 +1,14 @@
 #include<stdio.h>
 #include<assert.h>
 #include<string.h>
-//°´×Ö½Ú½øĞĞ±È½Ï
+//æŒ‰å­—èŠ‚è¿›è¡Œæ¯”è¾ƒ
 void test_mermcpy()
 {
 	int arr1[10] = {1,2,3,4,5,6};
 	int arr2[10] = { 1,2,3,4,5,0x11223306 };
 	printf("%d\n",memcmp(arr1, arr2, sizeof(arr1[0]) * 5));//0
 	printf("%d\n",memcmp(arr1, arr2, sizeof(arr1[0]) * 6));//-1
-	printf("%d\n",memcmp(arr1, arr2, sizeof(arr1[0]) * 5 + 1));//0,Ğ¡¶Ë´æ´¢·½Ê½,06 ºÍ6ÕâÒ»×Ö½ÚÊÇÏàµÈµÄ
+	printf("%d\n",memcmp(arr1, arr2, sizeof(arr1[0]) * 5 + 1));//0,å°ç«¯å­˜å‚¨æ–¹å¼,06 å’Œ6è¿™ä¸€å­—èŠ‚æ˜¯ç›¸ç­‰çš„
 	printf("%d\n",memcmp(arr1, arr2, sizeof(arr1[0]) * 5 + 2));//-1
 }
 //int main()

@@ -5,14 +5,14 @@
 #include<stdlib.h>
 #include<errno.h>
 #include<limits.h>
-//¸ù¾İ´íÎóÂë·µ»Ø´íÎóĞÅÏ¢,char* strerror(errno);
+//æ ¹æ®é”™è¯¯ç è¿”å›é”™è¯¯ä¿¡æ¯,char* strerror(errno);
 void test_strerror()
 {
 	printf("%s\n",strerror(0));
 	printf("%s\n",strerror(1));
 	printf("%s\n",strerror(2));
 	printf("%s\n",strerror(3));
-	//µ÷ÓÃÏµÍ³µ÷ÓÃº¯ÊıÊ±,´íÎóĞÅÏ¢»á×Ô¶¯·Åµ½errnoÈ«¾Ö±äÁ¿ÖĞ
+	//è°ƒç”¨ç³»ç»Ÿè°ƒç”¨å‡½æ•°æ—¶,é”™è¯¯ä¿¡æ¯ä¼šè‡ªåŠ¨æ”¾åˆ°errnoå…¨å±€å˜é‡ä¸­
 	int* p1 = (int*)malloc(40);
 	int* p = (int*)malloc(INT_MAX);
 	if (p == NULL)

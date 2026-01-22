@@ -1,5 +1,5 @@
 //https://leetcode.cn/problems/knight-probability-in-chessboard/description/
-//°Ë¸ö·½Ïò¶¼¿ÉÒÔ×ß£¬×ßk´Î»¹ÔÚÆåÅÌÉÏ¾Í´ú±í´æ»î£¬·µ»Ø´æ»îµÄ¸ÅÂÊ
+//å…«ä¸ªæ–¹å‘éƒ½å¯ä»¥èµ°ï¼Œèµ°kæ¬¡è¿˜åœ¨æ£‹ç›˜ä¸Šå°±ä»£è¡¨å­˜æ´»ï¼Œè¿”å›å­˜æ´»çš„æ¦‚ç‡
 #include<iostream>
 #include<vector>
 using namespace std;

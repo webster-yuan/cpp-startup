@@ -28,16 +28,16 @@ Node* lowestCommonNode(Node* head, Node* o1, Node* o2)
 	unordered_map<Node*, Node*> hashMap;//<cur,parent>
 	process(head,hashMap);
 	unordered_set<Node*> hashSet;
-	//ÏòÉÏÉú³ÉÁ´±í
+	//å‘ä¸Šç”Ÿæˆé“¾è¡¨
 	Node* cur = o1;
-	while (cur!=head)//»¹Ã»µ½¸ù½Úµã,¾ÍÒ»Ö±ÏòÉÏÕÒ
+	while (cur!=head)//è¿˜æ²¡åˆ°æ ¹èŠ‚ç‚¹,å°±ä¸€ç›´å‘ä¸Šæ‰¾
 	{
 		hashSet.insert(cur);
 		cur = hashMap[cur];
 	}
 	hashSet.insert(head);
 	cur = o2;
-	while (hashMap.count(cur)==0)//ÔÚo1ĞÎ³ÉµÄµ¥Á´±íÖĞ²éÕÒÊÇ·ñ´æÔÚo2µÄ¸¸Ç×½Úµã½»¼¯
+	while (hashMap.count(cur)==0)//åœ¨o1å½¢æˆçš„å•é“¾è¡¨ä¸­æŸ¥æ‰¾æ˜¯å¦å­˜åœ¨o2çš„çˆ¶äº²èŠ‚ç‚¹äº¤é›†
 	{
 		cur = hashMap[cur];
 	}

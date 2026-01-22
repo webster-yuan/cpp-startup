@@ -8,24 +8,24 @@ int main1()
 	lt1.push_back(1);
 	lt1.push_back(1);
 	lt1.push_back(1);
-	//1. Ö»Ö§³Öµü´úÆ÷·ÃÎÊ
+	//1. åªæ”¯æŒè¿­ä»£å™¨è®¿é—®
 	list<int>::iterator it1 = lt1.begin();
 	while (it1 != lt1.end())
 	{
 		//cout << *it1 << endl;
 		it1++;
 	}
-	//2. splice()º¯Êı,½«½ÚµãÒÆ¶¯µ½Á´±íµÄÆäËûÎ»ÖÃ(LRUÊµÏÖ´úÂëÖĞÓÃµ½)
+	//2. splice()å‡½æ•°,å°†èŠ‚ç‚¹ç§»åŠ¨åˆ°é“¾è¡¨çš„å…¶ä»–ä½ç½®(LRUå®ç°ä»£ç ä¸­ç”¨åˆ°)
 	list<int> lt2;
 	lt2.push_back(2);
 	lt2.push_back(2);
 	lt2.push_back(2);
 	lt2.push_back(2);
 	lt2.push_back(3);
-	//lt1.splice(lt1.begin(),lt2);//½«lt2ËùÓĞÔªËØÒÆ¶¯µ½lt1.begin()Ö®Ç°
+	//lt1.splice(lt1.begin(),lt2);//å°†lt2æ‰€æœ‰å…ƒç´ ç§»åŠ¨åˆ°lt1.begin()ä¹‹å‰
 	lt1.splice(lt1.begin(), lt2, find(lt2.begin(),lt2.end(),3));
 	list<int>::iterator it = lt1.begin();
-	advance(it,3);//ÈÃitÖ¸Ïò3ÔªËØËùÔÚ½Úµã
+	advance(it,3);//è®©itæŒ‡å‘3å…ƒç´ æ‰€åœ¨èŠ‚ç‚¹
 	while (it != lt1.end())
 	{
 		cout << *it << endl;
@@ -34,7 +34,7 @@ int main1()
 	system("pause");
 	return 0;
 }
-//listÊÇË«ÏòÁ´±íÅ¶!!!
+//listæ˜¯åŒå‘é“¾è¡¨å“¦!!!
 namespace yuanwei
 {
 	template<class T>
@@ -50,7 +50,7 @@ namespace yuanwei
 			, prev(nullptr)
 		{}
 	};
-	//ÒòÎªlist²¢²»ÏòvectorÒ»ÑùÄÚ´æ¿Õ¼äÊÇÁ¬ĞøµÄ,Ö§³ÖÖ¸Õë,ËùÒÔ¾Í×Ô¼º·â×°Ò»¸öµü´úÆ÷,ÈÃËûÏñÖ¸ÕëÒ»Ñù,·½±ã²Ù×÷
+	//å› ä¸ºlistå¹¶ä¸å‘vectorä¸€æ ·å†…å­˜ç©ºé—´æ˜¯è¿ç»­çš„,æ”¯æŒæŒ‡é’ˆ,æ‰€ä»¥å°±è‡ªå·±å°è£…ä¸€ä¸ªè¿­ä»£å™¨,è®©ä»–åƒæŒ‡é’ˆä¸€æ ·,æ–¹ä¾¿æ“ä½œ
 	template<class T,class Ref=T&,class Ptr=T*>//T ,T& ,T*
 	class __list_iterator
 	{
@@ -63,11 +63,11 @@ namespace yuanwei
 		__list_iterator(Node* n)
 			:node(n)
 		{}
-		//½Úµã±¾Éí²»ÊôÓÚµü´úÆ÷,ËùÒÔ²»ÓÃÊÍ·Ånode
+		//èŠ‚ç‚¹æœ¬èº«ä¸å±äºè¿­ä»£å™¨,æ‰€ä»¥ä¸ç”¨é‡Šæ”¾node
 		~__list_iterator()
 		{}
-		//ÒòÎªÊµÏÖµÄÊÇµü´úÆ÷,¿½±´¹¹ÔìÉ¶µÄÊÇÇ³¿½±´Ò²Ã»¹ØÏµ,ÒòÎªÏëÒªµÄ¾ÍÊÇÖ¸ÏòÍ¬Ò»¿é½Úµã,¶øÇÒ×ÊÔ´ÊÍ·ÅÒ²²»¹éµü´úÆ÷¹Ü,ËùÒÔ
-		//ÓÃÄ¬ÈÏÉú³ÉµÄÇ³¿½±´Ã»Ã«²¡
+		//å› ä¸ºå®ç°çš„æ˜¯è¿­ä»£å™¨,æ‹·è´æ„é€ å•¥çš„æ˜¯æµ…æ‹·è´ä¹Ÿæ²¡å…³ç³»,å› ä¸ºæƒ³è¦çš„å°±æ˜¯æŒ‡å‘åŒä¸€å—èŠ‚ç‚¹,è€Œä¸”èµ„æºé‡Šæ”¾ä¹Ÿä¸å½’è¿­ä»£å™¨ç®¡,æ‰€ä»¥
+		//ç”¨é»˜è®¤ç”Ÿæˆçš„æµ…æ‹·è´æ²¡æ¯›ç—…
 	public:
 		Ref operator*()
 		{
@@ -77,33 +77,33 @@ namespace yuanwei
 		{
 			return &node->data;
 		}
-		//Ç°ÖÃ++,ÈÃµü´úÆ÷Ö¸ÏòÏÂÒ»¸öÎ»ÖÃ
+		//å‰ç½®++,è®©è¿­ä»£å™¨æŒ‡å‘ä¸‹ä¸€ä¸ªä½ç½®
 		self& operator++()
 		{
 			node = node->next;
 			return *this;
 		}
-		//ºóÖÃ++,·µ»ØµÄ»¹ÊÇÖ®Ç°µÄ
+		//åç½®++,è¿”å›çš„è¿˜æ˜¯ä¹‹å‰çš„
 		self operator++(int)
 		{
 			self tmp(*this);
 			node = node->next;
 			return tmp;
 		}
-		//Ç°ÖÃ--,ÈÃµü´úÆ÷Ö¸ÏòÇ°Ò»¸öÎ»ÖÃ
+		//å‰ç½®--,è®©è¿­ä»£å™¨æŒ‡å‘å‰ä¸€ä¸ªä½ç½®
 		self& operator--()
 		{
 			node = node->prev;
 			return *this;
 		}
-		//ºóÖÃ++,·µ»ØµÄ»¹ÊÇÖ®Ç°µÄ
+		//åç½®++,è¿”å›çš„è¿˜æ˜¯ä¹‹å‰çš„
 		self operator--(int)
 		{
 			self tmp(*this);
 			node = node->prev;
 			return tmp;
 		}
-		//!=ÅĞ¶ÏµÄÊÇÁ½¸öµü´úÆ÷ÊÇ·ñÖ¸ÏòµÄÍ¬Ò»¸ö½Úµã,²¢²»ÊÇÅĞ¶ÏÖµÏàµÈ!!!
+		//!=åˆ¤æ–­çš„æ˜¯ä¸¤ä¸ªè¿­ä»£å™¨æ˜¯å¦æŒ‡å‘çš„åŒä¸€ä¸ªèŠ‚ç‚¹,å¹¶ä¸æ˜¯åˆ¤æ–­å€¼ç›¸ç­‰!!!
 		bool operator!=(const self& it)
 		{
 			return node != it.node;
@@ -135,12 +135,12 @@ namespace yuanwei
 			head = nullptr;
 		}
 	public:
-		//listÊÇË«ÏòÁ´±í  end()(head)->begin()->.....->tail->end()(head)
-		iterator begin()//Ö¸ÏòÈİÆ÷µÄÆğÊ¼Î»ÖÃ
+		//listæ˜¯åŒå‘é“¾è¡¨  end()(head)->begin()->.....->tail->end()(head)
+		iterator begin()//æŒ‡å‘å®¹å™¨çš„èµ·å§‹ä½ç½®
 		{
 			return iterator(head->next);
 		}
-		iterator end()//Ö¸ÏòÈİÆ÷×îºóÒ»¸öÔªËØµÄÏÂÒ»¸öÎ»ÖÃ
+		iterator end()//æŒ‡å‘å®¹å™¨æœ€åä¸€ä¸ªå…ƒç´ çš„ä¸‹ä¸€ä¸ªä½ç½®
 		{
 			return iterator(head);
 		}
@@ -184,7 +184,7 @@ namespace yuanwei
 			}
 		}
 	public:
-		//Ä¬ÈÏ²åÔÚposÎ»ÖÃÇ°
+		//é»˜è®¤æ’åœ¨posä½ç½®å‰
 		iterator insert(iterator pos, const T& val)
 		{
 			Node* newNode = new Node(val);
@@ -197,7 +197,7 @@ namespace yuanwei
 			cur->prev = newNode;
 			return iterator(newNode);
 		}
-		//Ä¬ÈÏ½«É¾³ı½ÚµãµÄºóÒ»¸ö½Úµãµü´úÆ÷·µ»Ø
+		//é»˜è®¤å°†åˆ é™¤èŠ‚ç‚¹çš„åä¸€ä¸ªèŠ‚ç‚¹è¿­ä»£å™¨è¿”å›
 		iterator erase(iterator pos)
 		{
 			assert(pos != end());
@@ -218,7 +218,7 @@ namespace yuanwei
 			head->prev = head;
 		}
 
-		//¾­µäĞ´·¨->¿½±´¹¹Ôì-> Éî¿½±´
+		//ç»å…¸å†™æ³•->æ‹·è´æ„é€ -> æ·±æ‹·è´
 		/*list(const list<T>& lt)
 		{
 			empty_init();
@@ -227,7 +227,7 @@ namespace yuanwei
 				push_back(e);
 			}
 		}*/
-		//¿½±´¹¹Ôì,µü´úÆ÷Çø¼ä
+		//æ‹·è´æ„é€ ,è¿­ä»£å™¨åŒºé—´
 		template<class InputIterator>
 		list(InputIterator first, InputIterator last)
 		{
@@ -237,23 +237,23 @@ namespace yuanwei
 				first++;
 			}
 		}
-		//ÏÖ´úĞ´·¨2,Ê¹ÓÃµü´úÆ÷Çø¼ä³õÊ¼»¯Ò»¸ötmp
+		//ç°ä»£å†™æ³•2,ä½¿ç”¨è¿­ä»£å™¨åŒºé—´åˆå§‹åŒ–ä¸€ä¸ªtmp
 		list(const list<T>& lt)
 		{
-			empty_init();//½«Ö®Ç°Á´±íÖÃ¿Õ,½»»»¸øtmpÖ®ºó,µ÷ÓÃÎö¹¹º¯ÊıÍê³É×ÊÔ´ÊÍ·Å.±ÜÃâ½»»»Ö®ºóÎö¹¹º¯ÊıÎŞ·¨Îö¹¹Ëæ»úÖµ
+			empty_init();//å°†ä¹‹å‰é“¾è¡¨ç½®ç©º,äº¤æ¢ç»™tmpä¹‹å,è°ƒç”¨ææ„å‡½æ•°å®Œæˆèµ„æºé‡Šæ”¾.é¿å…äº¤æ¢ä¹‹åææ„å‡½æ•°æ— æ³•ææ„éšæœºå€¼
 
 			list<T> tmp(lt.begin(), lt.end());
 			swap(head,tmp.head);
 		}
-		////ÏÖ´úĞ´·¨1,Ê¹ÓÃ¹¹Ôìº¯Êı¹¹ÔìÒ»¸ötmp
+		////ç°ä»£å†™æ³•1,ä½¿ç”¨æ„é€ å‡½æ•°æ„é€ ä¸€ä¸ªtmp
 		//list(const list<T>& lt)
 		//{
 		//	empty_init();
-		//	list<T> tmp(lt);///////////error,µÃÔÚlist()ÄÄÀïÌí¼Ó²ÎÊı,µ«ÊÇ²»Ì«ĞĞ
+		//	list<T> tmp(lt);///////////error,å¾—åœ¨list()å“ªé‡Œæ·»åŠ å‚æ•°,ä½†æ˜¯ä¸å¤ªè¡Œ
 		//	swap(head, tmp.head);
 		//}
 
-		//¸³Öµ¹¹Ôì
+		//èµ‹å€¼æ„é€ 
 		list<T>& operator=(const list<T>& lt)
 		{
 			if (this != &lt)

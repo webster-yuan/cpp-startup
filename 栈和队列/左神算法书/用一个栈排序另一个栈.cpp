@@ -8,8 +8,8 @@ class SortStackWithAnotherStack
 private:
 	stack<int>help;
 public:
-	//1. ÒªÊµÏÖstÖÐ´ÓÕ»¶¥µ½Õ»µ×ÊÇ´Ó´óµ½Ð¡,ÏÈÈÃhelpÖÐÊÇ´ÓÐ¡µ½´ó,È»ºóÖØÐÂÑ¹Èëst¼´¿É
-	//2. Èç¹ûcur>help.top(), while help.pop(); else help.push(cur)
+	//1. è¦å®žçŽ°stä¸­ä»Žæ ˆé¡¶åˆ°æ ˆåº•æ˜¯ä»Žå¤§åˆ°å°,å…ˆè®©helpä¸­æ˜¯ä»Žå°åˆ°å¤§,ç„¶åŽé‡æ–°åŽ‹å…¥stå³å¯
+	//2. å¦‚æžœcur>help.top(), while help.pop(); else help.push(cur)
 	void sortStack(stack<int>& st)
 	{
 		while (!st.empty())
@@ -22,7 +22,7 @@ public:
 			}
 			help.push(cur);
 		}
-		//±ðÍüÁË½«Ê£ÓàµÄ·Å»Øst
+		//åˆ«å¿˜äº†å°†å‰©ä½™çš„æ”¾å›žst
 		while (!help.empty())
 		{
 			st.push(help.top());
@@ -38,7 +38,7 @@ public:
 				help.push(cur);
 			else
 			{
-				//Ò»Ö±µ¯Õ»,²¢ÇÒ·ÅÈëstÖÐ
+				//ä¸€ç›´å¼¹æ ˆ,å¹¶ä¸”æ”¾å…¥stä¸­
 				while (cur > help.top())
 				{
 					st.push(help.top());

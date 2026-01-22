@@ -12,7 +12,7 @@ public:
     {
         ListNode* dummy=new ListNode(-1);
         dummy->next=head;
-        //prevÖ¸ÏòmµÄÇ°Ò»¸ö½Úµã
+        //prevæŒ‡å‘mçš„å‰ä¸€ä¸ªèŠ‚ç‚¹
         ListNode * prev=dummy;
         for(int i=1;i<m-1;i++)
             prev=prev->next;
@@ -20,20 +20,20 @@ public:
         ListNode* right=prev;
         for(int i=1;i<n-m+1;i++)
             right=right->next;
-        //½ØÈ¡×ÓÁ´±í
+        //æˆªå–å­é“¾è¡¨
         ListNode* left=prev->next;
         ListNode* cur=right->next;
         //
         prev->next=nullptr;
         right->next=nullptr;
-        //·´×ª×ÓÁ´±í
+        //åè½¬å­é“¾è¡¨
         reverseList(left);
-        //½Ó»ØÔ­À´µÄÁ´±í
+        //æ¥å›åŸæ¥çš„é“¾è¡¨
         prev->next=right;
         left->next=cur;
         return dummy->next;
     }
-    //´«µÚm¸öÒÔ¼°µÚn¸öµÄÏÂÒ»¸öÎ»ÖÃ
+    //ä¼ ç¬¬mä¸ªä»¥åŠç¬¬nä¸ªçš„ä¸‹ä¸€ä¸ªä½ç½®
     void reverseList(ListNode* head)
     {
         ListNode* prev=nullptr;
@@ -54,15 +54,15 @@ ListNode* Func(ListNode* head,int n,int m)
 	ListNode* prev=dummy;
 	for(int i=1;i<m-1;i++)
 		prev=prev->next;
-	ListNode* left=prev->next;//·­×ªÖ®ºó,¾ÍÊÇÇø¼äµÄ×îºóÒ»¸ö½Úµã
+	ListNode* left=prev->next;//ç¿»è½¬ä¹‹å,å°±æ˜¯åŒºé—´çš„æœ€åä¸€ä¸ªèŠ‚ç‚¹
 	ListNode*right=prev;
 	for(int i=1;i<n-m+1;i++)
 		right=right->next;
-	//right ¾ÍÊÇ´ı·­×ªÇø¼äÓÒ¶Ëµã
+	//right å°±æ˜¯å¾…ç¿»è½¬åŒºé—´å³ç«¯ç‚¹
 	ListNode* cur=right->next;
 	//
 	prerv->next=nullptr;
-	right->next=nullptr;//¶ÔÓÚ·­×ªÁ´±íºÜ¹Ø¼ü
+	right->next=nullptr;//å¯¹äºç¿»è½¬é“¾è¡¨å¾ˆå…³é”®
 	//
 	reverseList(left);
 	//

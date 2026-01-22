@@ -2,7 +2,7 @@
 #include<string>
 #include<map>
 //#include<vector>
-#include<initializer_list>//ÏµÍ³×Ô¼ºÊµÏÖµÄÀàÄ£°å,Ö»Ö§³Öbegin(),end(),size()
+#include<initializer_list>//ç³»ç»Ÿè‡ªå·±å®ç°çš„ç±»æ¨¡æ¿,åªæ”¯æŒbegin(),end(),size()
 using namespace std;
 
 template<class T>
@@ -21,7 +21,7 @@ public:
 	}
 	myVector<T>& operator=(initializer_list<T> l)
 	{
-		delete[] arr;//½«Ô­À´¿Õ¼äÊÍ·Å
+		delete[] arr;//å°†åŸæ¥ç©ºé—´é‡Šæ”¾
 		int i = 0;
 		for (auto e : l)
 			arr[i++] = e;

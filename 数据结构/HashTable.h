@@ -3,12 +3,12 @@
 #include<vector>
 using namespace std;
 
-// 1. HashFuncµÄÉè¼ÆÒÔ¼°¶ÔÓÚstringÀàĞÍµÄÌØ»¯
-// 2. HashDataÊı¾İÉè¼Æ,
-// 3. ±ÕÉ¢ÁĞÉè¼Æ,ÏßĞÔ²éÕÒ,Óöµ½¿ÕÎ»ÖÃÇø·Ö(EMPTY DELETE EXIST),Ô¼¶¨Óöµ½¿Õ¾ÍÍ£Ö¹
-// 4. ÀàÄ£°æµÄÊ¹ÓÃ
-// 5. À©ÈİÊ±,¹¹½¨ĞÂ¶ÔÏó½»»»±íµÄ×ö·¨666
-// 6. ²éÕÒ½ÚµãÊ±Ê±¿Ì×¢ÒâEXIST,ÕÒ¿ÕÎ»ÖÃÊ±EMPTYºÍDELETEµÄµã¶¼¿ÉÒÔÊ¹ÓÃ,É¾³ı½ÚµãÊ±Ö»ÊÇ½«±êÖ¾Î»ÉèÖÃÎªDELETE
+// 1. HashFuncçš„è®¾è®¡ä»¥åŠå¯¹äºstringç±»å‹çš„ç‰¹åŒ–
+// 2. HashDataæ•°æ®è®¾è®¡,
+// 3. é—­æ•£åˆ—è®¾è®¡,çº¿æ€§æŸ¥æ‰¾,é‡åˆ°ç©ºä½ç½®åŒºåˆ†(EMPTY DELETE EXIST),çº¦å®šé‡åˆ°ç©ºå°±åœæ­¢
+// 4. ç±»æ¨¡ç‰ˆçš„ä½¿ç”¨
+// 5. æ‰©å®¹æ—¶,æ„å»ºæ–°å¯¹è±¡äº¤æ¢è¡¨çš„åšæ³•666
+// 6. æŸ¥æ‰¾èŠ‚ç‚¹æ—¶æ—¶åˆ»æ³¨æ„EXIST,æ‰¾ç©ºä½ç½®æ—¶EMPTYå’ŒDELETEçš„ç‚¹éƒ½å¯ä»¥ä½¿ç”¨,åˆ é™¤èŠ‚ç‚¹æ—¶åªæ˜¯å°†æ ‡å¿—ä½è®¾ç½®ä¸ºDELETE
 //
 template<class K>
 struct Hash
@@ -27,17 +27,17 @@ struct Hash<string>
 		for (auto e : key)
 		{
 			res *= 31;
-			res += e;//×Ö·ûASCIIÂëÖµÏà³ËºÍ=>size_t ÀàĞÍ
+			res += e;//å­—ç¬¦ASCIIç å€¼ç›¸ä¹˜å’Œ=>size_t ç±»å‹
 		}
 		return res;
 	}
 };
 namespace CloseHash
 {
-	//±ÕÉ¢ÁĞ,½â¾ö¹şÏ£³åÍ»Ê±ÊÇ½«³åÍ»µÄÊı¾İ·ÅÔÚºóÃæµÄ¿ÕÎ»ÖÃ
-	//ËùÎ½µÄÏßĞÔÌ½²â(±éÀú²éÕÒ)µÄ¹ı³ÌÖĞ,Èç¹ûx¿¿½üy,ºÍy³åÍ»µÄy'·ÅÔÚÁËxºóÃæ,Á¬Ğø·ÅÖÃ
-	// Èç¹û½«xÉ¾³ıÖ®ºóµ¥´¿ÉèÖÃÎª¿ÕµÄ»°,µ±ÏÂÒ»´Î²éÕÒy'Ê±µ½x¿ÕÎ»Ö±½ÓÍ£ÁË,¾ÍÔì³É²éÕÒ²»µ½y'
-	//Óöµ½¿Õ¾ÍÍ£Ö¹,²»ÖªµÀÊÇÉ¾³ıµÄ»¹ÊÇ±¾À´¾Í¿ÕµÄ,ËùÒÔÉèÖÃ±êÖ¾Î»enumÀ´Çø·Ö
+	//é—­æ•£åˆ—,è§£å†³å“ˆå¸Œå†²çªæ—¶æ˜¯å°†å†²çªçš„æ•°æ®æ”¾åœ¨åé¢çš„ç©ºä½ç½®
+	//æ‰€è°“çš„çº¿æ€§æ¢æµ‹(éå†æŸ¥æ‰¾)çš„è¿‡ç¨‹ä¸­,å¦‚æœxé è¿‘y,å’Œyå†²çªçš„y'æ”¾åœ¨äº†xåé¢,è¿ç»­æ”¾ç½®
+	// å¦‚æœå°†xåˆ é™¤ä¹‹åå•çº¯è®¾ç½®ä¸ºç©ºçš„è¯,å½“ä¸‹ä¸€æ¬¡æŸ¥æ‰¾y'æ—¶åˆ°xç©ºä½ç›´æ¥åœäº†,å°±é€ æˆæŸ¥æ‰¾ä¸åˆ°y'
+	//é‡åˆ°ç©ºå°±åœæ­¢,ä¸çŸ¥é“æ˜¯åˆ é™¤çš„è¿˜æ˜¯æœ¬æ¥å°±ç©ºçš„,æ‰€ä»¥è®¾ç½®æ ‡å¿—ä½enumæ¥åŒºåˆ†
 	enum STATUS
 	{
 		EMPTY,
@@ -67,7 +67,7 @@ namespace CloseHash
 			size_t start = hf(key) % _tables.size();
 			size_t i = 0;
 			size_t index = start + i;
-			while (_tables[index]._st != EMPTY)//Ô¼¶¨µÄ²éÕÒµ½¿Õ¾ÍÍ£Ö¹
+			while (_tables[index]._st != EMPTY)//çº¦å®šçš„æŸ¥æ‰¾åˆ°ç©ºå°±åœæ­¢
 			{
 				if (key == _tables[index]._kv.first && _tables[index]._st == EXIST)
 					return &_tables[index];
@@ -79,15 +79,15 @@ namespace CloseHash
 		}
 		bool Insert(const pair<K, V>& kv)
 		{
-			//Ã»ÕÒµ½²Å²åÈë°¡!ÕÒµ½ÁË¾Í²»²åÈëÁË
+			//æ²¡æ‰¾åˆ°æ‰æ’å…¥å•Š!æ‰¾åˆ°äº†å°±ä¸æ’å…¥äº†
 			if (Find(kv.first) != nullptr)
 				return false;
 			if (_tables.size() == 0 || n * 10 / _tables.size() == 0.7)
 			{
 				size_t newSize = _tables.size() == 0 ? 10 : _tables.size() * 2;
-				//´´½¨ĞÂµÄ´ó±í,Êı¾İ²åÈëµ½ĞÂ±íÖĞ
-				//½«ĞÂ¶ÔÏóµÄ±í½»»»
-				//Ëæ×Åº¯ÊıÕ»Ö¡½áÊø,ĞÂ¶ÔÏó´ø×ÅÖ®Ç°µÄ¾É±íÒ»ÆğÏûÊ§
+				//åˆ›å»ºæ–°çš„å¤§è¡¨,æ•°æ®æ’å…¥åˆ°æ–°è¡¨ä¸­
+				//å°†æ–°å¯¹è±¡çš„è¡¨äº¤æ¢
+				//éšç€å‡½æ•°æ ˆå¸§ç»“æŸ,æ–°å¯¹è±¡å¸¦ç€ä¹‹å‰çš„æ—§è¡¨ä¸€èµ·æ¶ˆå¤±
 				HashTable<K, V, HashFunc> newHT;
 				newHT._tables.resize(newSize);
 				for (int i = 0; i < _tables.size(); i++)
@@ -105,7 +105,7 @@ namespace CloseHash
 			while (_tables[index]._st == EXIST)
 			{
 				++i;
-				index = start + i;//²éÕÒµÄ²½·¥ÊÇ¿ÉÒÔ¸Ä±äµÄ,ÏßĞÔÌ½²â¾ÍÊÇÒ»¸öÒ»¸öÀ´,ÕÒµ½¿Õ¾ÍÍ£Ö¹
+				index = start + i;//æŸ¥æ‰¾çš„æ­¥ä¼æ˜¯å¯ä»¥æ”¹å˜çš„,çº¿æ€§æ¢æµ‹å°±æ˜¯ä¸€ä¸ªä¸€ä¸ªæ¥,æ‰¾åˆ°ç©ºå°±åœæ­¢
 				index %= _tables.size();
 			}
 			//[index].st=EMPTY | DELETE
@@ -114,7 +114,7 @@ namespace CloseHash
 			n++;
 			return true;
 		}
-		//É¾³ı½ÚµãÊ±Ö»ÊÇ½«±êÖ¾Î»ÉèÖÃÎªDELETE
+		//åˆ é™¤èŠ‚ç‚¹æ—¶åªæ˜¯å°†æ ‡å¿—ä½è®¾ç½®ä¸ºDELETE
 		bool Erase(const K& key)
 		{
 			HashData<K, V>* ret = Find(key);
@@ -153,10 +153,10 @@ namespace CloseHash
 		cout << hs("aadd") << endl;*/
 
 		HashTable<string, string> ht;
-		ht.Insert(make_pair("sort", "ÅÅĞò"));
-		ht.Insert(make_pair("string", "×Ö·û´®"));
+		ht.Insert(make_pair("sort", "æ’åº"));
+		ht.Insert(make_pair("string", "å­—ç¬¦ä¸²"));
 
-		// µ±keyÊÇÒ»¸ö¶¨ÒåÀàĞÍÊ±£¬ĞèÒªÅäÖÃÒ»¸ö·Âº¯Êı£¬½«key×ª³ÉÕûĞÎ
+		// å½“keyæ˜¯ä¸€ä¸ªå®šä¹‰ç±»å‹æ—¶ï¼Œéœ€è¦é…ç½®ä¸€ä¸ªä»¿å‡½æ•°ï¼Œå°†keyè½¬æˆæ•´å½¢
 		//HashTable<Date, string, HashDate> htds;
 	}
 }
@@ -249,7 +249,7 @@ namespace LinkHash
 						newHT[index] = cur;
 						cur = next;
 					}
-					_tables[i] = nullptr;//Ã¿´¦ÀíÍêÒ»¸ö¾Í½«Á´±í½áÎ²->nullptr
+					_tables[i] = nullptr;//æ¯å¤„ç†å®Œä¸€ä¸ªå°±å°†é“¾è¡¨ç»“å°¾->nullptr
 				}
 				_tables.swap(newHT);
 			}

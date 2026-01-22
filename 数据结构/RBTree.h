@@ -73,8 +73,8 @@ public:
 			parent->_right = cur;
 			cur->_parent = parent;
 		}
-		//¿ØÖÆÆ½ºâ
-		while (parent && parent->_color == RED)//¿Ï¶¨²»µ½¸ù½Úµã
+		//æŽ§åˆ¶å¹³è¡¡
+		while (parent && parent->_color == RED)//è‚¯å®šä¸åˆ°æ ¹èŠ‚ç‚¹
 		{
 			Node* gparent = parent->_parent;
 			if (parent == gparent->_left)
@@ -87,15 +87,15 @@ public:
 					cur = gparent;
 					parent = cur->_parent;
 				}
-				else//uncle²»´æÔÚ»òÕßÎªºÚÉ«,ËµÃ÷ÒÑ¾­ÓÐµã²»Æ½ºâÁË
+				else//uncleä¸å­˜åœ¨æˆ–è€…ä¸ºé»‘è‰²,è¯´æ˜Žå·²ç»æœ‰ç‚¹ä¸å¹³è¡¡äº†
 				{
-					if (cur == parent->_left)//×ßÓÒµ¥ÐýÇé¿ö
+					if (cur == parent->_left)//èµ°å³å•æ—‹æƒ…å†µ
 					{
 						RotateR(gparent);
 						parent->_color = BLACK;
 						gparent->_color = RED;
 					}
-					else//Ë«Ðý
+					else//åŒæ—‹
 					{
 						RotateL(parent);
 						RotateR(gparent);
@@ -105,7 +105,7 @@ public:
 					break;
 				}
 			}
-			else//parent == gparent->_right ¸ü»»·½Ïò
+			else//parent == gparent->_right æ›´æ¢æ–¹å‘
 			{
 				Node* uncle = gparent->_left;
 				if (uncle && uncle->_color == RED)
@@ -120,7 +120,7 @@ public:
 					//       g
 					//           p
 					//				c
-					if (cur == parent->_right)//×ß×óµ¥ÐýÇé¿ö
+					if (cur == parent->_right)//èµ°å·¦å•æ—‹æƒ…å†µ
 					{
 						RotateL(gparent);
 						parent->_color = BLACK;
@@ -177,7 +177,7 @@ public:
 	{
 		Node* subl = parent->_left;
 		Node* sublr = subl->_right;
-		//½øÐÐÐý×ªÎ¬»¤Èý²æÁ¬
+		//è¿›è¡Œæ—‹è½¬ç»´æŠ¤ä¸‰å‰è¿ž
 		parent->_left = sublr;
 		if (sublr)
 			sublr->_parent = parent;
@@ -204,7 +204,7 @@ public:
 	{
 		if (_root && _root->_color == RED)
 		{
-			cout << "¸ù½Úµã²»ÊÇºÚÉ«" << endl;
+			cout << "æ ¹èŠ‚ç‚¹ä¸æ˜¯é»‘è‰²" << endl;
 			return false;
 		}
 		int banchmark = 0;
@@ -232,14 +232,14 @@ private:
 		{
 			if (banchmark != blackNum)
 			{
-				cout << "´æÔÚÂ·¾¶ºÚÉ«½ÚµãµÄÊýÁ¿²»ÏàµÈ" << endl;
+				cout << "å­˜åœ¨è·¯å¾„é»‘è‰²èŠ‚ç‚¹çš„æ•°é‡ä¸ç›¸ç­‰" << endl;
 				return false;
 			}
 			return true;
 		}
 		if (root->_color == RED && root->_parent->_color == RED)
 		{
-			cout << "Á¬Ðø³öÏÖºìÉ«½Úµã" << endl;
+			cout << "è¿žç»­å‡ºçŽ°çº¢è‰²èŠ‚ç‚¹" << endl;
 			return false;
 		}
 		if (root->_color == BLACK)
@@ -284,7 +284,7 @@ void test_RBTree()
 	for (auto e : a)
 	{
 		rb.Insert(std::pair<int, int>(e, e));
-		//cout << "Insert:" << e << ":" << rb.IsBalance() << endl;//ÑéÖ¤Æ½ºâÒò×ÓÊÇ·ñÕýÈ·Ê±²åÈë14Ê±³öÏÖÎÊÌâ
+		//cout << "Insert:" << e << ":" << rb.IsBalance() << endl;//éªŒè¯å¹³è¡¡å› å­æ˜¯å¦æ­£ç¡®æ—¶æ’å…¥14æ—¶å‡ºçŽ°é—®é¢˜
 	}
 	rb.InOrder();
 	cout << rb.IsBalance() << endl;

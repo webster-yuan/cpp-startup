@@ -1,12 +1,12 @@
 #include<iostream>
 using namespace std;
 
-//¶ÔÕÛn´Î,´ÓÉÏÍùÏÂÉú³É¶þ²æÊ÷½á¹¹,¸ù½Úµã×ó½Úµã¶¼Îª°¼,ÓÒ½Úµã¶¼ÎªÍ¹
+//å¯¹æŠ˜næ¬¡,ä»Žä¸Šå¾€ä¸‹ç”ŸæˆäºŒå‰æ ‘ç»“æž„,æ ¹èŠ‚ç‚¹å·¦èŠ‚ç‚¹éƒ½ä¸ºå‡¹,å³èŠ‚ç‚¹éƒ½ä¸ºå‡¸
 void printProcess(int i, int n, bool down)
 {
 	if (i > n)return;
 	printProcess(i+1,n,true);
-	cout << down ? "°¼" : "Í¹";
+	cout << down ? "å‡¹" : "å‡¸";
 	printProcess(i+1,n,false);
 }
 void print(int n)

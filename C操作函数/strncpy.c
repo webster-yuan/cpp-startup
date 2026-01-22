@@ -10,11 +10,11 @@ void test_strncpy()
 	strncpy(dest,src,sizeof(src));
 	printf("%s\n",dest);//qwerty
 
-	//src<numÊ±,²»¹»µÄ²¿·Ö»áÄ¬ÈÏÓÃ\0Ìî³ä,¼à¿Ø½Ç¶ÈÐ¡¿´¸üÇåÎú
+	//src<numæ—¶,ä¸å¤Ÿçš„éƒ¨åˆ†ä¼šé»˜è®¤ç”¨\0å¡«å……,ç›‘æŽ§è§’åº¦å°çœ‹æ›´æ¸…æ™°
 	strncpy(dest, src, sizeof(src)+10);
 	printf("%s\n", dest);//qwerty
 }
-//·µ»ØÄ¿±ê¿Õ¼äµÄÆðÊ¼µØÖ·
+//è¿”å›žç›®æ ‡ç©ºé—´çš„èµ·å§‹åœ°å€
 char* my_strncpy(char* dest, const char* src, size_t n)
 {
 	assert(dest && src);

@@ -5,7 +5,7 @@ using namespace std;
 class BSFind
 {
 public:
-	//ÎŞĞòÊı×éÕÒ¾Ö²¿×îĞ¡ÖµÎÊÌâ
+	//æ— åºæ•°ç»„æ‰¾å±€éƒ¨æœ€å°å€¼é—®é¢˜
 	int FindOneLessVal(vector<int>& arr)
 	{
 		int n = arr.size();
@@ -27,15 +27,15 @@ public:
 		}
 		return left;
 	}
-	//Êı×é·­×ª,½«×îĞ¡µÄÄÇn¸öÕÛµşµ½ºóÃæ,Êı×é·ÖÎªÁ½¶ÎÓĞĞò,ÕÒµ½×îĞ¡ÖµÏÂ±ê
-	// Ğı×ªÅÅĞòÊı×éÖĞ×îĞ¡Öµ
-	//·Öµ½ÓÒ°ëÇø¼ä,Ñ¡È¡×îºóÊı×Ö×÷ÎªÇø·ÖÊÇ×óÇø¼ä»¹ÊÇÓÒÇø¼äµÄ±êÖ¾.< >=
+	//æ•°ç»„ç¿»è½¬,å°†æœ€å°çš„é‚£nä¸ªæŠ˜å åˆ°åé¢,æ•°ç»„åˆ†ä¸ºä¸¤æ®µæœ‰åº,æ‰¾åˆ°æœ€å°å€¼ä¸‹æ ‡
+	// æ—‹è½¬æ’åºæ•°ç»„ä¸­æœ€å°å€¼
+	//åˆ†åˆ°å³åŠåŒºé—´,é€‰å–æœ€åæ•°å­—ä½œä¸ºåŒºåˆ†æ˜¯å·¦åŒºé—´è¿˜æ˜¯å³åŒºé—´çš„æ ‡å¿—.< >=
 	int FindLeastVal(vector<int>& arr)
 	{
 		int n = arr.size();
 		if (n == 0)return -1;
 		int left = 0, right = n - 1;
-		int x = arr[right];//Ñ¡È¡×îºóÊı×Ö×÷ÎªÇø·ÖÊÇ×óÇø¼ä»¹ÊÇÓÒÇø¼äµÄ±êÖ¾
+		int x = arr[right];//é€‰å–æœ€åæ•°å­—ä½œä¸ºåŒºåˆ†æ˜¯å·¦åŒºé—´è¿˜æ˜¯å³åŒºé—´çš„æ ‡å¿—
 		while (left < right)
 		{
 			int mid = left + (right - left) / 2;
@@ -46,7 +46,7 @@ public:
 		}
 		return left;
 	}
-	//¾­µä¶ş·Ö²éÕÒ
+	//ç»å…¸äºŒåˆ†æŸ¥æ‰¾
 	bool BSExist(vector<int>& arr, int x)
 	{
 		int left = 0, right = arr.size() - 1;
@@ -62,27 +62,27 @@ public:
 		}
 		return false;
 	}
-	//ÕÒµ½ÏàµÈÇø¼äÖĞ×î×ó±ßµÄÏÂ±ê,¶ş¶ÎĞÔÄÇ¸öÖµ±»·ÖÅäµ½ÁËÓÒ°ëÇø¼ä < >= 
-	//×îÖÕleftºÍright¹²Í¬Ö¸ÏòÄÇ¸öÎ»ÖÃ
+	//æ‰¾åˆ°ç›¸ç­‰åŒºé—´ä¸­æœ€å·¦è¾¹çš„ä¸‹æ ‡,äºŒæ®µæ€§é‚£ä¸ªå€¼è¢«åˆ†é…åˆ°äº†å³åŠåŒºé—´ < >= 
+	//æœ€ç»ˆleftå’Œrightå…±åŒæŒ‡å‘é‚£ä¸ªä½ç½®
 	int BSFindLeftEdge(vector<int>& arr, int x)
 	{
 		int left = 0, right = arr.size() - 1;
 		while (left < right)
 		{
-			int mid = left + (right - left) / 2;//Å¼Êı¸öÊ±È¡µ½×ó±ßµÄÄÇ¸ö
+			int mid = left + (right - left) / 2;//å¶æ•°ä¸ªæ—¶å–åˆ°å·¦è¾¹çš„é‚£ä¸ª
 			if (arr[mid] > x)
 				left = mid + 1;
 			else right = mid;
 		}
 		return left;
 	}
-	//ÔÚÓĞĞòÊı×éÖĞËÑË÷²åÈëÎ»ÖÃ < >= 
+	//åœ¨æœ‰åºæ•°ç»„ä¸­æœç´¢æ’å…¥ä½ç½® < >= 
 	int FindInsertPos(vector<int>& arr, int x)
 	{
 		int left = 0, right = arr.size() - 1;
 		while (left < right)
 		{
-			int mid = left + (right - left) / 2;//Å¼Êı¸öÊ±È¡µ½×ó±ßµÄÄÇ¸ö
+			int mid = left + (right - left) / 2;//å¶æ•°ä¸ªæ—¶å–åˆ°å·¦è¾¹çš„é‚£ä¸ª
 			if (arr[mid] > x)
 				left = mid + 1;
 			else right = mid;
@@ -91,14 +91,14 @@ public:
 		return left;
 	}
 
-	//ÕÒµ½ÏàµÈÇø¼äÖĞ×îÓÒ±ßµÄÏÂ±ê,¶ş¶ÎĞÔÄÇ¸öÖµ±»·ÖÅäµ½ÁË×ó°ëÇø¼ä <= > 
-	//×îÖÕleftºÍright¹²Í¬Ö¸ÏòÄÇ¸öÎ»ÖÃ
+	//æ‰¾åˆ°ç›¸ç­‰åŒºé—´ä¸­æœ€å³è¾¹çš„ä¸‹æ ‡,äºŒæ®µæ€§é‚£ä¸ªå€¼è¢«åˆ†é…åˆ°äº†å·¦åŠåŒºé—´ <= > 
+	//æœ€ç»ˆleftå’Œrightå…±åŒæŒ‡å‘é‚£ä¸ªä½ç½®
 	int BSFindRightEdge(vector<int>& arr, int x)
 	{
 		int left = 0, right = arr.size() - 1;
 		while (left < right)
 		{
-			int mid = left + (right - left+1) / 2;//Å¼Êı¸öÊ±È¡µ½ÓÒ±ßµÄÄÇ¸ö
+			int mid = left + (right - left+1) / 2;//å¶æ•°ä¸ªæ—¶å–åˆ°å³è¾¹çš„é‚£ä¸ª
 			if (arr[mid] < x)
 				left = mid;
 			else
@@ -106,7 +106,7 @@ public:
 		}
 		return left;
 	}
-	//xµÄÆ½·½¸ù,Ïò×óÈ¡Õû, <= >
+	//xçš„å¹³æ–¹æ ¹,å‘å·¦å–æ•´, <= >
 	int mySqrt(int x)
 	{
 		if (x < 1)return 0;
@@ -122,9 +122,9 @@ public:
 		return left;
 	}
 
-	//²éÕÒ·åÖµË÷Òı,Ò»¶ÎÉÏÉıµ½¶¥Ö®ºó³ÖĞøÏÂ½µ,ÏÂÃæÁ½ÖÖ×ö·¨¾ù¿É
-	//arr[mid]>arr[mid+1]ÓÒ°ëÇø¼ä arr[mid]<arr[mid+1]×ó°ëÇø¼ä mid+1¿ÉÄÜÊÇ·µ»ØÖµ,ËùÒÔ·ÖÎª <= >
-	//arr[mid]>arr[mid-1]ÓÒ°ëÇø¼ä arr[mid]<arr[mid-1]×ó°ëÇø¼ä mid-1¿ÉÄÜÊÇ·µ»ØÖµ,ËùÒÔ·ÖÎª < >=
+	//æŸ¥æ‰¾å³°å€¼ç´¢å¼•,ä¸€æ®µä¸Šå‡åˆ°é¡¶ä¹‹åæŒç»­ä¸‹é™,ä¸‹é¢ä¸¤ç§åšæ³•å‡å¯
+	//arr[mid]>arr[mid+1]å³åŠåŒºé—´ arr[mid]<arr[mid+1]å·¦åŠåŒºé—´ mid+1å¯èƒ½æ˜¯è¿”å›å€¼,æ‰€ä»¥åˆ†ä¸º <= >
+	//arr[mid]>arr[mid-1]å³åŠåŒºé—´ arr[mid]<arr[mid-1]å·¦åŠåŒºé—´ mid-1å¯èƒ½æ˜¯è¿”å›å€¼,æ‰€ä»¥åˆ†ä¸º < >=
 	int findTopIndex(vector<int>& arr)
 	{
 		int n = arr.size();

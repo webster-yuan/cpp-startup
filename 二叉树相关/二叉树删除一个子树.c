@@ -46,7 +46,7 @@ void eraseNode(Node* root,char val,Node* parent)
 		return;
 	if (root->val == val)
 	{
-		if (parent == NULL)//Èç¹ûÉ¾³ıµÄÊÇ¸ù½Úµã,Õû¿ÃÊ÷¶¼É¾ÁË
+		if (parent == NULL)//å¦‚æœåˆ é™¤çš„æ˜¯æ ¹èŠ‚ç‚¹,æ•´æ£µæ ‘éƒ½åˆ äº†
 		{
 			root = NULL;
 			return;
@@ -72,10 +72,10 @@ int main()
 	Node* root = createTree();
 	preOrder(root);
 	getchar();
-	printf("\nÇëÊäÈëÒªÉ¾³ıµÄ½ÚµãÖµ\n");
+	printf("\nè¯·è¾“å…¥è¦åˆ é™¤çš„èŠ‚ç‚¹å€¼\n");
 	char val = "";
 	scanf("%c", &val);
 	eraseNode(root,val,NULL);
-	printf("É¾³ı½ÚµãÖ®ºóµÄÏÈĞò±éÀúÈçÏÂ\n");
+	printf("åˆ é™¤èŠ‚ç‚¹ä¹‹åçš„å…ˆåºéå†å¦‚ä¸‹\n");
 	preOrder(root);
 }
