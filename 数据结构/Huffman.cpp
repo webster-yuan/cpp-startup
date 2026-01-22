@@ -10,7 +10,7 @@
 #include<cstring>
 #include<fstream>
 using namespace std;
-int find(char c)//¸ù¾İ×Ö·ûÑ°ÕÒ¸Ã×Ö·ûÔÚ½á¹¹ÌåÊı×éµÄÎ»ÖÃ
+int find(char c)//æ ¹æ®å­—ç¬¦å¯»æ‰¾è¯¥å­—ç¬¦åœ¨ç»“æ„ä½“æ•°ç»„çš„ä½ç½®
 {
 	int i=-1;
 	if(c>='a'&&c<='z')i=c-'a';
@@ -23,7 +23,7 @@ int find(char c)//¸ù¾İ×Ö·ûÑ°ÕÒ¸Ã×Ö·ûÔÚ½á¹¹ÌåÊı×éµÄÎ»ÖÃ
 struct NODE
 {
 	char c;
-	int v;//×Ö·û³öÏÖÆµÂÊ
+	int v;//å­—ç¬¦å‡ºç°é¢‘ç‡
 	int idx;
 	string code;
 	struct NODE *l,*r;
@@ -32,7 +32,7 @@ vector<NODE* > node(55);
 vector<NODE* > nodes(55);
 string s="";
 string str_code="";
-void initnode()//³õÊ¼»¯½á¹¹ÌåÊı×é
+void initnode()//åˆå§‹åŒ–ç»“æ„ä½“æ•°ç»„
 {
 	int i;
 	for(i=0;i<26;i++)
@@ -74,10 +74,10 @@ void initnode()//³õÊ¼»¯½á¹¹ÌåÊı×é
 	node[i]->code=s;
 	node[i]->l=NULL;
 	node[i]->r=NULL;
-	cout<<"¹ş·òÂü±àÂë³ÌĞò"<<endl;
-	cout<<"ÊäÈë×ªÂëÄÚÈİ£¬ÒÔ'#'½áÊø"<<endl;
+	cout<<"å“ˆå¤«æ›¼ç¼–ç ç¨‹åº"<<endl;
+	cout<<"è¾“å…¥è½¬ç å†…å®¹ï¼Œä»¥'#'ç»“æŸ"<<endl;
 }
-int top()//Ñ°ÕÒÈ¨Öµ×îĞ¡µÄÔªËØ
+int top()//å¯»æ‰¾æƒå€¼æœ€å°çš„å…ƒç´ 
 {
 	int i,n=114514,j=-1;
 	for(i=0;i<node.size();i++)
@@ -90,12 +90,12 @@ int top()//Ñ°ÕÒÈ¨Öµ×îĞ¡µÄÔªËØ
 	}
 	return j;
 }
-void pop()//½«×îĞ¡È¨Öµµ¯³öÈ¥
+void pop()//å°†æœ€å°æƒå€¼å¼¹å‡ºå»
 {
 	int i=top();
 	node.erase(node.begin()+i);
 }
-void coding(NODE* t)//±éÀúÉú³ÉµÄ¹ş·òÂüÊ÷Éú³É±àÂë
+void coding(NODE* t)//éå†ç”Ÿæˆçš„å“ˆå¤«æ›¼æ ‘ç”Ÿæˆç¼–ç 
 {
 	if(!t)return;
 	else
@@ -122,7 +122,7 @@ void show(NODE* t)
 	{
 		if(!t->l&&!t->r)
 		{
-			cout<<t->c<<"µÄ±àÂë:"<<t->code<<endl;//Êä³ö×Ö·û¶ÔÓ¦01±àÂë
+			cout<<t->c<<"çš„ç¼–ç :"<<t->code<<endl;//è¾“å‡ºå­—ç¬¦å¯¹åº”01ç¼–ç 
 			i=find(t->c);
 			nodes[i]=new NODE;
 			nodes[i]=t;
@@ -131,7 +131,7 @@ void show(NODE* t)
 		show(t->r);
 	}
 }
-char transcode(string ss)//·­Òë±àÂë·µ»Ø¶ÔÓ¦×Ö·û
+char transcode(string ss)//ç¿»è¯‘ç¼–ç è¿”å›å¯¹åº”å­—ç¬¦
 {
 	int i;
 	for(i=1;i<nodes.size();i++)
@@ -153,7 +153,7 @@ void trans(string str)
 		str_code=str_code+nodes[m]->code;
 	}
 }
-void transcoding(string ss)//×ªÒëÔ­Âë
+void transcoding(string ss)//è½¬è¯‘åŸç 
 {
 	string sss="";
 	int i,j,l=ss.length();
@@ -214,14 +214,14 @@ int main()
 	file<<endl;
 	for(i=0;i<nodes.size();i++)
 	{
-		file<<nodes[i]->c<<"µÄ±àÂëÊÇ:"<<nodes[i]->code<<endl;
+		file<<nodes[i]->c<<"çš„ç¼–ç æ˜¯:"<<nodes[i]->code<<endl;
 	}
 	file.close();
 	cout<<endl;
 	string ss;
-	cout<<"ÊäÈëÔ­Âë:"<<endl;
+	cout<<"è¾“å…¥åŸç :"<<endl;
 	cin>>ss;
-	cout<<"ÒëÂë½á¹ûÎª:"<<endl;
+	cout<<"è¯‘ç ç»“æœä¸º:"<<endl;
 	transcoding(ss);
 	cout<<s<<endl;
 	system("pause");

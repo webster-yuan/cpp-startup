@@ -42,7 +42,7 @@ namespace yuanwei
 			return _finish;
 		}
 	public:
-		//[]Ê¹ÓÃµÄÊÇ¶ÏÑÔ,at()Ê¹ÓÃµÄÊÇÅ×Òì³£
+		//[]ä½¿ç”¨çš„æ˜¯æ–­è¨€,at()ä½¿ç”¨çš„æ˜¯æŠ›å¼‚å¸¸
 		const T& operator[](size_t i) const
 		{
 			assert(i < size());
@@ -61,22 +61,22 @@ namespace yuanwei
 			return _endofstorage - _start;
 		}
 	public:
-		//memcpyÊÇÇ³¿½±´,½«_startÄÚÈİÍêÈ«¿½±´µ½tmpÖĞ,
-		//°üÀ¨Ã¿¸ö_strµÄ¸÷¸öÖ¸Õë_PtrÒ²Ç³¿½±´ÏÂÀ´,ÔÚÎö¹¹º¯Êı½øĞĞÊÍ·ÅµÄÊ±ºò¾Í»áÔì³ÉÊÍ·ÅÁ½´ÎÏàÍ¬µÄ¿Õ¼äÔì³É±ÀÀ£.
-		//ÊµÏÖÉî¿½±´,ĞÂ´´½¨Ò»¿é¿Õ¼ä,ÈÃ_startÖ¸Ïò¹ıÈ¥
+		//memcpyæ˜¯æµ…æ‹·è´,å°†_startå†…å®¹å®Œå…¨æ‹·è´åˆ°tmpä¸­,
+		//åŒ…æ‹¬æ¯ä¸ª_strçš„å„ä¸ªæŒ‡é’ˆ_Pträ¹Ÿæµ…æ‹·è´ä¸‹æ¥,åœ¨ææ„å‡½æ•°è¿›è¡Œé‡Šæ”¾çš„æ—¶å€™å°±ä¼šé€ æˆé‡Šæ”¾ä¸¤æ¬¡ç›¸åŒçš„ç©ºé—´é€ æˆå´©æºƒ.
+		//å®ç°æ·±æ‹·è´,æ–°åˆ›å»ºä¸€å—ç©ºé—´,è®©_startæŒ‡å‘è¿‡å»
 		void reserve(int n)
 		{
 			if (n > capacity())
 			{
 				size_t sz = size();
-				//ÒìµØÀ©Èİ
+				//å¼‚åœ°æ‰©å®¹
 				T* tmp = new T[n];
 				if (_start)
 				{
 					memcpy(tmp, _start, sizeof(T) * size());
 					delete[] _start;
 				}
-				//¸üĞÂÖ¸ÕëÖ¸ÏòĞÂ¿Õ¼ä¸÷¸öÎ»ÖÃ
+				//æ›´æ–°æŒ‡é’ˆæŒ‡å‘æ–°ç©ºé—´å„ä¸ªä½ç½®
 				_start = tmp;
 				_finish = _start + sz;
 				_endofstorage = _start + n;
@@ -92,7 +92,7 @@ namespace yuanwei
 			{
 				if (n > capacity())
 					reserve();
-				//ÔÚĞÂ¿ª±ÙµÄ¿Õ¼ä³õÊ¼»¯
+				//åœ¨æ–°å¼€è¾Ÿçš„ç©ºé—´åˆå§‹åŒ–
 				while (_finish != _start + n)
 				{
 					*_finish = val;
@@ -121,16 +121,16 @@ namespace yuanwei
 		iterator insert(iterator pos, const T& val)
 		{
 			assert(pos >= _start && pos <= _finish);
-			//À©Èİ
+			//æ‰©å®¹
 			if (_finish == _endofstorage)
 			{
 				int n = pos - _start;
 				int newCap = capacity() == 0 ? 4 : capacity() * 2;
 				reserve(newCap);
-				//Éæ¼°µ½ÒìµØÀ©Èİµ¼ÖÂposÔ­À´µü´úÆ÷Ê§Ğ§
+				//æ¶‰åŠåˆ°å¼‚åœ°æ‰©å®¹å¯¼è‡´posåŸæ¥è¿­ä»£å™¨å¤±æ•ˆ
 				pos = _start + n;
 			}
-			//Å²¶¯Êı¾İ
+			//æŒªåŠ¨æ•°æ®
 			iterator end = _finish - 1;
 			while (end >= pos)
 			{
@@ -144,7 +144,7 @@ namespace yuanwei
 		iterator erase(iterator pos)
 		{
 			assert(pos >= _start && pos < _finish);
-			//vectorÉ¾³ıÔªËØÊ¹ÓÃÏòÇ°¸²¸ÇµÄ·½Ê½
+			//vectoråˆ é™¤å…ƒç´ ä½¿ç”¨å‘å‰è¦†ç›–çš„æ–¹å¼
 			iterator it = pos + 1;
 			while (it != _finish)
 			{
@@ -155,8 +155,8 @@ namespace yuanwei
 			return pos;
 		}
 	public:
-		//¿½±´¹¹Ôì
-		//1. ¿ª¿Õ¼ä,memcpy³õÊ¼»¯
+		//æ‹·è´æ„é€ 
+		//1. å¼€ç©ºé—´,memcpyåˆå§‹åŒ–
 		vector(vector<T>& v)
 		{
 			_start = new T[v.size()];
@@ -164,7 +164,7 @@ namespace yuanwei
 			_endofstorage = _start + v.capacity();
 			memcpy(_start, v._start, v.size() * sizeof(T));
 		}
-		//2. Ö§³Öµü´úÆ÷Çø¼ä³õÊ¼»¯
+		//2. æ”¯æŒè¿­ä»£å™¨åŒºé—´åˆå§‹åŒ–
 		template<class InputIterator>
 		vector(InputIterator first, InputIterator last)
 			:_start(nullptr)
@@ -177,7 +177,7 @@ namespace yuanwei
 				first++;
 			}
 		}
-		//3. ¿½±´¹¹ÔìÒ»¸ö,½»»»,µ«ÊÇ×¢ÒâÎö¹¹º¯Êı²»ÄÜÎö¹¹Ëæ»úÖµ
+		//3. æ‹·è´æ„é€ ä¸€ä¸ª,äº¤æ¢,ä½†æ˜¯æ³¨æ„ææ„å‡½æ•°ä¸èƒ½ææ„éšæœºå€¼
 		/*vector(vector<T>& v)
 			:_start(nullptr)
 			, _finish(nullptr)
@@ -189,8 +189,8 @@ namespace yuanwei
 			swap(_endofstorage, tmp._endofstorage);
 		}*/
 	public:
-		//¸³Öµ¹¹Ôì
-		vector<T>& operator=(vector<T> v)//Ê¹ÓÃ´«Öµ´«²Î,²ÎÊı±¾Éí¾ÍÊÇÒ»·Ö¿½±´¹¹Ôì,Ö±½Ó½»»»
+		//èµ‹å€¼æ„é€ 
+		vector<T>& operator=(vector<T> v)//ä½¿ç”¨ä¼ å€¼ä¼ å‚,å‚æ•°æœ¬èº«å°±æ˜¯ä¸€åˆ†æ‹·è´æ„é€ ,ç›´æ¥äº¤æ¢
 		{
 			swap(_start, v._start);
 			swap(_finish, v._finish);
@@ -231,7 +231,7 @@ namespace yuanwei
 	}
 	void test_vector3()
 	{
-		// ÔÚËùÓĞµÄÅ¼ÊıµÄÇ°Ãæ²åÈë20
+		// åœ¨æ‰€æœ‰çš„å¶æ•°çš„å‰é¢æ’å…¥20
 		vector<int> v;
 		//v.reserve(10);
 		v.push_back(1);

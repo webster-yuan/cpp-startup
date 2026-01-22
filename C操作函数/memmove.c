@@ -1,15 +1,15 @@
 #include<stdio.h>
 #include<assert.h>
 #include<string.h>
-//×¨ÃÅ´¦ÀíÄÚ´æÖØµşµÄÎÊÌâ
-// dest < src, ÎªÁË±ÜÃâÖµµÄ¸²¸Ç,srcĞèÒª´ÓÇ°ÍùºóÒÀ´Î¿½±´µ½destÉÏ
-// dest > src && (char*)dest< (char*)src + count, ÎªÁË±ÜÃâÖµµÄ¸²¸Ç,srcĞèÒª´ÓºóÍùÇ°ÒÀ´Î¿½±´µ½destÉÏ
-// (char*)dest >(char*)src + count,Á½¿éÄÚ´æÃ»ÓĞ½»¼¯,ÔõÃ´¿½±´¶¼ĞĞ
+//ä¸“é—¨å¤„ç†å†…å­˜é‡å çš„é—®é¢˜
+// dest < src, ä¸ºäº†é¿å…å€¼çš„è¦†ç›–,srcéœ€è¦ä»å‰å¾€åä¾æ¬¡æ‹·è´åˆ°destä¸Š
+// dest > src && (char*)dest< (char*)src + count, ä¸ºäº†é¿å…å€¼çš„è¦†ç›–,srcéœ€è¦ä»åå¾€å‰ä¾æ¬¡æ‹·è´åˆ°destä¸Š
+// (char*)dest >(char*)src + count,ä¸¤å—å†…å­˜æ²¡æœ‰äº¤é›†,æ€ä¹ˆæ‹·è´éƒ½è¡Œ
 void* my_memmemove(void* dest, const void* src, size_t count)
 {
 	assert(dest && src);
 	void* ret = dest;
-	//src´ÓÇ°Íùºó
+	//srcä»å‰å¾€å
 	if (dest < src)
 	{
 		while (count--)
@@ -19,10 +19,10 @@ void* my_memmemove(void* dest, const void* src, size_t count)
 			src = (char*)src + 1;
 		}
 	}
-	//´ÓºóÍùÇ°,Ê¹ÓÃÖ¸Õë¼ÓÆ«ÒÆÁ¿µÄ·½Ê½ ptr+ count 
+	//ä»åå¾€å‰,ä½¿ç”¨æŒ‡é’ˆåŠ åç§»é‡çš„æ–¹å¼ ptr+ count 
 	else
 	{
-		while (count--) // Ëæ×Åcount--,ËùÖ¸ÏòµÄÎ»ÖÃÒ²ÔÚÏòÇ°ÒÆ¶¯
+		while (count--) // éšç€count--,æ‰€æŒ‡å‘çš„ä½ç½®ä¹Ÿåœ¨å‘å‰ç§»åŠ¨
 		{
 			*((char*)dest + count) = *((char*)src + count);
 		}
@@ -32,10 +32,10 @@ void* my_memmemove(void* dest, const void* src, size_t count)
 void test_memmove1()
 {
 	int arr1[10] = { 1,2,3,4,5,6,7,8,9,0 };
-	//   1 2 1 2 5 6 7 8 9 0------Ä¿±êĞ§¹û,Íùºó¿½±´
+	//   1 2 1 2 5 6 7 8 9 0------ç›®æ ‡æ•ˆæœ,å¾€åæ‹·è´
 	my_memmemove(arr1 + 2, arr1, sizeof(arr1[0]) * 2);
 	int arr2[10] = { 1,2,3,4,5,6,7,8,9,0 };
-	//   5 6 7 8 5 6 7 8 9 0------Ä¿±êĞ§¹û,ÍùÇ°¿½±´
+	//   5 6 7 8 5 6 7 8 9 0------ç›®æ ‡æ•ˆæœ,å¾€å‰æ‹·è´
 	my_memmemove(arr2, arr2+4, sizeof(arr2[0]) * 4);
 }
 //int main()

@@ -20,7 +20,7 @@ int my_strncmp(const char* str1, const char* str2, size_t n)
 		str2++;
 		n--;
 	}
-	//Ç°n¸öÏàÍ¬,µ«ÊÇ*str!=nulltr
+	//å‰nä¸ªç›¸åŒ,ä½†æ˜¯*str!=nulltr
 	if (n == 0) return 0;
 	else if (*str1 > *str2) return 1;
 	else if (*str1 < *str2) return -1;

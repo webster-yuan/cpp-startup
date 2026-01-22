@@ -1,7 +1,7 @@
 //https://leetcode.cn/problems/minimum-size-subarray-sum/description/
 
-//Ìâ½â:
-//»¬¶¯´°¿Ú
+//é¢˜è§£:
+//æ»‘åŠ¨çª—å£
 
 #include<iostream>
 #include<vector>
@@ -9,7 +9,7 @@ using namespace std;
 class Solution
 {
 public:
-    //O(N):rÒ»Ö±ÍùÓÒ×ß,×ßµ½n¾ÍÍ£ÏÂÀ´ÁË
+    //O(N):rä¸€ç›´å¾€å³èµ°,èµ°åˆ°nå°±åœä¸‹æ¥äº†
     int minSubArrayLen(int target, vector<int>& nums)
     {
         int ans = INT_MAX;
@@ -17,7 +17,7 @@ public:
         for (int l=0,r=0;r<nums.size();r++)
         {
             sum += nums[r];
-            while (sum - nums[l] >= target)//³ÖĞøµ¯³ö×ó±ß½ç,Ñ°ÇóÂú×ãÌõ¼şµÄ×îĞ¡Öµ
+            while (sum - nums[l] >= target)//æŒç»­å¼¹å‡ºå·¦è¾¹ç•Œ,å¯»æ±‚æ»¡è¶³æ¡ä»¶çš„æœ€å°å€¼
                 sum -= nums[l++];
             if (sum >= target)
                 ans = min(ans, r - l + 1);

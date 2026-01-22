@@ -1,19 +1,19 @@
 #include<iostream>
-#include<list>//Ë«ÏòÁ´±íÈİÆ÷
+#include<list>//åŒå‘é“¾è¡¨å®¹å™¨
 #include<unordered_map>
 using namespace std;
-//splice() º¯ÊıµÄ¹¦ÄÜ¿ÉÒÔ×Ü½áÈçÏÂ£º
-//1. splice(iterator position, list& x)£º½« x ÖĞµÄËùÓĞÔªËØÒÆ¶¯µ½µ±Ç° list µÄ position Ö®Ç°¡£
-//2. splice(iterator position, list& x, iterator i)£º½« x ÖĞµü´úÆ÷ i Ö¸ÏòµÄÔªËØÒÆ¶¯µ½µ±Ç° list µÄ position Ö®Ç°¡£
-//3. splice(iterator position, list& x, iterator first, iterator last)£º½« x ÖĞ·¶Î§[first, last) ÄÚµÄËùÓĞÔªËØÒÆ¶¯µ½µ±Ç° list µÄ position Ö®Ç°¡£
-//ÕâĞ©²Ù×÷¿ÉÒÔÔÚ O(1) Ê±¼ä¸´ÔÓ¶ÈÄÚÍê³É£¬ÒòÎª std::list ÊÇË«ÏòÁ´±í£¬Ö»ĞèÒªµ÷Õû½ÚµãµÄÖ¸Õë¼´¿ÉÊµÏÖÔªËØµÄÒÆ¶¯£¬¶ø²»ĞèÒªÏñÆäËûÈİÆ÷Ò»Ñù½øĞĞÊı¾İµÄ¸´ÖÆ¡£
-//ÕâÊ¹µÃ splice() ²Ù×÷·Ç³£¸ßĞ§£¬ÌØ±ğÊÊºÏÓÃÓÚĞèÒªÆµ·±ÒÆ¶¯ÔªËØµÄ³¡¾°¡£
+//splice() å‡½æ•°çš„åŠŸèƒ½å¯ä»¥æ€»ç»“å¦‚ä¸‹ï¼š
+//1. splice(iterator position, list& x)ï¼šå°† x ä¸­çš„æ‰€æœ‰å…ƒç´ ç§»åŠ¨åˆ°å½“å‰ list çš„ position ä¹‹å‰ã€‚
+//2. splice(iterator position, list& x, iterator i)ï¼šå°† x ä¸­è¿­ä»£å™¨ i æŒ‡å‘çš„å…ƒç´ ç§»åŠ¨åˆ°å½“å‰ list çš„ position ä¹‹å‰ã€‚
+//3. splice(iterator position, list& x, iterator first, iterator last)ï¼šå°† x ä¸­èŒƒå›´[first, last) å†…çš„æ‰€æœ‰å…ƒç´ ç§»åŠ¨åˆ°å½“å‰ list çš„ position ä¹‹å‰ã€‚
+//è¿™äº›æ“ä½œå¯ä»¥åœ¨ O(1) æ—¶é—´å¤æ‚åº¦å†…å®Œæˆï¼Œå› ä¸º std::list æ˜¯åŒå‘é“¾è¡¨ï¼Œåªéœ€è¦è°ƒæ•´èŠ‚ç‚¹çš„æŒ‡é’ˆå³å¯å®ç°å…ƒç´ çš„ç§»åŠ¨ï¼Œè€Œä¸éœ€è¦åƒå…¶ä»–å®¹å™¨ä¸€æ ·è¿›è¡Œæ•°æ®çš„å¤åˆ¶ã€‚
+//è¿™ä½¿å¾— splice() æ“ä½œéå¸¸é«˜æ•ˆï¼Œç‰¹åˆ«é€‚åˆç”¨äºéœ€è¦é¢‘ç¹ç§»åŠ¨å…ƒç´ çš„åœºæ™¯ã€‚
 class LRUCache 
 {
 private:
     size_t _cap;
     list<pair<int, int>> _LRUList;//<key,val>
-    typedef list<pair<int, int>>::iterator iterator;//Á´±í½Úµãµü´úÆ÷ºÜ·½±ã
+    typedef list<pair<int, int>>::iterator iterator;//é“¾è¡¨èŠ‚ç‚¹è¿­ä»£å™¨å¾ˆæ–¹ä¾¿
     unordered_map<int, iterator> hashMap;//<key,iterator>
 public:
     LRUCache(int capacity) 
@@ -38,21 +38,21 @@ public:
         auto ret = hashMap.find(key);
         if (ret != hashMap.end())
         {
-            //ĞèÒª½«Öµ½øĞĞ¸üĞÂ,È»ºóÒÆ¶¯µ½Á´±íµÄÊ×²¿
+            //éœ€è¦å°†å€¼è¿›è¡Œæ›´æ–°,ç„¶åç§»åŠ¨åˆ°é“¾è¡¨çš„é¦–éƒ¨
             auto it = ret->second;
             it->second = value;
             _LRUList.splice(_LRUList.begin(),_LRUList,it);
         }
         else
         {
-            //ĞÂÔö½Úµã,Ò»°ãÈİÆ÷ÊÇ¿¼ÂÇÊÇ·ñÀ©Èİ,µ«ÊÇLRU¾ÍÊÇ½«Á´±íÎ²²¿ÌÔÌ­
+            //æ–°å¢èŠ‚ç‚¹,ä¸€èˆ¬å®¹å™¨æ˜¯è€ƒè™‘æ˜¯å¦æ‰©å®¹,ä½†æ˜¯LRUå°±æ˜¯å°†é“¾è¡¨å°¾éƒ¨æ·˜æ±°
             if (_cap == _LRUList.size())
             {
                 pair<int, int> back = _LRUList.back();
                 _LRUList.pop_back();
                 hashMap.erase(back.first);
             }
-            //·ÅÔÚÁ´±íÍ·²¿Î»ÖÃ
+            //æ”¾åœ¨é“¾è¡¨å¤´éƒ¨ä½ç½®
             _LRUList.push_front({key,value});
             hashMap[key] = _LRUList.begin();
         }

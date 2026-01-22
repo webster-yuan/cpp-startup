@@ -4,12 +4,12 @@
 #include<assert.h>
 void test_strncat()
 {
-	//1. ´ÓdestµÄ\0¿ªÊ¼×·¼Ó,\0ÊÇ±»¸²¸ÇµÄ
+	//1. ä»Ždestçš„\0å¼€å§‹è¿½åŠ ,\0æ˜¯è¢«è¦†ç›–çš„
 	char dest[40] = "yuanwei\0XXXXXXXX";
 	char src[] = "qwert";
 	strncat(dest, src, sizeof(src));
 	printf("%s\n", dest);
-	//2. µ±src.size() < numÊ±,²¢²»»áÏñstrncpyÒ»Ñù²¹¹»num¸ö
+	//2. å½“src.size() < numæ—¶,å¹¶ä¸ä¼šåƒstrncpyä¸€æ ·è¡¥å¤Ÿnumä¸ª
 	strncat(dest, src, sizeof(src) + 5);
 	printf("%s\n",dest);
 }
@@ -17,9 +17,9 @@ char* strncat(char* dest,const char*src,size_t n)
 {
 	assert(dest && src);
 	char* ret = dest;
-	//ÏÈÕÒµ½µÚÒ»¸ö\0
+	//å…ˆæ‰¾åˆ°ç¬¬ä¸€ä¸ª\0
 	while (*dest != '\0') *dest++;
-	//×·¼Ó
+	//è¿½åŠ 
 	while (n > 0 && *src != '\0')
 	{
 		*dest = *src;

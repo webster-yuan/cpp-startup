@@ -1,7 +1,7 @@
 #include <iostream>
 #include <pthread.h>
 #include <thread>
-//使用pthread库中的pthread_spin_lock()接口封装一个自旋锁类
+//浣跨敤pthread搴撲腑鐨刾thread_spin_lock()鎺ュ彛灏佽涓€涓嚜鏃嬮攣绫?
 class SpinLock
 {
 private:
@@ -20,7 +20,7 @@ public:
 public:
     void lock()
     {
-        pthread_spin_lock(&_lock);//尝试获取锁，如果锁已经被占用，则会一直自旋等待
+        pthread_spin_lock(&_lock);//灏濊瘯鑾峰彇閿侊紝濡傛灉閿佸凡缁忚鍗犵敤锛屽垯浼氫竴鐩磋嚜鏃嬬瓑寰?
     }
     void unlock()
     {

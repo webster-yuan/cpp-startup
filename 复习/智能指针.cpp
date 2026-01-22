@@ -14,14 +14,14 @@ public:
 	my_weak_ptr(my_shared_ptr<T*>& sp)
 		:ptr(sp.ptr)
 		, pRefCount(sp.pRefCount)
-	{}//²¢²»»áÔö¼ÓÑ­»·ÒıÓÃ¼ÆÊı
+	{}//å¹¶ä¸ä¼šå¢åŠ å¾ªç¯å¼•ç”¨è®¡æ•°
 	my_weak_ptr<T*> operator=(my_shared_ptr<T*>& sp)
 	{
 		_ptr = sp.ptr;
 		pRefCount = sp.pRefCount;
 	}
 public:
-	my_shared_ptr<T*> lock()//`lock` ³ÉÔ±º¯Êı»ñÈ¡Ò»¸öÓĞĞ§µÄ `std::shared_ptr` ¶ÔÏó
+	my_shared_ptr<T*> lock()//`lock` æˆå‘˜å‡½æ•°è·å–ä¸€ä¸ªæœ‰æ•ˆçš„ `std::shared_ptr` å¯¹è±¡
 	{
 		if (expired())
 		{
@@ -30,7 +30,7 @@ public:
 		else
 			return nullptr;
 	}
-	bool expired()//Ëù¹ÜÀíµÄ¶ÔÏóÊÇ·ñÒÑ±»Ïú»Ù
+	bool expired()//æ‰€ç®¡ç†çš„å¯¹è±¡æ˜¯å¦å·²è¢«é”€æ¯
 	{
 		return ptr == nullptr || *pRefCount == 0;
 	}
@@ -68,7 +68,7 @@ public:
 		}
 	}
 };
-//Ïß³Ì°²È«µÄshared_ptr
+//çº¿ç¨‹å®‰å…¨çš„shared_ptr
 #include<atomic>
 template<typename T>
 class mySharedPtr
@@ -77,7 +77,7 @@ private:
 	T* ptr;
 	std::atomic<int>refCount;
 public:
-	//½ûÖ¹µ¥²ÎÊıµÄÒşÊ¿ÀàĞÍ×ª»»Ö®ºó¹¹Ôì
+	//ç¦æ­¢å•å‚æ•°çš„éšå£«ç±»å‹è½¬æ¢ä¹‹åæ„é€ 
 	explicit mySharedPtr(T* p)
 				:ptr(p)
 				,refCount(1)
@@ -119,7 +119,7 @@ public:
 	{}
 	ThreadSafe(ThreadSafe<T*>& sp)
 	{
-		std::lock_guard<std::mutex> lock(sp.mtx);//ÒòÎªÒªĞŞ¸ÄspµÄÒıÓÃ¼ÆÊı,ËùÒÔÈ·±£ËûµÄÏß³Ì°²È«
+		std::lock_guard<std::mutex> lock(sp.mtx);//å› ä¸ºè¦ä¿®æ”¹spçš„å¼•ç”¨è®¡æ•°,æ‰€ä»¥ç¡®ä¿ä»–çš„çº¿ç¨‹å®‰å…¨
 		ptr = sp.ptr;
 		pRef = sp.pRef;
 		++(*pRef);
@@ -149,8 +149,8 @@ private:
 	}
 	my_swap(ThreadSafe<T*>& sp)
 	{
-		std::lock_guard<mutex>lock1(mtx);//Ëü·ÃÎÊÎÒÊ±ÎÒµÄ×ÊÔ´°²È«
-		std::lock_guard<mutex>lock2(sp.mtx);//ÎÒ·ÃÎÊËüÊ±ËûµÄ×ÊÔ´°²È«
+		std::lock_guard<mutex>lock1(mtx);//å®ƒè®¿é—®æˆ‘æ—¶æˆ‘çš„èµ„æºå®‰å…¨
+		std::lock_guard<mutex>lock2(sp.mtx);//æˆ‘è®¿é—®å®ƒæ—¶ä»–çš„èµ„æºå®‰å…¨
 
 		std::swap(ptr, sp.ptr);
 		std::swap(pRef, sp.pRef);

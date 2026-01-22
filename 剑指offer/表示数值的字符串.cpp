@@ -1,13 +1,13 @@
 #include<iostream>
 using namespace std;
 //https://leetcode.cn/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/description/?envType=study-plan-v2&envId=coding-interviews
-//±ğĞ¡ÇÆÁËËû!!!!
-//ÒòÎª.ºÍeE¶à´Î³öÏÖÊ±Ó¦¸ÃµÃÒÔÅĞ¶ÏÊÇ·ñ¶¨Çé¿ö,ËùÒÔÎŞ·¨Ö±½ÓÊ¹ÓÃfindº¯Êı,Ö»ÄÜ²ÉÓÃ±ê¼ÇÎ»µÄĞÎÊ½ÅĞ¶ÏÊÇ·ñÊÇÖØ¸´³öÏÖ
+//åˆ«å°ç§äº†ä»–!!!!
+//å› ä¸º.å’ŒeEå¤šæ¬¡å‡ºç°æ—¶åº”è¯¥å¾—ä»¥åˆ¤æ–­æ˜¯å¦å®šæƒ…å†µ,æ‰€ä»¥æ— æ³•ç›´æ¥ä½¿ç”¨findå‡½æ•°,åªèƒ½é‡‡ç”¨æ ‡è®°ä½çš„å½¢å¼åˆ¤æ–­æ˜¯å¦æ˜¯é‡å¤å‡ºç°
 
 class Solution
 {
 public:
-    //1. È¥³ı×Ö·û´®Á½¶ËµÄ¿Õ¸ñ
+    //1. å»é™¤å­—ç¬¦ä¸²ä¸¤ç«¯çš„ç©ºæ ¼
     string RemoveSpace(string& s)
     {
         int n = s.size();
@@ -19,20 +19,20 @@ public:
     bool isNumber(string s)
     {
         s = RemoveSpace(s);
-        //2. Ê¹ÓÃ±ê¼ÇÎ»ÅĞ¶ÏÊÇ·ñÌØÊâ×Ö·ûÖØ¸´³öÏÖ
+        //2. ä½¿ç”¨æ ‡è®°ä½åˆ¤æ–­æ˜¯å¦ç‰¹æ®Šå­—ç¬¦é‡å¤å‡ºç°
         int epos = -1;
         bool flag = false;
         for (int i = 0; i < s.size(); i++)
         {
             if (s[i] == 'e' || s[i] == 'E')
             {
-                if (epos == -1)//eposÈç¹ûÔÚÒ»¸öºÏ·¨Î»ÖÃ,ËµÃ÷Ö®Ç°³öÏÖ¹ıe
+                if (epos == -1)//eposå¦‚æœåœ¨ä¸€ä¸ªåˆæ³•ä½ç½®,è¯´æ˜ä¹‹å‰å‡ºç°è¿‡e
                     epos = i;
                 else
                     return false;
             }
         }
-        //3. ·ÖÁ½¶ÎÇø¼äÌÖÂÛ
+        //3. åˆ†ä¸¤æ®µåŒºé—´è®¨è®º
         if (epos == -1) return isDecimal(s) || isInt(s);
 
         string left = s.substr(0, epos-1 -0 +1);
@@ -41,24 +41,24 @@ public:
     }
     bool isInt(string& s)
     {
-        //4. ×Ö·û´®ÊÇ""Ê±return false
+        //4. å­—ç¬¦ä¸²æ˜¯""æ—¶return false
         if (s.size() == 0) return false;
 
         int index = 0;
         if (s[0] == '+' || s[0] == '-')
             index++;
 
-        //²éÑ¯indexµ½½áÎ²ÊÇ·ñ¶¼ÊÇÕûÊı
+        //æŸ¥è¯¢indexåˆ°ç»“å°¾æ˜¯å¦éƒ½æ˜¯æ•´æ•°
         int i = index;
         int count = 0;
-        //5. right²¿·Ö±ØĞëÓĞÊı×Ö,±ÜÃâÖ»ÓĞÒ»¸ö +
+        //5. rightéƒ¨åˆ†å¿…é¡»æœ‰æ•°å­—,é¿å…åªæœ‰ä¸€ä¸ª +
         for (; i < s.size() && s[i] != ' '; i++)
         {
             if (!isdigit(s[i]))
                 return false;
             count++;
         }
-        //6. ÒòÎªs[i]¿ÉÄÜÒòÎªÊÇÊı×ÖÖ®¼äÖĞ¼ä×Ö·û,°ëÂ·Ìø³ö
+        //6. å› ä¸ºs[i]å¯èƒ½å› ä¸ºæ˜¯æ•°å­—ä¹‹é—´ä¸­é—´å­—ç¬¦,åŠè·¯è·³å‡º
         return i == s.size()&&count>0;
     }
     bool isDecimal(string& s)
@@ -69,7 +69,7 @@ public:
         if (s[0] == '+' || s[0] == '-')
             index++;
         bool flag = false;
-        //7. Ğ¡ÊıµÄ.Á½±ß¶¼±ØĞëÓĞÊı×Ö
+        //7. å°æ•°çš„.ä¸¤è¾¹éƒ½å¿…é¡»æœ‰æ•°å­—
         int left = 0, right = 0;
         int i = index;
         for (; i < s.size() && s[i] != ' '; i++)
@@ -90,7 +90,7 @@ public:
                 return false;
         }
         return flag && (left > 0 || right > 0) && i == s.size();
-        //Êı×ÖÖ®¼ä³öÏÖ¿ÕÒ²ÊÇfalse,i»áÔÚÖĞ¼äÌø³ö
+        //æ•°å­—ä¹‹é—´å‡ºç°ç©ºä¹Ÿæ˜¯false,iä¼šåœ¨ä¸­é—´è·³å‡º
     }
 };
 

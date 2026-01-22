@@ -2,7 +2,7 @@
 #include<vector>
 #include<map>
 #include<queue>
-#include"²¢²é¼¯.hpp"
+#include"å¹¶æŸ¥é›†.hpp"
 using namespace std;
 template<class V,class W,W MAX_W =INT_MAX,bool Direction =false>
 class Graph
@@ -10,8 +10,8 @@ class Graph
 	typedef Graph<V, W, MAX_W, Direction> self;
 private:
 	map<V, int> vIndexMap;
-	vector<V> vertexs;		  //µã¼¯
-	vector<vector<W>> matrix; //¾ØÕó´æ´¢ĞÅÏ¢
+	vector<V> vertexs;		  //ç‚¹é›†
+	vector<vector<W>> matrix; //çŸ©é˜µå­˜å‚¨ä¿¡æ¯
 public:
 	struct Edge
 	{
@@ -29,9 +29,9 @@ public:
 		}
 	};
 public:
-	//µ¥Ô´×î¶ÌÂ·¾¶-Õë¶ÔÓĞÏòÍ¼-±ßÈ¨Öµ·Ç¸º
-	//dist: ¼ÇÂ¼srci-ÆäËû¶¥µã×î¶ÌÂ·¾¶È¨ÖµÊı×é
-	//pPath: ¼ÇÂ¼srci-ÆäËû¶¥µã×î¶ÌÂ·¾¶¸¸¶¥µãÊı×é
+	//å•æºæœ€çŸ­è·¯å¾„-é’ˆå¯¹æœ‰å‘å›¾-è¾¹æƒå€¼éè´Ÿ
+	//dist: è®°å½•srci-å…¶ä»–é¡¶ç‚¹æœ€çŸ­è·¯å¾„æƒå€¼æ•°ç»„
+	//pPath: è®°å½•srci-å…¶ä»–é¡¶ç‚¹æœ€çŸ­è·¯å¾„çˆ¶é¡¶ç‚¹æ•°ç»„
 	void Dijkstra(const V& src, vector<W>& dist, vector<int>& pPath)
 	{
 		int srci = GetVertexIndex(src);
@@ -41,10 +41,10 @@ public:
 
 		dist[srci] = 0;
 		dist[srci] = srci;
-		vector<bool>S(n, false);//ÒÑ¾­È·¶¨µÄ×î¶ÌÂ·¾¶µÄ¶¥µã¼¯ºÏ
-		//Ã¿´Î´ÓQ ÖĞÕÒ³öÒ»¸öÆğµãµ½¸Ã½áµã´ú¼Û×îĞ¡µÄ½áµãu £¬
-		//½«u ´ÓQ ÖĞÒÆ³ö£¬²¢·ÅÈëS ÖĞ£¬
-		//¶Ôu µÄÃ¿Ò»¸öÏàÁÚ½áµãv ½øĞĞËÉ³Ú²Ù×÷
+		vector<bool>S(n, false);//å·²ç»ç¡®å®šçš„æœ€çŸ­è·¯å¾„çš„é¡¶ç‚¹é›†åˆ
+		//æ¯æ¬¡ä»Q ä¸­æ‰¾å‡ºä¸€ä¸ªèµ·ç‚¹åˆ°è¯¥ç»“ç‚¹ä»£ä»·æœ€å°çš„ç»“ç‚¹u ï¼Œ
+		//å°†u ä»Q ä¸­ç§»å‡ºï¼Œå¹¶æ”¾å…¥S ä¸­ï¼Œ
+		//å¯¹u çš„æ¯ä¸€ä¸ªç›¸é‚»ç»“ç‚¹v è¿›è¡Œæ¾å¼›æ“ä½œ
 		for (int j = 0; j < n; j++)
 		{
 			int u = 0;
@@ -58,7 +58,7 @@ public:
 				}
 			}
 			S[u] = true;
-			//ËÉ³Ú´¦Àí: Á½ÌõÂ·¾¶Ñ¡×îĞ¡,min(src->uParent->u,src->u)
+			//æ¾å¼›å¤„ç†: ä¸¤æ¡è·¯å¾„é€‰æœ€å°,min(src->uParent->u,src->u)
 			for (int v = 0; v < n; v++)
 			{
 				if (!S[v] && matrix[u][v] != MAX_W && 
@@ -72,13 +72,13 @@ public:
 
 	}
 
-public://×îĞ¡Éú³ÉÊ÷
-	// PrimËã·¨: ¸ø¶¨Ò»¸ösrcºó,Ñ¡ÔñÏàÁ¬µÄ×îĞ¡±ß. Ì°ĞÄ+Öğ²½ÍÆµ¼
+public://æœ€å°ç”Ÿæˆæ ‘
+	// Primç®—æ³•: ç»™å®šä¸€ä¸ªsrcå,é€‰æ‹©ç›¸è¿çš„æœ€å°è¾¹. è´ªå¿ƒ+é€æ­¥æ¨å¯¼
 	W Prim(self& minTree, const V& src)
 	{
 		int srci = GetVertexIndex(src);
 		int sz = vertex.size();
-		//1. ³õÊ¼»¯
+		//1. åˆå§‹åŒ–
 		vertexs = minTree.vertexs;
 		vIndexMap = minTree.vIndexMap;
 		int m = minTree.matrix.size();
@@ -86,18 +86,18 @@ public://×îĞ¡Éú³ÉÊ÷
 			matrix.resize(m);
 		for (int i = 0; i < m; i++)
 			matrix[i].reize(n, MAX_W);
-		//2. Ê×ÏÈ½«ÓësrcÏàÁ¬µÄËùÓĞµãµÄ±ßÈëĞ¡¶Ñ,Ã¿´Î»ñÈ¡srciÏàÁ¬µÄ×îĞ¡±ß
+		//2. é¦–å…ˆå°†ä¸srcç›¸è¿çš„æ‰€æœ‰ç‚¹çš„è¾¹å…¥å°å †,æ¯æ¬¡è·å–srciç›¸è¿çš„æœ€å°è¾¹
 		priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
 		for (int i = 0; i < n; i++)
 		{
 			if (matrix[srci][i] != MAX_W)
 				pq.push(Edge(srci, i, matrix[srci][i]));
 		}
-		//3. Ñ¡±ß,Ñ¡Ôñ×îĞ¡±ßÖÕµãÃ»ÓÃ¹ıµÄ,Y[i]=false,±ÜÃâ³öÏÖ»·
-		//	ÒªÑ¡¹»½Úµã-1Ìõ±ß,·µ»Ø×îĞ¡Éú³ÉÊ÷µÄÀÛ¼Ótotal
+		//3. é€‰è¾¹,é€‰æ‹©æœ€å°è¾¹ç»ˆç‚¹æ²¡ç”¨è¿‡çš„,Y[i]=false,é¿å…å‡ºç°ç¯
+		//	è¦é€‰å¤ŸèŠ‚ç‚¹-1æ¡è¾¹,è¿”å›æœ€å°ç”Ÿæˆæ ‘çš„ç´¯åŠ total
 
-		vector<int>X(sz, false);//X[i]=true´ú±íiÕâ¸öµãÓÃ¹ı
-		vector<int>Y(sz, false);//Y[i]=true´ú±íiÕâ¸öµãÃ»ÓÃ¹ı
+		vector<int>X(sz, false);//X[i]=trueä»£è¡¨iè¿™ä¸ªç‚¹ç”¨è¿‡
+		vector<int>Y(sz, false);//Y[i]=trueä»£è¡¨iè¿™ä¸ªç‚¹æ²¡ç”¨è¿‡
 		X[srci] = true, Y[srci] = false;
 		int size = 0;
 		W total = W();
@@ -105,7 +105,7 @@ public://×îĞ¡Éú³ÉÊ÷
 		while (!pq.empty())
 		{
 			Edge min = pq.top(); pq.pop();
-			if (X[min.desti])//×îĞ¡±ßÄ¿±êµãÔÚX¼¯ºÏÖĞ,´ú±íÒÑ¾­Ñ¡¹ıÁË
+			if (X[min.desti])//æœ€å°è¾¹ç›®æ ‡ç‚¹åœ¨Xé›†åˆä¸­,ä»£è¡¨å·²ç»é€‰è¿‡äº†
 			{}
 			else
 			{
@@ -128,10 +128,10 @@ public://×îĞ¡Éú³ÉÊ÷
 		else
 			return W();
 	}
-	// KruskalËã·¨: ÔÚÍ¼ÖĞµÄËùÓĞ±ßÖĞ,Ñ¡³ö×îĞ¡µÄ±ß. Ì°ĞÄ+Öğ²½ÍÆµ¼
+	// Kruskalç®—æ³•: åœ¨å›¾ä¸­çš„æ‰€æœ‰è¾¹ä¸­,é€‰å‡ºæœ€å°çš„è¾¹. è´ªå¿ƒ+é€æ­¥æ¨å¯¼
 	W Kruskal(self& minTree)
 	{
-		//1. ³õÊ¼»¯
+		//1. åˆå§‹åŒ–
 		vertexs = minTree.vertexs;
 		vIndexMap = minTree.vIndexMap;
 		int m = minTree.matrix.size();
@@ -139,7 +139,7 @@ public://×îĞ¡Éú³ÉÊ÷
 		matrix.resize(m);
 		for (int i = 0; i < m; i++)
 			matrix[i].reize(n, MAX_W);
-		//2. ¸ù¾İÁÚ½Ó¾ØÕóµÄÈ¨Öµ¹¹½¨±ß,·Åµ½Ğ¡¶ÑÖĞ,Ã¿´Î»ñÈ¡Õû¸öÍ¼ÖĞµÄ×îĞ¡±ß
+		//2. æ ¹æ®é‚»æ¥çŸ©é˜µçš„æƒå€¼æ„å»ºè¾¹,æ”¾åˆ°å°å †ä¸­,æ¯æ¬¡è·å–æ•´ä¸ªå›¾ä¸­çš„æœ€å°è¾¹
 		priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
 		for (int i = 0; i < m; i++)
 		{
@@ -149,11 +149,11 @@ public://×îĞ¡Éú³ÉÊ÷
 					pq.push(Edge(i, j, matrix[i][j]));
 			}
 		}
-		//3. ¹¹½¨×îĞ¡Éú³ÉÊ÷,ÎªÁË±ÜÃâÑ¡µ½ÖØ¸´µã,ÔÚÑ¡Ôñ±ßÊ±Ê¹ÓÃ²¢²é¼¯
-		//	 Ñ¡ÖĞ½Úµã¸öÊı-1Ìõ±ß
+		//3. æ„å»ºæœ€å°ç”Ÿæˆæ ‘,ä¸ºäº†é¿å…é€‰åˆ°é‡å¤ç‚¹,åœ¨é€‰æ‹©è¾¹æ—¶ä½¿ç”¨å¹¶æŸ¥é›†
+		//	 é€‰ä¸­èŠ‚ç‚¹ä¸ªæ•°-1æ¡è¾¹
 		int sz = vertex.size();
 		UnionFind ufs(sz);
-		int size = 0;//¹æ¶¨Ñ¡³ösz-1Ìõ±ß
+		int size = 0;//è§„å®šé€‰å‡ºsz-1æ¡è¾¹
 		W total = W();
 
 		while (!pq.empty())
@@ -166,7 +166,7 @@ public://×îĞ¡Éú³ÉÊ÷
 				++size;
 				total += min.w;
 			}
-			else {}//ËµÃ÷Ñ¡ÖĞÁËµÄ×îĞ¡±ßÁ½¸öµãÊÇÒ»¸ö¼¯ºÏµÄ,ËµÃ÷ÒÑ¾­Ñ¡¹ıÁË,¾Í²»ÓÃÑ¡ÁË
+			else {}//è¯´æ˜é€‰ä¸­äº†çš„æœ€å°è¾¹ä¸¤ä¸ªç‚¹æ˜¯ä¸€ä¸ªé›†åˆçš„,è¯´æ˜å·²ç»é€‰è¿‡äº†,å°±ä¸ç”¨é€‰äº†
 		}
 		if (size == sz - 1)
 			return total;
@@ -193,7 +193,7 @@ public:
 
 		dfs(srci,visi);
 	}
-	//°´²ãÊä³ö
+	//æŒ‰å±‚è¾“å‡º
 	void BFSLevel(const V& src)
 	{
 		int srci = GetVertexIndex(src);
@@ -238,7 +238,7 @@ public:
 		{
 			int front = q.front(); q.pop();
 			cout << front << ":" << vertexs[front] << " ";
-			//½«frontµÄÁÚ½Óµã¶¼·Å½øÀ´
+			//å°†frontçš„é‚»æ¥ç‚¹éƒ½æ”¾è¿›æ¥
 			for (int i = 0; i < n; i++)
 			{
 				if (matrix[front][i] != MAX_W && !visi[i])
@@ -271,7 +271,7 @@ public:
 			return it->second;
 		else
 		{
-			cout << "²»´æÔÚÕâ¸öµã" << endl;
+			cout << "ä¸å­˜åœ¨è¿™ä¸ªç‚¹" << endl;
 			return -1;
 		}
 	}

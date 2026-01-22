@@ -28,7 +28,7 @@ namespace K
 			{
 				_root = new Node(key);
 			}
-			//²»ÊÇµÚÒ»´Î
+			//ä¸æ˜¯ç¬¬ä¸€æ¬¡
 			Node* parent = nullptr;
 			Node* cur = _root;
 			while (cur)
@@ -129,7 +129,7 @@ namespace K
 					}
 					else
 					{
-						//ÓÒ×ÓÊ÷,ÕÒ×îĞ¡½Úµã
+						//å³å­æ ‘,æ‰¾æœ€å°èŠ‚ç‚¹
 						Node* tmp = cur->_right;
 						Node* ptmp = cur;
 						while (tmp->_left)
@@ -138,7 +138,7 @@ namespace K
 							tmp = tmp->_left;
 						}
 						swap(cur->_key, tmp->_key);
-						//²»ÄÜÖ±½ÓÉ¾,¿ÉÄÜ×î×ó½Úµã»¹ÓĞÓÒº¢×ÓĞèÒªºÍ¸¸Ç×Á¬½Ó
+						//ä¸èƒ½ç›´æ¥åˆ ,å¯èƒ½æœ€å·¦èŠ‚ç‚¹è¿˜æœ‰å³å­©å­éœ€è¦å’Œçˆ¶äº²è¿æ¥
 						if (ptmp->_left == tmp)
 							ptmp->_left = tmp->_right;
 						else
@@ -157,7 +157,7 @@ namespace K
 		}
 		bool _InsertR(Node*& root, const T& key)
 		{
-			if (root == nullptr)//ÕÒµ½Òª²åÈëµÄÎ»ÖÃÁË
+			if (root == nullptr)//æ‰¾åˆ°è¦æ’å…¥çš„ä½ç½®äº†
 			{
 				root = new Node(key);
 				return true;
@@ -182,7 +182,7 @@ namespace K
 			else if (key < root->_key)
 				return _FindR(root->_left, key);
 			else
-				return root;//Ò»²ã²ãÍù»Ø·µ»Ø,¿ÉÒÔ¼ÇÂ¼Â·¾¶Ê¹ÓÃ
+				return root;//ä¸€å±‚å±‚å¾€å›è¿”å›,å¯ä»¥è®°å½•è·¯å¾„ä½¿ç”¨
 		}
 		bool EraseR(const T& key)
 		{
@@ -198,9 +198,9 @@ namespace K
 			else
 			{
 				Node* del = root;
-				if (root->_left == nullptr)//ÏÂÃæµÄÁ½¸öº¢×Ó½ÚµãµÄÄÇ¸öÏÂÒ»´Îµİ¹éµ½ÕâÉ¾³ı(ÖµÏàµÈ,ÆäÊµ¾ÍÊÇÏÂÒ»´Î×ÓÊ÷µ÷ÓÃ¸ù½Úµã)
+				if (root->_left == nullptr)//ä¸‹é¢çš„ä¸¤ä¸ªå­©å­èŠ‚ç‚¹çš„é‚£ä¸ªä¸‹ä¸€æ¬¡é€’å½’åˆ°è¿™åˆ é™¤(å€¼ç›¸ç­‰,å…¶å®å°±æ˜¯ä¸‹ä¸€æ¬¡å­æ ‘è°ƒç”¨æ ¹èŠ‚ç‚¹)
 				{
-					root = root->_right;//ÒªÉ¾µÄ½ÚµãµÄµØÖ·,Ò²ÊÇ½ÚµãËûµùµÄÓÒº¢×ÓÖ¸ÕëµÄ±ğÃû,Ö±½ÓÁ¬¾ÍĞĞÁË
+					root = root->_right;//è¦åˆ çš„èŠ‚ç‚¹çš„åœ°å€,ä¹Ÿæ˜¯èŠ‚ç‚¹ä»–çˆ¹çš„å³å­©å­æŒ‡é’ˆçš„åˆ«å,ç›´æ¥è¿å°±è¡Œäº†
 				}
 				else if (root->_right == nullptr)
 				{
@@ -208,7 +208,7 @@ namespace K
 				}
 				else
 				{
-					//ÓÒ×ÓÊ÷×î×ó½ÚµãÌæ»»É¾³ı
+					//å³å­æ ‘æœ€å·¦èŠ‚ç‚¹æ›¿æ¢åˆ é™¤
 					Node* min = root->_right;
 					while (min->_left)
 					{
@@ -220,10 +220,10 @@ namespace K
 					swap(min->_key, root->_key);
 					/*cout << "root->key:" << tmp << endl;
 					cout << "min->key:" << min->_key << endl;*/
-					//µİ¹éµ÷ÓÃ×Ô¼º,´Ó×Ô¼ºµÄÓÒ×ÓÊ÷É¾³ıÄÇ¸öÊıµÄ½Úµã
+					//é€’å½’è°ƒç”¨è‡ªå·±,ä»è‡ªå·±çš„å³å­æ ‘åˆ é™¤é‚£ä¸ªæ•°çš„èŠ‚ç‚¹
 					//cout << "root->_right->key" << root->_right->_key << endl;
-					//return _EraseR(root->_right, tmp);//ÓÃtmpÌáÇ°¼ÇÂ¼Ò²¿É
-					return _EraseR(root->_right, key);//ÎÒÏëÒªÉ¾³ıµÄÊı¾ÍÊÇ7,¼´Ê¹ÎÒ°Ñ7ºÍ8µ÷»»ÁË,ÎÒÍùÏÂ´«µÄÏëÒªÉ¾³ıµÄÖµ»¹ÊÇ7
+					//return _EraseR(root->_right, tmp);//ç”¨tmpæå‰è®°å½•ä¹Ÿå¯
+					return _EraseR(root->_right, key);//æˆ‘æƒ³è¦åˆ é™¤çš„æ•°å°±æ˜¯7,å³ä½¿æˆ‘æŠŠ7å’Œ8è°ƒæ¢äº†,æˆ‘å¾€ä¸‹ä¼ çš„æƒ³è¦åˆ é™¤çš„å€¼è¿˜æ˜¯7
 
 				}
 				delete del;
@@ -291,7 +291,7 @@ namespace K_V
 			{
 				_root = new Node(key,value);
 			}
-			//²»ÊÇµÚÒ»´Î
+			//ä¸æ˜¯ç¬¬ä¸€æ¬¡
 			Node* parent = nullptr;
 			Node* cur = _root;
 			while (cur)
@@ -393,7 +393,7 @@ namespace K_V
 					}
 					else
 					{
-						//ÓÒ×ÓÊ÷,ÕÒ×îĞ¡½Úµã
+						//å³å­æ ‘,æ‰¾æœ€å°èŠ‚ç‚¹
 						Node* tmp = cur->_right;
 						Node* ptmp = cur;
 						while (tmp->_left)
@@ -404,7 +404,7 @@ namespace K_V
 						swap(cur->_key, tmp->_key);
 						swap(cur->_val,tmp->_val);
 
-						//²»ÄÜÖ±½ÓÉ¾,¿ÉÄÜ×î×ó½Úµã»¹ÓĞÓÒº¢×ÓĞèÒªºÍ¸¸Ç×Á¬½Ó
+						//ä¸èƒ½ç›´æ¥åˆ ,å¯èƒ½æœ€å·¦èŠ‚ç‚¹è¿˜æœ‰å³å­©å­éœ€è¦å’Œçˆ¶äº²è¿æ¥
 						if (ptmp->_left == tmp)
 							ptmp->_left = tmp->_right;
 						else
@@ -423,12 +423,12 @@ namespace K_V
 
 	void TestBSTree()
 	{
-		// ×ÖµäKVÄ£ĞÍ
+		// å­—å…¸KVæ¨¡å‹
 		BSTree<string, string> dict;
-		dict.Insert("sort", "ÅÅĞò");
-		dict.Insert("left", "×ó±ß");
-		dict.Insert("right", "ÓÒ±ß");
-		dict.Insert("map", "µØÍ¼¡¢Ó³Éä");
+		dict.Insert("sort", "æ’åº");
+		dict.Insert("left", "å·¦è¾¹");
+		dict.Insert("right", "å³è¾¹");
+		dict.Insert("map", "åœ°å›¾ã€æ˜ å°„");
 		//...
 
 		string str;
@@ -437,11 +437,11 @@ namespace K_V
 			BinarySearchTreeNode<string, string>* ret = dict.Find(str);
 			if (ret)
 			{
-				cout << "¶ÔÓ¦ÖĞÎÄ½âÊÍ£º" << ret->_val << endl;
+				cout << "å¯¹åº”ä¸­æ–‡è§£é‡Šï¼š" << ret->_val << endl;
 			}
 			else
 			{
-				cout << "ÎŞ´Ëµ¥´Ê" << endl;
+				cout << "æ— æ­¤å•è¯" << endl;
 			}
 		}
 
@@ -449,8 +449,8 @@ namespace K_V
 
 	void TestBSTree2()
 	{
-		// Í³¼ÆË®¹û³öÏÖ´ÎÊı
-		string arr[] = { "Æ»¹û", "Î÷¹Ï","²İİ®", "Æ»¹û", "Î÷¹Ï", "Æ»¹û", "Æ»¹û", "Î÷¹Ï", "Æ»¹û", "Ïã½¶", "Æ»¹û", "Ïã½¶" };
+		// ç»Ÿè®¡æ°´æœå‡ºç°æ¬¡æ•°
+		string arr[] = { "è‹¹æœ", "è¥¿ç“œ","è‰è“", "è‹¹æœ", "è¥¿ç“œ", "è‹¹æœ", "è‹¹æœ", "è¥¿ç“œ", "è‹¹æœ", "é¦™è•‰", "è‹¹æœ", "é¦™è•‰" };
 		BSTree<string, int> countTree;
 		for (auto& str : arr)
 		{

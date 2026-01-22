@@ -36,7 +36,7 @@ namespace ns_thread_pool
         static ThreadPool<T>* GetInstance()
         {
             static pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
-            // Èç¹ûÊÇµÚÒ»´ÎÀ´µÄ,¾Í»ñÈ¡Ëø.Ê¡µÃÀË·ÑÁË»ñÈ¡ËøµÄÊ±¼äÖ®ºó·¢ÏÖ»¹²»ÊÇµÚÒ»¸öÀ´µÄ,°×¾ºÕùÁË
+            // å¦‚æœæ˜¯ç¬¬ä¸€æ¬¡æ¥çš„,å°±è·å–é”.çœå¾—æµªè´¹äº†è·å–é”çš„æ—¶é—´ä¹‹åå‘ç°è¿˜ä¸æ˜¯ç¬¬ä¸€ä¸ªæ¥çš„,ç™½ç«äº‰äº†
             if (ins == nullptr)
             {
                 pthread_mutex_lock(&lock);
@@ -44,7 +44,7 @@ namespace ns_thread_pool
                 {
                     ins = new ThreadPool<T>();
                     ins->InitThreadPool();
-                    std::cout << "Ê×´Î¼ÓÔØ¶ÔÏó" << std::endl;
+                    std::cout << "é¦–æ¬¡åŠ è½½å¯¹è±¡" << std::endl;
                 }
                 pthread_mutex_unlock(&lock);
             }
@@ -74,7 +74,7 @@ namespace ns_thread_pool
         }
 
     public:
-        static void* Rountine(void* args) // ´«¹ıÀ´µÄÊÇµ¥¸öÏß³ÌĞÅÏ¢,Ïß³Ìµ÷ÓÃÀàÄÚ³ÉÔ±,µÃÉùÃ÷Îªstatic
+        static void* Rountine(void* args) // ä¼ è¿‡æ¥çš„æ˜¯å•ä¸ªçº¿ç¨‹ä¿¡æ¯,çº¿ç¨‹è°ƒç”¨ç±»å†…æˆå‘˜,å¾—å£°æ˜ä¸ºstatic
         {
             pthread_detach(pthread_self());
             ThreadPool<T>* tp = (ThreadPool<T> *)args;

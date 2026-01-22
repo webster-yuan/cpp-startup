@@ -5,8 +5,8 @@ using namespace std;
 class Solution 
 {
 public:
-//Êı×é·ÖÈı¿é,µ±¶¼ÊÇÖØ¸´ÔªËØÊ±,Ö»±éÀúÒ»´Î,ÒòÎª×óÓÒÇø¼ä¶¼²»´æÔÚ,±éÀúÒ»´ÎÖ®ºó¾Í·µ»ØÁË
-//Ëæ»ú·µ»ØÊı×éÖĞµÄÑ¡Ôñ»ù×¼ÔªËØ
+//æ•°ç»„åˆ†ä¸‰å—,å½“éƒ½æ˜¯é‡å¤å…ƒç´ æ—¶,åªéå†ä¸€æ¬¡,å› ä¸ºå·¦å³åŒºé—´éƒ½ä¸å­˜åœ¨,éå†ä¸€æ¬¡ä¹‹åå°±è¿”å›äº†
+//éšæœºè¿”å›æ•°ç»„ä¸­çš„é€‰æ‹©åŸºå‡†å…ƒç´ 
     vector<int> sortArray(vector<int>& nums) 
     {
         srand(time(NULL));
@@ -31,7 +31,7 @@ public:
         qsort(nums,left,less);
         qsort(nums,more,right);
     }
-    //·µ»ØÇø¼äÄÚµÄÒ»¸öËæ»úÖµ
+    //è¿”å›åŒºé—´å†…çš„ä¸€ä¸ªéšæœºå€¼
     int getRandom(vector<int>&nums,int left,int right)
     {
         int r=rand();
@@ -41,18 +41,18 @@ public:
 class Sort
 {
 public:
-	//¶ÑÅÅĞò
-	//¶Ñ:ÓÃÊı×é¿Õ¼äÄ£ÄâµÄÍêÈ«¶ş²æÊ÷½á¹¹
-	//Èç¹ûÊÇ¶ş±¶À©Èİ,À©Èİ´ÎÊıO(logN),¿½±´ÊÇO(N),ÕûÌåÊÇO(nlogn),¾ùÌ¯µ½Ã¿¸öµã¾ÍÊÇO(logn)
+	//å †æ’åº
+	//å †:ç”¨æ•°ç»„ç©ºé—´æ¨¡æ‹Ÿçš„å®Œå…¨äºŒå‰æ ‘ç»“æ„
+	//å¦‚æœæ˜¯äºŒå€æ‰©å®¹,æ‰©å®¹æ¬¡æ•°O(logN),æ‹·è´æ˜¯O(N),æ•´ä½“æ˜¯O(nlogn),å‡æ‘Šåˆ°æ¯ä¸ªç‚¹å°±æ˜¯O(logn)
 	void HeapSort(vector<int>& arr)
 	{
 		if (arr.size() < 2)return;
-		//½¨Á¢´ó¶Ñ
+		//å»ºç«‹å¤§å †
 		for (int i = 0; i < arr.size(); i++)
 		{
 			HeapInsert(arr,i);//O(logN)
 		}
-		//½øĞĞ¶ÑÅÅ
+		//è¿›è¡Œå †æ’
 		int sz = arr.size();
 		swap(arr[0],arr[sz-1]);
 		while (sz>0)//O(N)
@@ -61,15 +61,15 @@ public:
 			swap(arr[0], arr[--sz]);
 		}
 	}
-	//ÔÚindexµÄÎ»ÖÃ²åÈëxÖ®ºó,µ÷ÕûÀàËÆÏòÉÏµ÷Õû,ºÍ¸¸Ç×½Úµã±È½Ï
-	//Ä¬ÈÏÊÇ´ó¶Ñµ÷Õû
-	//ĞèÇó:½«Õû¸öÊı×éµ÷ÕûÎª´ó¸ú¶Ñ,´Ó×îºóÒ»¸ö¸¸Ç×½Úµã¿ªÊ¼ÏòÏÂµ÷ÕûheapIfy
-	//×îµ×²ãÕ¼½«½üÒ»°ë,N/2,ÎŞ·¨ÏòÏÂÔÙµ÷Õû,Ö»¿´Ò»ÑÛ,´ú¼ÛÊÇ1
-	//µ¹ÊıµÚ¶ş²ãN/4¸ö,¿ÉÒÔÏòÏÂ²Ù×÷,¿´Ò»ÑÛ,´ú¼ÛÊÇ2
-	//µ¹ÊıµÚ¶ş²ãN/8¸ö,¿ÉÒÔÏòÏÂ²Ù×÷2´Î,¿´Ò»ÑÛ,´ú¼ÛÊÇ3
+	//åœ¨indexçš„ä½ç½®æ’å…¥xä¹‹å,è°ƒæ•´ç±»ä¼¼å‘ä¸Šè°ƒæ•´,å’Œçˆ¶äº²èŠ‚ç‚¹æ¯”è¾ƒ
+	//é»˜è®¤æ˜¯å¤§å †è°ƒæ•´
+	//éœ€æ±‚:å°†æ•´ä¸ªæ•°ç»„è°ƒæ•´ä¸ºå¤§è·Ÿå †,ä»æœ€åä¸€ä¸ªçˆ¶äº²èŠ‚ç‚¹å¼€å§‹å‘ä¸‹è°ƒæ•´heapIfy
+	//æœ€åº•å±‚å å°†è¿‘ä¸€åŠ,N/2,æ— æ³•å‘ä¸‹å†è°ƒæ•´,åªçœ‹ä¸€çœ¼,ä»£ä»·æ˜¯1
+	//å€’æ•°ç¬¬äºŒå±‚N/4ä¸ª,å¯ä»¥å‘ä¸‹æ“ä½œ,çœ‹ä¸€çœ¼,ä»£ä»·æ˜¯2
+	//å€’æ•°ç¬¬äºŒå±‚N/8ä¸ª,å¯ä»¥å‘ä¸‹æ“ä½œ2æ¬¡,çœ‹ä¸€çœ¼,ä»£ä»·æ˜¯3
 	//....
-	//ÕûÌå¸´ÔÓ¶È¾ÍÊÇT(N)=N/2*1+N/4*2+N/8*3....
-	//´ÓheapInsertµÄO(N*logN)=>O(N)
+	//æ•´ä½“å¤æ‚åº¦å°±æ˜¯T(N)=N/2*1+N/4*2+N/8*3....
+	//ä»heapInsertçš„O(N*logN)=>O(N)
 	void HeapInsert(vector<int>& arr, int index)
 	{
 		while (arr[index] > arr[(index - 1) / 2])
@@ -78,7 +78,7 @@ public:
 			index = (index - 1) / 2;
 		}
 	}
-	//´ÓindexÎ»ÖÃ¿ªÊ¼ÏòÏÂµ÷Õû,´ËÊ±heap.size()=sz
+	//ä»indexä½ç½®å¼€å§‹å‘ä¸‹è°ƒæ•´,æ­¤æ—¶heap.size()=sz
 	void HeapIfy(vector<int>& arr, int index, int sz)
 	{
 		int left = index * 2 + 1;
@@ -98,8 +98,8 @@ public:
 		}
 	}
 public:
-	//T=O(nlogn)¿Õ¼ä¸´ÔÓ¶ÈÎªO(logn)µ±ÕıºÃÈ¡µ½¶ş·ÖÊ±,Ö÷ÒªÊÇµİ¹éÕ»ÖĞµÄ¿Õ¼äÊ¹ÓÃ
-	//version1-ÍÚ¿Ó·¨
+	//T=O(nlogn)ç©ºé—´å¤æ‚åº¦ä¸ºO(logn)å½“æ­£å¥½å–åˆ°äºŒåˆ†æ—¶,ä¸»è¦æ˜¯é€’å½’æ ˆä¸­çš„ç©ºé—´ä½¿ç”¨
+	//version1-æŒ–å‘æ³•
 	void QuickSort1(vector<int>& arr)
 	{
 		int n = arr.size();
@@ -115,11 +115,11 @@ public:
 	}
 	int partition1(vector<int>& arr, int l, int r)
 	{
-		//ÈıÊıÈ¡ÖĞ,±ÜÃâ¼«¶ËÇé¿öµÄ³öÏÖ
+		//ä¸‰æ•°å–ä¸­,é¿å…æç«¯æƒ…å†µçš„å‡ºç°
 		int key =l;
 		while (l < r)
 		{
-			//´ÓÓÒÇø¼äÕÒÒ»¸ö<keyµÄÖµ
+			//ä»å³åŒºé—´æ‰¾ä¸€ä¸ª<keyçš„å€¼
 			while (l<r && arr[r]>arr[key])
 				r--;
 			while (l < r && arr[l] < arr[key])
@@ -129,10 +129,10 @@ public:
 		swap(arr[key], arr[l]);
 		return l;
 	}
-	//version2-Çø¼ä»®·Ö
-	//½«ºÉÀ¼¹úÆì×îºÃÇé¿ötargetÕıºÃÊÇÒ»°ëÊ±,T=O(nlogn)ÍÆ¹ã,¿ÉÄÜÊÇ1/3,1/4...,Ã¿Ò»ÖÖ¸ÅÂÊµÄÆÚÍû¶¼ÊÇ1/3p+(2/3(1-p))
-	//×îºó½«ËùÓĞÏà¼ÓÖ®ºó×ÜÆÚÍû¾ÍÊÇO(nlogn)
-	//Ëæ»úÑ¡ÔñÒ»¸öÊıºÍ×îºóÒ»¸ö½»»»,½øĞĞºÉÀ¼¹úÆìÎÊÌâ¼´Çø¼ä»®·Ö
+	//version2-åŒºé—´åˆ’åˆ†
+	//å°†è·å…°å›½æ——æœ€å¥½æƒ…å†µtargetæ­£å¥½æ˜¯ä¸€åŠæ—¶,T=O(nlogn)æ¨å¹¿,å¯èƒ½æ˜¯1/3,1/4...,æ¯ä¸€ç§æ¦‚ç‡çš„æœŸæœ›éƒ½æ˜¯1/3p+(2/3(1-p))
+	//æœ€åå°†æ‰€æœ‰ç›¸åŠ ä¹‹åæ€»æœŸæœ›å°±æ˜¯O(nlogn)
+	//éšæœºé€‰æ‹©ä¸€ä¸ªæ•°å’Œæœ€åä¸€ä¸ªäº¤æ¢,è¿›è¡Œè·å…°å›½æ——é—®é¢˜å³åŒºé—´åˆ’åˆ†
 	void QuickSort2(vector<int>& arr)
 	{
 		if (arr.size() < 2)
@@ -142,7 +142,7 @@ public:
 	void quickSort(vector<int>& arr, int l, int r)
 	{
 		if (l >= r)return;
-		int pos = rand() % (r-l+1)+l;//Æ«ÒÆÁ¿+left
+		int pos = rand() % (r-l+1)+l;//åç§»é‡+left
 		swap(arr[l + pos], arr[r]);
 		pair<int, int>ret = partition(arr,l,r);
 		quickSort(arr,l,ret.first-1);
@@ -151,7 +151,7 @@ public:
 	pair<int,int> partition(vector<int>& arr, int l, int r)
 	{
 		int less = l - 1, more = r + 1;
-		while (l < more)//±éÀúµ½moreÇø¼ä¾ÍÍ£Ö¹
+		while (l < more)//éå†åˆ°moreåŒºé—´å°±åœæ­¢
 		{
 			if (arr[l] > arr[r])
 			{
@@ -170,21 +170,21 @@ public:
 		return {less+1,more-1};
 	}
 	//
-	//master¹«Ê½µÄÊ¹ÓÃ
+	//masterå…¬å¼çš„ä½¿ç”¨
 	void merageSort(vector<int>& arr)
 	{
 		if (arr.size() < 2)
 			return;
 		return merageSortHelper(arr, 0, arr.size() - 1);
 	}
-	//Á½´Î¶ş·Öµ÷ÓÃ,a=2,b=2 log(b,a)=1,ÆäËûµ÷ÓÃmerageÊÇO(N^1),d=1,ËùÒÔT(N)=O(N^d*logN)
+	//ä¸¤æ¬¡äºŒåˆ†è°ƒç”¨,a=2,b=2 log(b,a)=1,å…¶ä»–è°ƒç”¨merageæ˜¯O(N^1),d=1,æ‰€ä»¥T(N)=O(N^d*logN)
 	void merageSortHelper(vector<int>& arr, int left, int right)
 	{
 		if (left >= right)return;
 		int mid = left + (right - left) + 1;
 		merageSortHelper(arr, left, mid);
 		merageSortHelper(arr, mid+1,right);
-		merage(arr,left,mid,right);//½«Á½¸öÓĞĞòÊı×é½øĞĞ¹é²¢
+		merage(arr,left,mid,right);//å°†ä¸¤ä¸ªæœ‰åºæ•°ç»„è¿›è¡Œå½’å¹¶
 	}
 	void merage(vector<int>& arr, int left, int mid, int right)
 	{
@@ -200,13 +200,13 @@ public:
 			tmp[i++] = arr[p1++];
 		while (p2 <= right)
 			tmp[i++] = arr[p2++];
-		//¿½±´»ØÔ­Êı×é
+		//æ‹·è´å›åŸæ•°ç»„
 		for (int i = left; i < tmp.size(); i++)
 			arr[left + i] = tmp[i];
 	}
 public://<O(n^2),O(1)>
-	//Êı¾İ·¢Éú±ä»¯Ó°ÏìÁ÷³Ì
-	//ÏëÈÃ[0,i]Çø¼äÓĞĞò,´Ói-1ÍùÇ°ÕÒºÏÊÊµÄÎ»ÖÃ²åÈë
+	//æ•°æ®å‘ç”Ÿå˜åŒ–å½±å“æµç¨‹
+	//æƒ³è®©[0,i]åŒºé—´æœ‰åº,ä»i-1å¾€å‰æ‰¾åˆé€‚çš„ä½ç½®æ’å…¥
 	void Insert(vector<int>& arr)
 	{
 		int n = arr.size();
@@ -217,10 +217,10 @@ public://<O(n^2),O(1)>
 				swap(arr[j],arr[j+1]);
 		}
 	}
-public://Êı¾İ·¢Éú±ä»¯²»Ó°ÏìÁ÷³Ì
+public://æ•°æ®å‘ç”Ÿå˜åŒ–ä¸å½±å“æµç¨‹
 
-	//´ÓiÎ»ÖÃ¿ªÊ¼Ïòºó×ß,Èç¹û±ÈºóÒ»¸ö¸ü´ó¾Í½»»»
-	//Ò»ÂÖ°²ÅÅÒ»¸ö×î´óÖµ,Çø¼äÓÒ±ß½çÒ»Ö±ÔÚ×óÒÆ¶¯
+	//ä»iä½ç½®å¼€å§‹å‘åèµ°,å¦‚æœæ¯”åä¸€ä¸ªæ›´å¤§å°±äº¤æ¢
+	//ä¸€è½®å®‰æ’ä¸€ä¸ªæœ€å¤§å€¼,åŒºé—´å³è¾¹ç•Œä¸€ç›´åœ¨å·¦ç§»åŠ¨
 	void BubbleSort(vector<int>& arr)
 	{
 		int n = arr.size();
@@ -234,8 +234,8 @@ public://Êı¾İ·¢Éú±ä»¯²»Ó°ÏìÁ÷³Ì
 			}
 		}
 	}
-	//´ÓiÎ»ÖÃ¿ªÊ¼ÏòºóÕÒ×îĞ¡µÄÊı·ÅÔÚiÎ»ÖÃ,i++
-	//O(n^2)²»ÎÈ¶¨ÅÅĞò
+	//ä»iä½ç½®å¼€å§‹å‘åæ‰¾æœ€å°çš„æ•°æ”¾åœ¨iä½ç½®,i++
+	//O(n^2)ä¸ç¨³å®šæ’åº
 	void SelectSort(vector<int>& arr)
 	{
 		if (arr.size() < 2)

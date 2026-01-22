@@ -4,7 +4,7 @@ class Solution
     private:
     vector<int>ufs;
 public:
-//因为不同变量之间相等具有可传递性,所以将相等的数字放到同一集合当中,判断根节点是否相同来代替实现判断
+//鍥犱负涓嶅悓鍙橀噺涔嬮棿鐩哥瓑鍏锋湁鍙紶閫掓€?鎵€浠ュ皢鐩哥瓑鐨勬暟瀛楁斁鍒板悓涓€闆嗗悎褰撲腑,鍒ゆ柇鏍硅妭鐐规槸鍚︾浉鍚屾潵浠ｆ浛瀹炵幇鍒ゆ柇
     int FindRoot(int x)
     {
         while(ufs[x]>=0)
@@ -13,15 +13,15 @@ public:
     }
     bool equationsPossible(vector<string>& nums) 
     {
-        //多少个变量?  nums[i][0] nums[i][3]
-        //因为都是小写的字母,所以最大不超过26
+        //澶氬皯涓彉閲?  nums[i][0] nums[i][3]
+        //鍥犱负閮芥槸灏忓啓鐨勫瓧姣?鎵€浠ユ渶澶т笉瓒呰繃26
         ufs=vector<int>(26,-1);
         int n=nums.size();
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<4;j++)
             {
-                if(nums[i][1] == '=')//相等,进行合并操作
+                if(nums[i][1] == '=')//鐩哥瓑,杩涜鍚堝苟鎿嶄綔
                 {
                     int ai =nums[i][0] - 'a',bi=nums[i][3]-'a';
                     int root1 =FindRoot(ai);
@@ -34,7 +34,7 @@ public:
                 }
             }
         }
-        //找不相同的,看是否是不同节点
+        //鎵句笉鐩稿悓鐨?鐪嬫槸鍚︽槸涓嶅悓鑺傜偣
         for(auto& str: nums)
         {
             if(str[1] == '!')

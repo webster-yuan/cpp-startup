@@ -2,20 +2,20 @@
 #include<unordered_map>
 using namespace std;
 
-//���RandomPool�ṹ
-//�� ��Ŀ��
-//���һ�ֽṹ�� �ڸýṹ���������������� :
-//insert(key) : ��ĳ��key���뵽�ýṹ�� �������ظ�����
-//delete(key) : ��ԭ���ڽṹ�е�ĳ��key�Ƴ�
-//getRandom() : �ȸ���������ؽṹ�е��κ�һ��key��
-//�� Ҫ��
-//Insert�� delete��getRandom������ʱ�临�Ӷȶ���O(1)
+//设计RandomPool结构
+//【 题目】
+//设计一种结构， 在该结构中有如下三个功能 :
+//insert(key) : 将某个key加入到该结构， 做到不重复加入
+//delete(key) : 将原本在结构中的某个key移除
+//getRandom() : 等概率随机返回结构中的任何一个key。
+//【 要求】
+//Insert、 delete和getRandom方法的时间复杂度都是O(1)
 //
-//��û��ɾ����ʱ��, ������Ϊ������26���ռ�, �ȸ��ʷ��ؼ���.
+//在没有删除的时候, 可以认为是连续26个空间, 等概率返回即可.
 //
-//��ɾ����Ϊ, Ӳɾ֮�����0~25�����кܶ�Ķ�, Ҫ��֤����, �����һ����¼index = size - 1, �õ�str, ��strȥ�, ������index = 3(Ҫɾ����index), ɾ�����һ������Ҫɾ��������, ��ʱ�ռ���������.
+//有删除行为, 硬删之后会在0~25区间有很多的洞, 要保证连续, 让最后一条记录index = size - 1, 得到str, 让str去填洞, 让他的index = 3(要删除的index), 删掉最后一条和你要删除的那条, 此时空间是连续的.
 //
-//ʹ�����Ź�ϣ��<str, index> <index, str>
+//使用两张哈希表<str, index> <index, str>
 
 template<class Key>
 class RandomPool

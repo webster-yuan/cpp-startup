@@ -3,14 +3,14 @@ class Solution
 {
     vector<int>counts;
     vector<int>tmp;
-    vector<int>index;//记录数据原始下标
-    vector<int>tmpIndex;//为了对下标的合并使用临时数组
+    vector<int>index;//璁板綍鏁版嵁鍘熷涓嬫爣
+    vector<int>tmpIndex;//涓轰簡瀵逛笅鏍囩殑鍚堝苟浣跨敤涓存椂鏁扮粍
 public:
-//采用区间降序,关注与(left,mid)中x值,查看(mid+1,right)中是否有y<x,那么right-p2+1个都是比x小的
-//在两个区间降序合并之后,元素的下标重新变化,下标变了,下一次无法将值放到正确的位置
-//如果用哈希表,那么如果有重复元素出现,就会存在值的覆盖,出现问题
-//所以写个index数组记录数据原始的下标,在数据移动的过程中,下标也跟着移动,数据需要tmp数组,那么下标也需要一个tmpIndex移动
-//一个数据的下标和数据移动好了之后,才可以i++,p1++,p2++
+//閲囩敤鍖洪棿闄嶅簭,鍏虫敞涓?left,mid)涓瓁鍊?鏌ョ湅(mid+1,right)涓槸鍚︽湁y<x,閭ｄ箞right-p2+1涓兘鏄瘮x灏忕殑
+//鍦ㄤ袱涓尯闂撮檷搴忓悎骞朵箣鍚?鍏冪礌鐨勪笅鏍囬噸鏂板彉鍖?涓嬫爣鍙樹簡,涓嬩竴娆℃棤娉曞皢鍊兼斁鍒版纭殑浣嶇疆
+//濡傛灉鐢ㄥ搱甯岃〃,閭ｄ箞濡傛灉鏈夐噸澶嶅厓绱犲嚭鐜?灏变細瀛樺湪鍊肩殑瑕嗙洊,鍑虹幇闂
+//鎵€浠ュ啓涓猧ndex鏁扮粍璁板綍鏁版嵁鍘熷鐨勪笅鏍?鍦ㄦ暟鎹Щ鍔ㄧ殑杩囩▼涓?涓嬫爣涔熻窡鐫€绉诲姩,鏁版嵁闇€瑕乼mp鏁扮粍,閭ｄ箞涓嬫爣涔熼渶瑕佷竴涓猼mpIndex绉诲姩
+//涓€涓暟鎹殑涓嬫爣鍜屾暟鎹Щ鍔ㄥソ浜嗕箣鍚?鎵嶅彲浠++,p1++,p2++
     vector<int> countSmaller(vector<int>& nums) 
     {
         int n=nums.size();
@@ -30,14 +30,14 @@ public:
         int mid=(right-left)/2+left;
         merageSort(nums,left,mid);
         merageSort(nums,mid+1,right);
-        //后序遍历
+        //鍚庡簭閬嶅巻
         int p1=left,p2=mid+1,i=0;
-        while(p1<=mid && p2<=right)//区间降序数组
+        while(p1<=mid && p2<=right)//鍖洪棿闄嶅簭鏁扮粍
         {
             if(nums[p1]>nums[p2])
             {
                 
-                counts[index[p1]] += right-p2+1;//随着合并之后下标的重新分配,count计数下标出现变换
+                counts[index[p1]] += right-p2+1;//闅忕潃鍚堝苟涔嬪悗涓嬫爣鐨勯噸鏂板垎閰?count璁℃暟涓嬫爣鍑虹幇鍙樻崲
                 tmpIndex[i]=index[p1];
                 tmp[i++]=nums[p1++];
             }

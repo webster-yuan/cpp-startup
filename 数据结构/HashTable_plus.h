@@ -47,7 +47,7 @@ namespace LinkHash
 	{
 		typedef HashNode<T> Node;
 		typedef __HTIterator<K, T, Ptr, Ref, KeyOfT, HashFunc> Self;
-		//µü´úÆ÷Ö§³ÖĞèÒª½ÚµãÖ¸Õë,¹şÏ£±íÖ¸Õë
+		//è¿­ä»£å™¨æ”¯æŒéœ€è¦èŠ‚ç‚¹æŒ‡é’ˆ,å“ˆå¸Œè¡¨æŒ‡é’ˆ
 
 		Node* _node;
 		HashTable<K, T, KeyOfT, HashFunc>* _pht;
@@ -67,16 +67,16 @@ namespace LinkHash
 		}
 		Self& operator++()
 		{
-			if (_node->_next)//´Ë¹şÏ£Í°»¹Ã»ÓĞ½áÊø
+			if (_node->_next)//æ­¤å“ˆå¸Œæ¡¶è¿˜æ²¡æœ‰ç»“æŸ
 				_node = _node->_next;
 			else
 			{
-				//ÖØĞÂÈ·Á¢index
+				//é‡æ–°ç¡®ç«‹index
 				HashFunc hf;
 				KeyOfT kot;
 				int index = hf(kot(_node->_data)) % _pht->_tables.size();
 				++index;
-				//ÕÒÏÂÒ»¸ö²»ÊÇ¿ÕµÄÍ°
+				//æ‰¾ä¸‹ä¸€ä¸ªä¸æ˜¯ç©ºçš„æ¡¶
 				while (index < _pht->_tables.size())
 				{
 					if (_pht->_tables[index])
@@ -100,7 +100,7 @@ namespace LinkHash
 			return _node == s._node;
 		}
 	};
-	//KeyOfTÄ£°æ²ÎÊı¾ÍÊÇÎªÁËÇø·ÖÊÇKey»¹ÊÇpair<Key,Val>
+	//KeyOfTæ¨¡ç‰ˆå‚æ•°å°±æ˜¯ä¸ºäº†åŒºåˆ†æ˜¯Keyè¿˜æ˜¯pair<Key,Val>
 	template<class K,class T,class KeyOfT,class HashFunc=Hash<T>>
 	class HashTable
 	{
@@ -111,7 +111,7 @@ namespace LinkHash
 
 		typedef HashTable<K, T, KeyOfT, HashFunc> Self;
 	public:
-		//ÊµÀı»¯µü´úÆ÷¸÷ÖÖÄ£°æÀà²ÎÊı
+		//å®ä¾‹åŒ–è¿­ä»£å™¨å„ç§æ¨¡ç‰ˆç±»å‚æ•°
 		typedef __HTIterator<K, T, T*, T&, KeyOfT, HashFunc> iterator;
 	public:
 		HashTable(const Self& ht)
@@ -122,7 +122,7 @@ namespace LinkHash
 				Node* cur = _tables[i];
 				while (cur)
 				{
-					//´óĞ¡ÒÑ¾­ºÍÄãÒ»ÑùÁË,Ö»ĞèÒª´´½¨ĞÂ½ÚµãÈ»ºóÖ±½ÓÁ¬¾ÍĞĞÁË
+					//å¤§å°å·²ç»å’Œä½ ä¸€æ ·äº†,åªéœ€è¦åˆ›å»ºæ–°èŠ‚ç‚¹ç„¶åç›´æ¥è¿å°±è¡Œäº†
 					Node* copy = new Node(cur->_data);
 					copy->_next = _tables[i];
 					_tables[i] = copy;
@@ -155,7 +155,7 @@ namespace LinkHash
 		}
 		iterator begin()
 		{
-			//Í·Ò»¸ö²»Îª¿ÕµÄ¹şÏ£Í°²ÅÊÇbegin,²»ÊÇ_tables[0]
+			//å¤´ä¸€ä¸ªä¸ä¸ºç©ºçš„å“ˆå¸Œæ¡¶æ‰æ˜¯begin,ä¸æ˜¯_tables[0]
 			for (int i = 0; i < _tables.size(); i++)
 			{
 				if (_tables[i])
@@ -181,7 +181,7 @@ namespace LinkHash
 			{
 				if (kot(cur->_data) == key)
 				{
-					if (prev == nullptr)//ËµÃ÷ÊÇÍ·É¾
+					if (prev == nullptr)//è¯´æ˜æ˜¯å¤´åˆ 
 					{
 						_tables[index] = cur->_next;
 					}
@@ -251,7 +251,7 @@ namespace LinkHash
 			if (_n == _tables.size())
 			{
 				int newSize = GetNextPrime(_tables.size());
-				if (newSize == _tables.size())//ÎŞ·¨ÔÙÀ©Èİ,´óĞ¡Ã»·¨´óÁË
+				if (newSize == _tables.size())//æ— æ³•å†æ‰©å®¹,å¤§å°æ²¡æ³•å¤§äº†
 					return make_pair(end(), false);
 				vector<Node* >newHT;
 				newHT.resize(newSize);
@@ -266,7 +266,7 @@ namespace LinkHash
 						newHT[index] = cur;
 						cur = next;
 					}
-					_tables[i] = nullptr;//Ã¿´¦ÀíÍêÒ»¸ö¾Í½«Á´±í½áÎ²->nullptr
+					_tables[i] = nullptr;//æ¯å¤„ç†å®Œä¸€ä¸ªå°±å°†é“¾è¡¨ç»“å°¾->nullptr
 				}
 				_tables.swap(newHT);
 			}

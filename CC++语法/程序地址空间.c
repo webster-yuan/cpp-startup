@@ -5,22 +5,22 @@ int g_val1 = 10;
 int g_val2;
 //int main()
 //{
-//	printf("´úÂëÇø:%p\n",main);
+//	printf("ä»£ç åŒº:%p\n",main);
 //	const char* str = "yuanweinb";
-//	printf("×Ö·û³£Á¿Çø:%p\n",str);
-//	printf("ÒÑ³õÊ¼»¯È«¾ÖÊı¾İÇø:%p\n",&g_val1);
-//	printf("Î´³õÊ¼»¯È«¾ÖÊı¾İÇø:%p\n",&g_val2);
+//	printf("å­—ç¬¦å¸¸é‡åŒº:%p\n",str);
+//	printf("å·²åˆå§‹åŒ–å…¨å±€æ•°æ®åŒº:%p\n",&g_val1);
+//	printf("æœªåˆå§‹åŒ–å…¨å±€æ•°æ®åŒº:%p\n",&g_val2);
 //	int* ptr1 = (int*)malloc(sizeof(int)*10);
 //	int* ptr2 = (int*)malloc(sizeof(int)*10);
 //	int* ptr3 = (int*)malloc(sizeof(int)*10);
-//	printf("¶ÑÇø:%p\n", ptr1);
-//	printf("¶ÑÇø:%p\n", ptr2);
-//	printf("¶ÑÇø:%p\n", ptr3);
+//	printf("å †åŒº:%p\n", ptr1);
+//	printf("å †åŒº:%p\n", ptr2);
+//	printf("å †åŒº:%p\n", ptr3);
 //	int a1 = 10;
 //	int a2 = 10;
 //	int a3 = 10;
-//	printf("Õ»Çø:%p\n",&a1);
-//	printf("Õ»Çø:%p\n",&a2);
-//	printf("Õ»Çø:%p\n",&a3);
+//	printf("æ ˆåŒº:%p\n",&a1);
+//	printf("æ ˆåŒº:%p\n",&a2);
+//	printf("æ ˆåŒº:%p\n",&a3);
 //	return 0;
 //}

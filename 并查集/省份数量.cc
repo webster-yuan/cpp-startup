@@ -8,17 +8,17 @@ public:
     {
         while(ufs[x]>=0)
             x=ufs[x];
-        return x;//返回头的下标
+        return x;//杩斿洖澶寸殑涓嬫爣
     }
     int findCircleNum(vector<vector<int>>& arr) 
     {
         int n=arr.size();
-        ufs= vector<int>(n,-1);//-1的含义: 每一个节点以自己为头的集合中元素个数就是自己一个
+        ufs= vector<int>(n,-1);//-1鐨勫惈涔? 姣忎竴涓妭鐐逛互鑷繁涓哄ご鐨勯泦鍚堜腑鍏冪礌涓暟灏辨槸鑷繁涓€涓?
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<n;j++)
             {
-                if(arr[i][j] == 1)//i j两点之间存在相连关系
+                if(arr[i][j] == 1)//i j涓ょ偣涔嬮棿瀛樺湪鐩歌繛鍏崇郴
                 {
                     int root1 =FindRoot(i);
                     int root2 =FindRoot(j);

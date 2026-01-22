@@ -3,18 +3,18 @@
 #include <thread>
 #include<vector>
 #include <mutex>
-// 读写锁是一把锁分为两部分：读锁和写锁，其中读锁允许多个线程同时获得，而写锁则是互斥锁。
-// 它的完整规则是：读读不互斥、读写互斥、写写互斥。
-// 它适用于多读的业务场景，使用它可以有效的提高程序的执行性能，也能避免读取到操作了一半的临时数据
+// 璇诲啓閿佹槸涓€鎶婇攣鍒嗕负涓ら儴鍒嗭細璇婚攣鍜屽啓閿侊紝鍏朵腑璇婚攣鍏佽澶氫釜绾跨▼鍚屾椂鑾峰緱锛岃€屽啓閿佸垯鏄簰鏂ラ攣銆?
+// 瀹冪殑瀹屾暣瑙勫垯鏄細璇昏涓嶄簰鏂ャ€佽鍐欎簰鏂ャ€佸啓鍐欎簰鏂ャ€?
+// 瀹冮€傜敤浜庡璇荤殑涓氬姟鍦烘櫙锛屼娇鐢ㄥ畠鍙互鏈夋晥鐨勬彁楂樼▼搴忕殑鎵ц鎬ц兘锛屼篃鑳介伩鍏嶈鍙栧埌鎿嶄綔浜嗕竴鍗婄殑涓存椂鏁版嵁
 
-// 使用两把互斥锁
-// 当读写锁中的读锁被某个线程加上时，先加上读互斥锁，这样保证了其他线程不能再读了；
-// 接着，再加上写互斥锁，同时计数加上 1，这样保证了其他线程不能再写了。
-// 接着，把读互斥锁释放掉，因为要允许其他线程也能读这个共享变量。
-// 也就是说，多次读时，只需要加一把写锁，表明其他线程暂时不能执行写操作。
-// 当读写锁中的读锁被某个线程释放时，也是加上了读互斥锁，
-// 这样保证多个线程同时释放读写锁中的读锁时没有问题。当没有线程读操作时，释放写互斥锁。
-// 表明其他线程可以执行写操作了
+// 浣跨敤涓ゆ妸浜掓枼閿?
+// 褰撹鍐欓攣涓殑璇婚攣琚煇涓嚎绋嬪姞涓婃椂锛屽厛鍔犱笂璇讳簰鏂ラ攣锛岃繖鏍蜂繚璇佷簡鍏朵粬绾跨▼涓嶈兘鍐嶈浜嗭紱
+// 鎺ョ潃锛屽啀鍔犱笂鍐欎簰鏂ラ攣锛屽悓鏃惰鏁板姞涓?1锛岃繖鏍蜂繚璇佷簡鍏朵粬绾跨▼涓嶈兘鍐嶅啓浜嗐€?
+// 鎺ョ潃锛屾妸璇讳簰鏂ラ攣閲婃斁鎺夛紝鍥犱负瑕佸厑璁稿叾浠栫嚎绋嬩篃鑳借杩欎釜鍏变韩鍙橀噺銆?
+// 涔熷氨鏄锛屽娆¤鏃讹紝鍙渶瑕佸姞涓€鎶婂啓閿侊紝琛ㄦ槑鍏朵粬绾跨▼鏆傛椂涓嶈兘鎵ц鍐欐搷浣溿€?
+// 褰撹鍐欓攣涓殑璇婚攣琚煇涓嚎绋嬮噴鏀炬椂锛屼篃鏄姞涓婁簡璇讳簰鏂ラ攣锛?
+// 杩欐牱淇濊瘉澶氫釜绾跨▼鍚屾椂閲婃斁璇诲啓閿佷腑鐨勮閿佹椂娌℃湁闂銆傚綋娌℃湁绾跨▼璇绘搷浣滄椂锛岄噴鏀惧啓浜掓枼閿併€?
+// 琛ㄦ槑鍏朵粬绾跨▼鍙互鎵ц鍐欐搷浣滀簡
 class readwrite_lock
 {
 public:
@@ -25,8 +25,8 @@ public:
     void readLock()
     {
         read_mtx.lock();
-        if (++read_cnt == 1) //存在线程读时
-            write_mtx.lock();//写加锁,只加一次
+        if (++read_cnt == 1) //瀛樺湪绾跨▼璇绘椂
+            write_mtx.lock();//鍐欏姞閿?鍙姞涓€娆?
 
         read_mtx.unlock();
     }
@@ -34,8 +34,8 @@ public:
     void readUnlock()
     {
         read_mtx.lock();
-        if (--read_cnt == 0)    //没有线程读时
-            write_mtx.unlock();//写释放锁
+        if (--read_cnt == 0)    //娌℃湁绾跨▼璇绘椂
+            write_mtx.unlock();//鍐欓噴鏀鹃攣
 
         read_mtx.unlock();
     }
@@ -53,10 +53,10 @@ public:
 private:
     std::mutex read_mtx;
     std::mutex write_mtx;
-    int read_cnt; // 已加读锁个数
+    int read_cnt; // 宸插姞璇婚攣涓暟
 };
-volatile int var = 10; // 保持变量 var 对内存可见性，防止编译器过度优化
-readwrite_lock rwLock; // 定义全局的读写锁变量
+volatile int var = 10; // 淇濇寔鍙橀噺 var 瀵瑰唴瀛樺彲瑙佹€э紝闃叉缂栬瘧鍣ㄨ繃搴︿紭鍖?
+readwrite_lock rwLock; // 瀹氫箟鍏ㄥ眬鐨勮鍐欓攣鍙橀噺
 
 void Write() {
     rwLock.writeLock();
@@ -74,21 +74,21 @@ void Read() {
 int main() {
     std::vector<std::thread> writers;
     std::vector<std::thread> readers;
-    for (int i = 0; i < 10; i++) {  // 10 个写线程
-        writers.push_back(std::thread(Write));  // std::thread t 的写法报错
+    for (int i = 0; i < 10; i++) {  // 10 涓啓绾跨▼
+        writers.push_back(std::thread(Write));  // std::thread t 鐨勫啓娉曟姤閿?
     }
-    for (int i = 0; i < 100; i++) {   // 100 个读线程
+    for (int i = 0; i < 100; i++) {   // 100 涓绾跨▼
         readers.push_back(std::thread(Read));
     }
-    for (auto& t : writers) {   // 写线程启动
+    for (auto& t : writers) {   // 鍐欑嚎绋嬪惎鍔?
         t.join();
     }
-    for (auto& t : readers) {   // 读线程启动
+    for (auto& t : readers) {   // 璇荤嚎绋嬪惎鍔?
         t.join();
     }
     std::cin.get();
 }
-// 2. 使用pthread库中的rwlock接口实现
+// 2. 浣跨敤pthread搴撲腑鐨剅wlock鎺ュ彛瀹炵幇
 class ReadWriteLock
 {
 public:

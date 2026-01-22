@@ -16,7 +16,7 @@ public:
 			st.push(i);
 		}
 	}
-	//»ñÈ¡²¢ÒÆ³ıÕ»µ×ÔªËØ,µİ¹éº¯ÊıÖĞreturn µÄÒ»Ö±ÊÇlast,ÔÚempty()Ö®Ç°¾ÍÊÇÕâ¸öÕ»µ×ÔªËØ·µ»Ø
+	//è·å–å¹¶ç§»é™¤æ ˆåº•å…ƒç´ ,é€’å½’å‡½æ•°ä¸­return çš„ä¸€ç›´æ˜¯last,åœ¨empty()ä¹‹å‰å°±æ˜¯è¿™ä¸ªæ ˆåº•å…ƒç´ è¿”å›
 	int getAndRemoveLastElement(stack<int>& st)
 	{
 		int result = st.top(); st.pop();

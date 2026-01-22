@@ -21,8 +21,8 @@ public:
 class CopyList
 {
 public:
-	//1. ±È½ÏÔôµÄ·½Ê½,ÓÃ¹şÏ£±í¼ÇÂ¼<Ô´½Úµã,ĞÂ½¨½Úµã>,È»ºó¸ù¾İÔ­Á´±íÁ¬½ÓĞÂÁ´±í
-	//<O(N),O(N)>Ê¹ÓÃµ½¶îÍâ¿Õ¼ä
+	//1. æ¯”è¾ƒè´¼çš„æ–¹å¼,ç”¨å“ˆå¸Œè¡¨è®°å½•<æºèŠ‚ç‚¹,æ–°å»ºèŠ‚ç‚¹>,ç„¶åæ ¹æ®åŸé“¾è¡¨è¿æ¥æ–°é“¾è¡¨
+	//<O(N),O(N)>ä½¿ç”¨åˆ°é¢å¤–ç©ºé—´
 	Node* copyList1(Node* head)
 	{
 		unordered_map<Node*, Node*> hashMap;
@@ -42,7 +42,7 @@ public:
 		}
 		return hashMap[head];
 	}
-	//2. <O(N),O(1)> ½«ĞÂ²úÉúµÄ½ÚµãÖ±½ÓÁ¬½ÓÔÚÃ¿¸ö½ÚµãµÄºóÃæ,×îºósplit
+	//2. <O(N),O(1)> å°†æ–°äº§ç”Ÿçš„èŠ‚ç‚¹ç›´æ¥è¿æ¥åœ¨æ¯ä¸ªèŠ‚ç‚¹çš„åé¢,æœ€åsplit
 	Node* copyList2(Node* head)
 	{
 		if (head == nullptr)return;
@@ -57,7 +57,7 @@ public:
 
 			cur = next;
 		}
-		//Á¬½ÓrandPtr
+		//è¿æ¥randPtr
 		cur = head;
 		Node* copyNode = nullptr;
 		while (cur)
@@ -67,7 +67,7 @@ public:
 			copyNode->randPtr = cur->randPtr == nullptr ? nullptr : cur->randPtr->next;
 			cur = next;
 		}
-		//splitºÍÖØĞÂÁ¬½Ó
+		//splitå’Œé‡æ–°è¿æ¥
 		Node* res = head->next;
 		cur = head;
 		while (cur)

@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<assert.h>
 #include<string.h>
-//½«ËùÓĞ×Ö½Ú¶¼ÉèÖÃÎª0,ÒÔ×Ö½ÚÎªµ¥Î»½øĞĞ³õÊ¼»¯µÄ
+//å°†æ‰€æœ‰å­—èŠ‚éƒ½è®¾ç½®ä¸º0,ä»¥å­—èŠ‚ä¸ºå•ä½è¿›è¡Œåˆå§‹åŒ–çš„
 //void *memset( void *dest, int c, size_t count );
 void test_memset()
 {

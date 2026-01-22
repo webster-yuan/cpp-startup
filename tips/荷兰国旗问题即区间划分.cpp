@@ -2,7 +2,7 @@
 #include<vector>
 using namespace std;
 
-//¸ø¶¨Êý×éarr,ºÍtarget,½«arr»®·ÖÎªÈý²¿·Ö,< = >Èý¸öÇø¼ä
+//ç»™å®šæ•°ç»„arr,å’Œtarget,å°†arråˆ’åˆ†ä¸ºä¸‰éƒ¨åˆ†,< = >ä¸‰ä¸ªåŒºé—´
 class NetherLandFlag
 {
 public:
@@ -11,13 +11,13 @@ public:
 		int less = l - 1, more = r + 1;
 		while (l < more)
 		{
-			if (arr[l] < p)//½«Öµ·Åµ½lessÇø¼äÖÐ
+			if (arr[l] < p)//å°†å€¼æ”¾åˆ°lessåŒºé—´ä¸­
 			{
 				swap(arr[less + 1], arr[l]);
 				less++;
 				l++;
 			}
-			else if (arr[l] > p)//½«Öµ·Åµ½moreÇø¼äÖÐ
+			else if (arr[l] > p)//å°†å€¼æ”¾åˆ°moreåŒºé—´ä¸­
 			{
 				swap(arr[more - 1], arr[l]);
 				more--;

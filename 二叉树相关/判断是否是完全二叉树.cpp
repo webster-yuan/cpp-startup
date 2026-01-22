@@ -24,7 +24,7 @@ bool isCompleteBT(Node* head)
 		Node* front = q.front(); q.pop();
 		left = front->left;
 		right = front->right;
-		//Ö®Ç°ÒÑ¾­µ½´ïÒ¶×Ó½áµãÁË,ÄÇÃ´Õâ¸ö½Úµã±ØÐëÊÇÒ¶×Ó½áµã²ÅÄÜÊÇÍêÈ«¶þ²æÊ÷
+		//ä¹‹å‰å·²ç»åˆ°è¾¾å¶å­ç»“ç‚¹äº†,é‚£ä¹ˆè¿™ä¸ªèŠ‚ç‚¹å¿…é¡»æ˜¯å¶å­ç»“ç‚¹æ‰èƒ½æ˜¯å®Œå…¨äºŒå‰æ ‘
 		if (isLeafNode && (front->left != nullptr && front->right != nullptr) || (front->left == nullptr && front->right != nullptr))
 			return false;
 			if (left)
